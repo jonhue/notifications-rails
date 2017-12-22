@@ -1,27 +1,23 @@
 # -*- encoding: utf-8 -*-
-version = File.read(File.expand_path('VERSION', __dir__)).strip
+version = File.read(File.expand_path('../VERSION', __dir__)).strip
 
 Gem::Specification.new do |gem|
-    gem.name                  = 'notifications-rails'
+    gem.name                  = 'notification-settings'
     gem.version               = version
     gem.platform              = Gem::Platform::RUBY
-    gem.summary               = 'The most powerful (cross-platform) notifications handler & pusher API for Rails'
+    gem.summary               = '...'
     gem.description           = '...'
     gem.authors               = 'Jonas Hübotter'
     gem.email                 = 'jonas.huebotter@gmail.com'
-    gem.homepage              = 'https://github.com/jonhue/notifications-rails'
+    gem.homepage              = 'https://github.com/jonhue/notifications-rails/tree/master/notification-settings'
     gem.license               = 'MIT'
 
-    gem.files                 = Dir['README.md', 'INSTALL.md', 'LICENSE']
-
-    gem.post_install_message  = IO.read('INSTALL.md')
+    gem.files                 = Dir['README.md', 'CHANGELOG.md', 'LICENSE', 'lib/**/*']
+    gem.require_paths         = ['lib']
 
     gem.required_ruby_version = '>= 2.3'
 
     gem.add_dependency 'rails', '>= 5.0'
-    gem.add_dependency 'notification-handler', version
-    gem.add_dependency 'notification-pusher', version
-    gem.add_dependency 'notification-settings', version
 
     gem.add_development_dependency 'bundler', '~> 1.16'
     gem.add_development_dependency 'rake', '~> 10.0'
