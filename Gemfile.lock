@@ -74,6 +74,8 @@ GEM
     mini_portile2 (2.3.0)
     minitest (5.10.3)
     nio4r (2.1.0)
+    nokogiri (1.8.1)
+      mini_portile2 (~> 2.3.0)
     nokogiri (1.8.1-x86-mingw32)
       mini_portile2 (~> 2.3.0)
     parallel (1.12.1)
@@ -150,7 +152,9 @@ GEM
     websocket-extensions (0.1.3)
 
 PLATFORMS
+  ruby
   x86-mingw32
+  x86_64-linux
 
 DEPENDENCIES
   bundler (~> 1.16)
