@@ -81,7 +81,7 @@ To propose your ideas, initiate the discussion by adding a [new issue](https://g
 
 We hope that you will consider contributing to NotificationPusher for OneSignal. Please read this short overview for some information about how to get started:
 
-[Learn more about contributing to this repository](https://github.com/jonhue/notifications-rails/tree/master/CONTRIBUTING.md), [Code of Conduct](https://github.com/jonhue/notifications-rails/tree/master/CODE_OF_CONDUCT.md)
+[Learn more about contributing to this repository](https://github.com/jonhue/notifications-rails/blob/master/CONTRIBUTING.md), [Code of Conduct](https://github.com/jonhue/notifications-rails/blob/master/CODE_OF_CONDUCT.md)
 
 ### Contributors
 
