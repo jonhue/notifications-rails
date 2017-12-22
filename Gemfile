@@ -5,3 +5,7 @@ git_source :github do |repo_name|
 end
 
 gemspec
+
+
+
+gem 'rake', '~> 12.3'
