@@ -1,0 +1,7 @@
+test/debug.log
+coverage
+rdoc
+memory
+*.gem
+.rvmrc
+log

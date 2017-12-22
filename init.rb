@@ -1,0 +1,1 @@
+require 'notifications-rails'
