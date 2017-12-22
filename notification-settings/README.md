@@ -1,6 +1,6 @@
-# NotificationsRails
+# NotificationSettings
 
-[![Gem Version](https://badge.fury.io/rb/notifications-rails.svg)](https://badge.fury.io/rb/notifications-rails) <img src="https://travis-ci.org/jonhue/notifications-rails.svg?branch=master" />
+[![Gem Version](https://badge.fury.io/rb/notification-settings.svg)](https://badge.fury.io/rb/notification-settings) <img src="https://travis-ci.org/jonhue/notifications-rails.svg?branch=master" />
 
 The most powerful (cross-platform) notifications handler & pusher API for Rails.
 
@@ -9,6 +9,8 @@ The most powerful (cross-platform) notifications handler & pusher API for Rails.
 ## Table of Contents
 
 * [Installation](#installation)
+* [Usage](#usage)
+* [Configuration](#configuration)
 * [To Do](#to-do)
 * [Contributing](#contributing)
     * [Contributors](#contributors)
@@ -19,10 +21,10 @@ The most powerful (cross-platform) notifications handler & pusher API for Rails.
 
 ## Installation
 
-NotificationsRails works with Rails 5 onwards. You can add it to your `Gemfile` with:
+NotificationSettings works with Rails 5 onwards. You can add it to your `Gemfile` with:
 
 ```ruby
-gem 'notifications-rails'
+gem 'notification-settings'
 ```
 
 And then execute:
@@ -31,19 +33,45 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install notifications-rails
+    $ gem install notification-settings
 
 If you always want to be up to date fetch the latest from GitHub in your `Gemfile`:
 
 ```ruby
-gem 'notifications-rails', github: 'jonhue/notifications-rails'
+gem 'notification-settings', github: 'jonhue/notifications-rails/tree/master/notification-settings'
 ```
+
+Now run the generator:
+
+    $ rails g notification_settings:install
+
+To wrap things up, migrate the changes to your database:
+
+    $ rails db:migrate
+
+---
+
+## Usage
+
+---
+
+## Configuration
+
+You can configure NotificationSettings by passing a block to `configure`. This can be done in `config/initializers/notification-settings.rb`:
+
+```ruby
+NotificationSettings.configure do |config|
+    config.placeholder = true
+end
+```
+
+**`placeholder`** ...
 
 ---
 
 ## To Do
 
-[Here](https://github.com/jonhue/notifications-rails/projects) is the full list of current projects.
+[Here](https://github.com/jonhue/notifications-rails/projects/4) is the full list of current projects.
 
 To propose your ideas, initiate the discussion by adding a [new issue](https://github.com/jonhue/notifications-rails/issues/new).
 
@@ -51,7 +79,7 @@ To propose your ideas, initiate the discussion by adding a [new issue](https://g
 
 ## Contributing
 
-We hope that you will consider contributing to NotificationsRails. Please read this short overview for some information about how to get started:
+We hope that you will consider contributing to NotificationSettings. Please read this short overview for some information about how to get started:
 
 [Learn more about contributing to this repository](https://github.com/jonhue/notifications-rails/tree/master/CONTRIBUTING.md), [Code of Conduct](https://github.com/jonhue/notifications-rails/tree/master/CODE_OF_CONDUCT.md)
 
@@ -63,7 +91,7 @@ https://github.com/jonhue/notifications-rails/graphs/contributors
 
 ### Semantic Versioning
 
-NotificationsRails follows Semantic Versioning 2.0 as defined at http://semver.org.
+NotificationSettings follows Semantic Versioning 2.0 as defined at http://semver.org.
 
 ## License
 
