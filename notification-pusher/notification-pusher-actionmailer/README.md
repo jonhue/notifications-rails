@@ -2,7 +2,7 @@
 
 [![Gem Version](https://badge.fury.io/rb/notification-pusher-actionmailer.svg)](https://badge.fury.io/rb/notification-pusher-actionmailer) <img src="https://travis-ci.org/jonhue/notifications-rails.svg?branch=master" />
 
-The most powerful (cross-platform) notifications handler & pusher API for Rails.
+...
 
 ---
 
