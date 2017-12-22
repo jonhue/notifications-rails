@@ -1,6 +1,6 @@
 require 'rails'
 
-module NotificationSettings
+module NotificationPusher
     class Engine < ::Rails::Engine
     end
 end

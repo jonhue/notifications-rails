@@ -2,14 +2,14 @@
 version = File.read(File.expand_path('../VERSION', __dir__)).strip
 
 Gem::Specification.new do |gem|
-    gem.name                  = 'notification-settings'
+    gem.name                  = 'notification-pusher'
     gem.version               = version
     gem.platform              = Gem::Platform::RUBY
     gem.summary               = '...'
     gem.description           = '...'
     gem.authors               = 'Jonas Hübotter'
     gem.email                 = 'jonas.huebotter@gmail.com'
-    gem.homepage              = 'https://github.com/jonhue/notifications-rails/tree/master/notification-settings'
+    gem.homepage              = 'https://github.com/jonhue/notifications-rails/tree/master/notification-pusher'
     gem.license               = 'MIT'
 
     gem.files                 = Dir['README.md', 'CHANGELOG.md', 'LICENSE', 'lib/**/*', 'generators/**/*']
