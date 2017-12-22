@@ -13,14 +13,11 @@ module NotificationsRails
         yield configuration
     end
 
-    autoload :NotificationTarget, 'notifications-rails/notification_target'
-    autoload :NotificationObject, 'notifications-rails/notification_object'
-    autoload :NotificationLib, 'notifications-rails/notification_lib'
-    autoload :NotificationScopes, 'notifications-rails/notification_scopes'
-
-    require 'notifications-rails/railtie'
-
     # class Engine < ::Rails::Engine
     # end
+
+    require 'notifications-rails/handler'
+    require 'notifications-rails/pusher'
+    require 'notifications-rails/settings'
 
 end

@@ -11,9 +11,9 @@ class NotificationGenerator < Rails::Generators::Base
 
     def create_templates
         template '_index.html.erb', "app/views/notifications/#{options[:type]}/_index.html.erb"
-        template '_action_cable.html.erb', "app/views/notifications/#{options[:type]}/_action_cable.html.erb" # if action_cable-pusher gem installed
-        template '_email.html.erb', "app/views/notifications/#{options[:type]}/_email.html.erb" # if email-pusher gem installed
-        template '_onesignal.html.erb', "app/views/notifications/#{options[:type]}/_onesignal.html.erb" # if onesignal-pusher gem installed
+        template '_action_cable.html.erb', "app/views/notifications/#{options[:type]}/_action_cable.html.erb" if defined?(NotificationsRails::Pusher::ActionCable)
+        template '_email.html.erb', "app/views/notifications/#{options[:type]}/_email.html.erb" if defined?(NotificationsRails::Pusher::Email)
+        template '_one_signal.html.erb', "app/views/notifications/#{options[:type]}/_one_signal.html.erb" if defined?(NotificationsRails::Pusher::OneSignal)
     end
 
 end

@@ -1,5 +1,5 @@
 module NotificationsRails
-    module NotificationScopes
+    module Pusher
 
         # ...
 
