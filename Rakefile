@@ -1,10 +1,7 @@
 require 'bundler/gem_tasks'
 require 'rspec/core/rake_task'
 
-RSpec::Core::RakeTask.new
-
-task default: :spec
-
+system 'bundle'
 
 
 task :default do
@@ -28,3 +25,11 @@ task :default do
     end
     puts 'Finished building projects'
 end
+
+
+system "gem build notifications-rails.gemspec"
+
+
+RSpec::Core::RakeTask.new
+
+task default: :spec
