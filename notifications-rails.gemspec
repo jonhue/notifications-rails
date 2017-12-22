@@ -23,8 +23,5 @@ Gem::Specification.new do |gem|
     gem.add_dependency 'notification-pusher', version
     gem.add_dependency 'notification-settings', version
 
-    gem.add_development_dependency 'bundler', '~> 1.16'
-    gem.add_development_dependency 'rake', '~> 10.0'
-    gem.add_development_dependency 'rspec-rails', '~> 3.7'
     gem.add_development_dependency 'rubocop', '~> 0.52'
 end
