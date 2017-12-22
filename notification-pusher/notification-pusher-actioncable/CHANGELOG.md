@@ -4,6 +4,6 @@
 
 * nothing yet
 
-### 1.0.0 - 2017-12-22
+### 1.0.0.beta1 - 2017-12-22
 
 * initial release
