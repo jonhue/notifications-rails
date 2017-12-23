@@ -11,10 +11,10 @@ module NotificationHandler
 
     class Configuration
 
-        attr_accessor :default_type
+        attr_accessor :placeholder
 
         def initialize
-            @default_type = 'notification'
+            @placeholder = true
         end
 
     end

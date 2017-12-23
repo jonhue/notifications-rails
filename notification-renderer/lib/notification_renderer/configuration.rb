@@ -11,10 +11,10 @@ module NotificationRenderer
 
     class Configuration
 
-        attr_accessor :placeholder
+        attr_accessor :default_type
 
         def initialize
-            @placeholder = true
+            @default_type = 'notification'
         end
 
     end

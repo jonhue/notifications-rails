@@ -1,6 +1,6 @@
 NotificationRenderer.configure do |config|
 
-    # ...
-    # config.placeholder = true
+    # Choose your default notification type. Takes a string.
+    # config.default_type = 'notification'
 
 end

@@ -1,0 +1,5 @@
+class NotificationsMigration < ActiveRecord::Migration<%= migration_version %>
+    def change
+        add_column :notifications, :type, :string, default: NotificationRenderer.configuration.default_type, null: false, index: true
+    end
+end

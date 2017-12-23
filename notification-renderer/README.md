@@ -61,11 +61,11 @@ You can configure NotificationRenderer by passing a block to `configure`. This c
 
 ```ruby
 NotificationRenderer.configure do |config|
-    config.placeholder = true
+    config.default_type = 'notification'
 end
 ```
 
-**`placeholder`** ...
+**`default_type`** Choose your default notification type. Takes a string. Defaults to `'notification'`.
 
 ---
 

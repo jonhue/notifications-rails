@@ -61,11 +61,11 @@ You can configure NotificationHandler by passing a block to `configure`. This ca
 
 ```ruby
 NotificationHandler.configure do |config|
-    config.default_type = 'notification'
+    config.placeholder = true
 end
 ```
 
-**`default_type`** Choose your default notification type. Takes a string. Defaults to `'notification'`.
+**`placeholder`** ...
 
 ---
 
