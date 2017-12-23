@@ -1,4 +1,4 @@
-require 'rails'
+require 'railties'
 
 module NotificationSettings
     class Engine < ::Rails::Engine

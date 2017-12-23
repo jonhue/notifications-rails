@@ -1,4 +1,4 @@
-require 'rails'
+require 'railties'
 
 module NotificationPusher
     module OneSignal

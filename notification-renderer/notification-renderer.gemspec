@@ -17,7 +17,8 @@ Gem::Specification.new do |gem|
 
     gem.required_ruby_version = '>= 2.3'
 
-    gem.add_dependency 'rails', '>= 5.0'
+    gem.add_dependency 'railties', '>= 5.0'
+    gem.add_dependency 'actionview', '>= 5.0'
     gem.add_dependency 'notification-handler', version
 
     gem.add_development_dependency 'rspec', '~> 3.7'

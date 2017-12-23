@@ -1,4 +1,4 @@
-require 'rails'
+require 'railties'
 
 module NotificationSettings
     class Railtie < Rails::Railtie
