@@ -9,7 +9,6 @@ module NotificationHandler
             def notification_object
                 has_many :notifications, as: :object, dependent: :destroy
                 include NotificationHandler::Object::InstanceMethods
-                include NotificationHandler::Library
             end
         end
 

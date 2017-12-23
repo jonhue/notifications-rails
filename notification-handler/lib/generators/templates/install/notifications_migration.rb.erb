@@ -7,6 +7,8 @@ class NotificationsMigration < ActiveRecord::Migration<%= migration_version %>
 
             t.string :type, default: NotificationHandler.configuration.default_type, null: false, index: true
 
+            t.text :metadata
+
             t.timestamps
 
         end

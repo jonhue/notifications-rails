@@ -1,5 +1,5 @@
 module NotificationHandler
-    module Scopes
+    module NotificationLibrary
 
         # ...
 
