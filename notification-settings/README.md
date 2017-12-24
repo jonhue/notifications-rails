@@ -10,6 +10,11 @@
 
 * [Installation](#installation)
 * [Usage](#usage)
+    * [Categories](#categories)
+    * [Subscriptions](#subscriptions)
+    * [Defining a Status](#defining-a-status)
+    * [Pusher specific settings](#pusher-specific-settings)
+    * [Device specific settings](#device-specific-settings)
 * [Configuration](#configuration)
 * [To Do](#to-do)
 * [Contributing](#contributing)
@@ -52,6 +57,20 @@ To wrap things up, migrate the changes to your database:
 ---
 
 ## Usage
+
+Basic `Setting` API
+
+`notification_settings` usage
+
+### Categories
+
+### Subscriptions
+
+### Defining a status
+
+### Pusher specific settings
+
+### Device specific settings
 
 ---
 

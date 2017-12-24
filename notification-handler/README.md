@@ -10,6 +10,12 @@
 
 * [Installation](#installation)
 * [Usage](#usage)
+    * [`Notification` API](#notification-api)
+    * [`notification_target`](#notification_target)
+    * [`notification_object`](#notification_object)
+    * [Groups](#groups)
+        * [Defining a group](#defining-a-group)
+        * [Using a group](#using-a-group)
 * [Configuration](#configuration)
 * [To Do](#to-do)
 * [Contributing](#contributing)
@@ -52,6 +58,18 @@ To wrap things up, migrate the changes to your database:
 ---
 
 ## Usage
+
+### `Notification` API
+
+### `notification_target`
+
+### `notification_object`
+
+### Groups
+
+#### Defining a group
+
+#### Using a group
 
 ---
 

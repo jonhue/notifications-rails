@@ -9,6 +9,7 @@ The most powerful (cross-platform) notifications handler & pusher API for Rails.
 ## Table of Contents
 
 * [Installation](#installation)
+* [Philosophy](#philosophy)
 * [To Do](#to-do)
 * [Contributing](#contributing)
     * [Contributors](#contributors)
@@ -38,6 +39,10 @@ If you always want to be up to date fetch the latest from GitHub in your `Gemfil
 ```ruby
 gem 'notifications-rails', github: 'jonhue/notifications-rails'
 ```
+
+---
+
+## Philosophy
 
 ---
 

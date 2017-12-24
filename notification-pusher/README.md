@@ -10,6 +10,10 @@
 
 * [Installation](#installation)
 * [Usage](#usage)
+    * [Pushers](#pushers)
+        * [Defining a pusher](#defining-a-pusher)
+        * [Using a pusher](#using-a-pusher)
+    * [Writing a custom pusher](#writing-a-custom-pusher)
 * [Configuration](#configuration)
 * [To Do](#to-do)
 * [Contributing](#contributing)
@@ -52,6 +56,14 @@ To wrap things up, migrate the changes to your database:
 ---
 
 ## Usage
+
+### Pushers
+
+#### Defining a pusher
+
+#### Using a pusher
+
+### Writing a custom pusher
 
 ---
 

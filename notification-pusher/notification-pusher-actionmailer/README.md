@@ -10,6 +10,7 @@
 
 * [Installation](#installation)
 * [Usage](#usage)
+    * [Options](#options)
 * [Configuration](#configuration)
 * [To Do](#to-do)
 * [Contributing](#contributing)
@@ -52,6 +53,10 @@ To wrap things up, migrate the changes to your database:
 ---
 
 ## Usage
+
+Basic usage
+
+### Options
 
 ---
 

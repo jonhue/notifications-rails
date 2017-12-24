@@ -10,6 +10,11 @@
 
 * [Installation](#installation)
 * [Usage](#usage)
+    * [View helpers](#view-helpers)
+    * [Types](#types)
+        * [Generating a new type](#generating-a-new-type)
+        * [Using a type](#using-a-type)
+    * [Grouping](#grouping)
 * [Configuration](#configuration)
 * [To Do](#to-do)
 * [Contributing](#contributing)
@@ -52,6 +57,16 @@ To wrap things up, migrate the changes to your database:
 ---
 
 ## Usage
+
+### View helpers
+
+### Types
+
+#### Generating a new type
+
+#### Using a type
+
+### Grouping
 
 ---
 
