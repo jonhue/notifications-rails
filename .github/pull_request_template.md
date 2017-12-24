@@ -18,4 +18,4 @@ Finally, if your pull request affects documentation or any non-code
 changes, guidelines for those changes are [available
 here](https://github.com/jonhue/notifications-rails/blob/master/CONTRIBUTING.md)
 
-Thanks for contributing to notifications-rails!
+Thanks for contributing to NotificationsRails!
