@@ -5,8 +5,8 @@ module NotificationPusher
         attr_accessor :options
         attr_accessor :instances
 
-        def instances
-            @instances || []
+        def initialize
+            @instances = []
         end
 
         def find_by_name name
