@@ -9,7 +9,7 @@ module NotificationHandler
 
         def create_for_group
             unless self.group.nil?
-                target_scope = NotificationHandler::Group.find_by_name(self.group)
+                target_scope = NotificationHandler::Group.find_by_name(self.group).last.target_scope
                 target_scope&.each do |target|
                     notification = self.dup
                     notification.target = target
