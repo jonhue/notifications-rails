@@ -17,6 +17,10 @@ module NotificationPusher
             @placeholder = true
         end
 
+        def define_pusher name, options = {}
+            ::NotificationPusher::Pusher.new name: name, options: options
+        end
+
     end
 
 end

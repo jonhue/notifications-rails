@@ -21,7 +21,7 @@ class InstallGenerator < Rails::Generators::Base
     end
 
     def create_notifications_migration_file
-        migration_template 'notifications_migration.rb.erb', 'db/migrate/notifications_handler_migration.rb', migration_version: migration_version
+        migration_template 'notifications_migration.rb.erb', 'db/migrate/notification_handler_migration.rb', migration_version: migration_version
     end
     def create_notification_model
         template 'notification_model.rb', 'app/models/notification.rb'

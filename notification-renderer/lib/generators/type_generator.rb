@@ -7,7 +7,7 @@ class TypeGenerator < Rails::Generators::Base
 
     source_root File.join File.dirname(__FILE__), 'templates/type'
     desc 'Create a new notification type'
-    class_option :type, desc: 'Specify the notification type', type: :string, default: NotificationHandler.configuration.default_type, aliases: '-t'
+    class_option :type, desc: 'Specify the notification type', type: :string, default: NotificationRenderer.configuration.default_type, aliases: '-t'
 
     def create_templates
         template '_default.html.erb', "app/views/notifications/#{options[:type]}/_default.html.erb"

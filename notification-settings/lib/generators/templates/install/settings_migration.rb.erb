@@ -1,0 +1,11 @@
+class SettingsMigration < ActiveRecord::Migration<%= migration_version %>
+    def change
+        create_table :notification_settings_settings do |t|
+
+            t.references :object, polymorphic: true, index: true
+
+            t.timestamps
+
+        end
+    end
+end

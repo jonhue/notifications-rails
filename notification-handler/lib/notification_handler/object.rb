@@ -7,7 +7,7 @@ module NotificationHandler
 
         module ClassMethods
             def notification_object
-                has_many :belonging_notifications, as: :object, dependent: :destroy
+                has_many :belonging_notifications, as: :object, class_name: 'Notification', dependent: :destroy
                 include NotificationHandler::Object::InstanceMethods
             end
         end
