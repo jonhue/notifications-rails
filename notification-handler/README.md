@@ -126,6 +126,12 @@ Now belonging notifications are easy to access:
 notifications = User.first.notifications
 ```
 
+You can create a notification from a `target`:
+
+```ruby
+User.first.notify object: Recipe.first
+```
+
 ...
 
 ### `notification_object`
@@ -142,6 +148,12 @@ Now associated notifications are easy to access:
 
 ```ruby
 notifications = Recipe.first.belonging_notifications
+```
+
+You can create a notification from an `object`:
+
+```ruby
+Recipe.first.notify target: User.first
 ```
 
 ...

@@ -145,7 +145,48 @@ It wraps the rendered notifications in a `div`:
 
 ### Grouping
 
-...
+You can group any ActiveRecord array of `Notification` records by an attribute value:
+
+```ruby
+Notification.grouping('object.article')
+Notification.grouping('metadata[:title]')
+```
+
+When rendering notifications you often want to group them by the object they belong to. This is how to group notifications by the associated object:
+
+```erb
+<%= render_notifications_grouped Notification.all, 'object', 'feed' %>
+```
+
+You can also group notifications by nested attributes:
+
+```erb
+<%= render_notifications_grouped Notification.all, 'object.article' %>
+<%= render_notifications_grouped Notification.all, 'metadata[:title]' %>
+```
+
+It is also possible to group notifications for just one attribute:
+
+```erb
+<%= render_notifications_grouped Notification.where(object_id: 1, object_type: 'Comment'), 'object' %>
+```
+
+This will render the last notification for every group and pass the attributes value grouped by to your renderer:
+
+```erb
+<!-- View -->
+
+<%= render_notifications_grouped Notification.all, 'object.article' %>
+
+
+<!-- Renderer -->
+
+<% if notification_grouped? %>
+    <%= notification.target.name %> and <%= (notification_count - 1).to_s %> others commented on <%= attribute.title %>.
+<% else %>
+    <%= notification.target.name %> commented on <%= notification.object.article.title %>.
+<% end %>
+```
 
 ---
 
@@ -165,7 +206,7 @@ end
 
 ## To Do
 
-[Here](https://github.com/jonhue/notifications-rails/projects/4) is the full list of current projects.
+[Here](https://github.com/jonhue/notifications-rails/projects/7) is the full list of current projects.
 
 To propose your ideas, initiate the discussion by adding a [new issue](https://github.com/jonhue/notifications-rails/issues/new).
 
