@@ -14,6 +14,8 @@ Render your notifications on multiple platforms by specifying notification types
         * [Generating a new type](#generating-a-new-type)
         * [Using a type](#using-a-type)
     * [View helpers](#view-helpers)
+        * [`render_notification`](#render_notification)
+        * [`render_notifications`](#render_notifications)
     * [Grouping](#grouping)
 * [Configuration](#configuration)
 * [To Do](#to-do)
