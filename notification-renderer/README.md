@@ -13,6 +13,7 @@ Render your notifications on multiple platforms by specifying notification types
     * [Types](#types)
         * [Generating a new type](#generating-a-new-type)
         * [Using a type](#using-a-type)
+    * [Renderers](#renderers)
     * [View helpers](#view-helpers)
         * [`render_notification`](#render_notification)
         * [`render_notifications`](#render_notifications)
@@ -101,6 +102,14 @@ notification = Notification.create target: User.first, object: Recipe.first, typ
 
 **Note:** The `type` attribute of any new `Notification` record will default to the [`default_type` configuration](#configuration).
 
+### Renderers
+
+In your renderers you can access the `Notification` record through the `notification` variable. This is how a renderer could look like:
+
+```erb
+<%= notification.target.name %> commented on <%= notification.object.article.title %>.
+```
+
 ### View helpers
 
 NotificationRenderer introduces some view helpers to assist you in embedding notifications.
@@ -165,7 +174,7 @@ You can also group notifications by nested attributes:
 <%= render_notifications_grouped Notification.all, 'metadata[:title]' %>
 ```
 
-It is also possible to group notifications for just one attribute:
+It is also possible to group notifications for just one object:
 
 ```erb
 <%= render_notifications_grouped Notification.where(object_id: 1, object_type: 'Comment'), 'object' %>
@@ -187,6 +196,14 @@ This will render the last notification for every group and pass the attributes v
     <%= notification.target.name %> commented on <%= notification.object.article.title %>.
 <% end %>
 ```
+
+Grouping makes the following two methods available in your renderer:
+
+**`attribute`** The value of the attribute used for grouping.
+
+**`notification_count`** The notification count for the group of the current notification.
+
+You may check whether a template is being used for grouping by using the `notification_grouped?` helper method.
 
 ---
 
