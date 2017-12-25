@@ -133,6 +133,14 @@ You can also specify a renderer. It defaults to `'index'`.
 <%= render_notifications Notification.all, 'feed' %>
 ```
 
+It wraps the rendered notifications in a `div`:
+
+```html
+<div class="notification-renderer notifications">
+    <!-- ... -->
+</div>
+```
+
 ### Grouping
 
 ...
