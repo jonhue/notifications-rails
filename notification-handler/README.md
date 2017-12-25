@@ -67,7 +67,7 @@ You can use all the ActiveRecord methods you know and love on your `Notification
 notification = Notification.new
 ```
 
-Every `Notification` object has a `target` record. This target record is the object, that this notification belongs to (or targets). Usually that's a user:
+Every `Notification` object has a `target` record. This target record is the object, that this notification belongs to (or targets). Usually it's a user, but it can be a record of any class:
 
 ```ruby
 notification.target = User.first
@@ -104,6 +104,8 @@ Now belonging notifications are easy to access:
 notifications = User.first.notifications
 ```
 
+...
+
 ### `notification_object`
 
 When using records of an ActiveRecord class as notification objects, add this to your class:
@@ -119,6 +121,8 @@ Now associated notifications are easy to access:
 ```ruby
 notifications = Recipe.first.belonging_notifications
 ```
+
+...
 
 ### Groups
 
