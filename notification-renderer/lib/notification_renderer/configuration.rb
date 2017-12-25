@@ -12,9 +12,11 @@ module NotificationRenderer
     class Configuration
 
         attr_accessor :default_type
+        attr_accessor :default_renderer
 
         def initialize
             @default_type = 'notification'
+            @default_renderer = 'index'
         end
 
     end

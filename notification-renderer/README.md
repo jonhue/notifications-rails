@@ -219,6 +219,8 @@ end
 
 **`default_type`** Choose your default notification type. Takes a string. Defaults to `'notification'`.
 
+**`default_renderer`** Choose your default renderer. Takes a string. Defaults to `'index'`.
+
 ---
 
 ## To Do
