@@ -20,6 +20,7 @@ Gem::Specification.new do |gem|
     gem.add_dependency 'railties', '>= 5.0'
     gem.add_dependency 'actionmailer', '>= 5.0'
     gem.add_dependency 'notification-pusher', version
+    gem.add_dependency 'notification-renderer', version
 
     gem.add_development_dependency 'rspec', '~> 3.7'
     gem.add_development_dependency 'rubocop', '~> 0.52'
