@@ -81,7 +81,13 @@ You can also customize the generated templates (renderers):
 
     $ rails g notification_renderer:type -t notification -r index feed
 
-This command will create a custom renderer called `feed` for the notification type `notification`.
+This command will also create a custom renderer called `feed` for the notification type `notification`:
+
+* `views`
+    * `notifications`
+        * `notification`
+            * `_feed.html.erb`
+            * `_index.html.erb`
 
 #### Using a type
 
