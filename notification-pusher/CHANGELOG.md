@@ -4,6 +4,11 @@
 
 * nothing yet
 
+### 1.0.0.beta3 - 2017-12-25
+
+* features
+    * add `Pusher` class and allow definition in configuration
+
 ### 1.0.0.beta2 - 2017-12-23
 
 * enhancements

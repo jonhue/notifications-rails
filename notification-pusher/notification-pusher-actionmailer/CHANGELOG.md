@@ -4,6 +4,10 @@
 
 * nothing yet
 
+### 1.0.0.beta3 - 2017-12-25
+
+* no changes
+
 ### 1.0.0.beta2 - 2017-12-23
 
 * no changes
