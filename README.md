@@ -2,7 +2,7 @@
 
 [![Gem Version](https://badge.fury.io/rb/notifications-rails.svg)](https://badge.fury.io/rb/notifications-rails) <img src="https://travis-ci.org/jonhue/notifications-rails.svg?branch=master" />
 
-The most powerful (cross-platform) notifications handler & pusher API for Rails.
+The most powerful notification solution for Rails. NotificationsRails simplifies the handling, rendering, user-integration and cross-platform pushing of notifications through its simple API.
 
 ---
 
@@ -19,6 +19,18 @@ The most powerful (cross-platform) notifications handler & pusher API for Rails.
 ---
 
 ## Philosophy
+
+NotificationsRails has been built with modularity in mind. It currently consists of four components each of which bringing one essential functionality to the notification-integration in your Rails app.
+
+**[NotificationHandler](notification-handler):** Create and modify your notifications through a simple API.
+
+**[NotificationRenderer](notification-renderer):** Render your notifications on multiple platforms by specifying notification types.
+
+**[NotificationPusher](notification-pusher):** Push your notifications to various services. Including Email, ActionCable, OneSignal (cross-platform notifications).
+
+**[NotificationSettings](notification-settings):** Integrates with your authentication solution to craft a personalized user notification platform.
+
+You may just add the components you actually need, or instead use this gem to bundle everything for a complete notification solution.
 
 ---
 
