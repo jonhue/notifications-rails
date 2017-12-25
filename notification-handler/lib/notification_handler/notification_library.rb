@@ -4,6 +4,14 @@ module NotificationHandler
         attr_accessor :group
 
         before_validation :create_for_group
+        after_commit :cache
+
+        def read?
+            self.read
+        end
+        def unread?
+            !self.read
+        end
 
         private
 
@@ -17,6 +25,14 @@ module NotificationHandler
                     notification.save
                 end
                 return false
+            end
+        end
+
+        def cache
+            if self.read_changed?
+                self.target.read_notification_count = self.target.notifications.read.count
+                self.target.unread_notification_count = self.target.notifications.unread.count
+                self.target.save!
             end
         end
 

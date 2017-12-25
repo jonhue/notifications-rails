@@ -113,6 +113,8 @@ NotificationRenderer introduces some view helpers to assist you in embedding not
 <%= render_notification Notification.first %>
 ```
 
+Rendering a notification will set its `read` attribute to `true`.
+
 You can also specify a renderer. It defaults to `'index'`.
 
 ```erb

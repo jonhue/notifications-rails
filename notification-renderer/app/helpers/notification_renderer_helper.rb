@@ -1,6 +1,7 @@
 module NotificationRendererHelper
 
     def render_notification notification, renderer = 'index'
+        notification.update_attributes read: true
         render "notifications/#{notification.type}/#{renderer}"
     end
 

@@ -11,10 +11,10 @@ module NotificationHandler
 
     class Configuration
 
-        attr_accessor :placeholder
+        attr_accessor :cache
 
         def initialize
-            @placeholder = true
+            @cache = false
         end
 
         def define_group name, target_scope

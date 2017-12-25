@@ -16,6 +16,7 @@ Create and modify your notifications through a simple API.
     * [Groups](#groups)
         * [Defining a group](#defining-a-group)
         * [Using a group](#using-a-group)
+    * [Caching](#caching)
 * [Configuration](#configuration)
 * [To Do](#to-do)
 * [Contributing](#contributing)
@@ -88,6 +89,27 @@ Another form of adding information is by associating an object to the notificati
 notification.object = Recipe.first
 ```
 
+The `read` attribute determines whether a notification has been seen or not:
+
+```ruby
+notification.read = true
+notification.read? # true
+notification.unread? # false
+```
+
+You can use scopes to filter for read or unread notifications:
+
+```ruby
+# Return all read notifications
+Notification.read
+
+# Return all unread notifications
+Notification.unread
+
+# Number of unread notifications
+Notification.unread.count
+```
+
 ### `notification_target`
 
 To use records of an ActiveRecord class as notification targets, add the following to your class:
@@ -156,6 +178,17 @@ notification = Notification.create object: Recipe.first, group: :subscribers
 
 **Note:** You are not able to set the `target` attribute when a `group` has been specified.
 
+### Caching
+
+You can cache the amount of unread and read notifications for notification targets by settings the [`cache`](#configuration) configuration option to `true`.
+
+Then add the following columns to the database tables of ActiveRecord classes acting as notification targets:
+
+```ruby
+add_column :user, :read_notification_count, :integer
+add_column :user, :unread_notification_count, :integer
+```
+
 ---
 
 ## Configuration
@@ -164,11 +197,11 @@ You can configure NotificationHandler by passing a block to `configure`. This ca
 
 ```ruby
 NotificationHandler.configure do |config|
-    config.placeholder = true
+    config.cache = true
 end
 ```
 
-**`placeholder`** ...
+**`cache`** Cache amount of unread and read notifications for notification targets. Takes a boolean. Defaults to `false`.
 
 ---
 

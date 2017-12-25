@@ -5,6 +5,8 @@ class NotificationsMigration < ActiveRecord::Migration<%= migration_version %>
             t.references :target, polymorphic: true, index: true
             t.references :object, polymorphic: true, index: true
 
+            t.boolean :read, default: false, null: false, index: true
+
             t.text :metadata
 
             t.timestamps
