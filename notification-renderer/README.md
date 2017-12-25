@@ -10,10 +10,10 @@ Render your notifications on multiple platforms by specifying notification types
 
 * [Installation](#installation)
 * [Usage](#usage)
-    * [View helpers](#view-helpers)
     * [Types](#types)
         * [Generating a new type](#generating-a-new-type)
         * [Using a type](#using-a-type)
+    * [View helpers](#view-helpers)
     * [Grouping](#grouping)
 * [Configuration](#configuration)
 * [To Do](#to-do)
@@ -58,15 +58,76 @@ To wrap things up, migrate the changes to your database:
 
 ## Usage
 
-### View helpers
-
 ### Types
+
+NotificationRenderer uses templates to render your notifications.
+
+The `type` of a notification determines which template gets utilized for rendering. Each notification type has multiple templates each of which responsible for rendering a notification in another scenario. The default template for a given type is `index`.
 
 #### Generating a new type
 
+This gem comes with a generator to make adding new types a whole lot easier. Run in your terminal:
+
+    $ rails g notification_renderer:type -t notification
+
+This will create the following structure in your application:
+
+* `views`
+    * `notifications`
+        * `notification`
+            * `_index.html.erb`
+
+You can also customize the generated templates (renderers):
+
+    $ rails g notification_renderer:type -t notification -r index feed
+
+This command will create a custom renderer called `feed` for the notification type `notification`.
+
 #### Using a type
 
+You are able to specify the `type` of a `Notification` record:
+
+```ruby
+notification = Notification.create target: User.first, object: Recipe.first, type: 'notification'
+```
+
+**Note:** The `type` attribute of any new `Notification` record will default to the [`default_type` configuration](#configuration).
+
+### View helpers
+
+NotificationRenderer introduces some view helpers to assist you in embedding notifications.
+
+#### `render_notification`
+
+`render_notification` renders a single `Notification` record:
+
+```erb
+<%= render_notification Notification.first %>
+```
+
+You can also specify a renderer. It defaults to `'index'`.
+
+```erb
+<%= render_notification Notification.first, 'feed' %>
+```
+
+#### `render_notifications`
+
+`render_notifications` takes an ActiveRecord array of `Notification` records and renders each of them in order:
+
+```erb
+<%= render_notifications Notification.all %>
+```
+
+You can also specify a renderer. It defaults to `'index'`.
+
+```erb
+<%= render_notifications Notification.all, 'feed' %>
+```
+
 ### Grouping
+
+...
 
 ---
 

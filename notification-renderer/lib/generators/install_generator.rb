@@ -24,6 +24,10 @@ class InstallGenerator < Rails::Generators::Base
         migration_template 'notifications_migration.rb.erb', 'db/migrate/notifications_renderer_migration.rb', migration_version: migration_version
     end
 
+    def create_templates
+        system 'rails g notification_renderer:type -t notification'
+    end
+
     def show_readme
         readme 'README.md'
     end

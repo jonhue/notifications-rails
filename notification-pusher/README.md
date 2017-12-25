@@ -92,6 +92,8 @@ notification = Notification.create target: User.first, object: Recipe.first, pus
 
 ### Writing a custom pusher
 
+...
+
 ---
 
 ## Configuration

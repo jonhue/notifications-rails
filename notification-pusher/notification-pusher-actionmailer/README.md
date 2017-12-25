@@ -58,6 +58,8 @@ Basic usage
 
 ### Options
 
+...
+
 ---
 
 ## Configuration

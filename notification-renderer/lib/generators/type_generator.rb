@@ -11,7 +11,7 @@ class TypeGenerator < Rails::Generators::Base
     class_option :renderers, desc: 'Specify the renderer templates', type: :string, default: 'index', aliases: '-r'
 
     def create_templates
-        options[:renderers].split(' ').each do |template|
+        options[:renderers].split(' ')&.each do |template|
             template '_template.html.erb', "app/views/notifications/#{options[:type]}/_#{template}.html.erb"
         end
     end

@@ -64,13 +64,23 @@ Basic `Setting` API
 
 ### Categories
 
+...
+
 ### Subscriptions
+
+...
 
 ### Defining a status
 
+...
+
 ### Pusher specific settings
 
+...
+
 ### Device specific settings
+
+...
 
 ---
 
