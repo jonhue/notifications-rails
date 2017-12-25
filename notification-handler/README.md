@@ -61,15 +61,96 @@ To wrap things up, migrate the changes to your database:
 
 ### `Notification` API
 
+You can use all the ActiveRecord methods you know and love on your `Notification` class. So creating a new notification is dead simple:
+
+```ruby
+notification = Notification.new
+```
+
+Every `Notification` object has a `target` record. This target record is the object, that this notification belongs to (or targets). Usually that's a user:
+
+```ruby
+notification.target = User.first
+```
+
+To store information in your `Notification` record you can use the `metadata` attribute that gets serialized as a `Hash`:
+
+```ruby
+notification.metadata = {
+    title: 'My first notification',
+    content: "It looks great, doesn't it?"
+}
+```
+
+Another form of adding information is by associating an object to the notification. This can be a record of any class you like:
+
+```ruby
+notification.object = Recipe.first
+```
+
 ### `notification_target`
+
+To use records of an ActiveRecord class as notification targets, add the following to your class:
+
+```ruby
+class User < ApplicationRecord
+    notification_target
+end
+```
+
+Now belonging notifications are easy to access:
+
+```ruby
+notifications = User.first.notifications
+```
 
 ### `notification_object`
 
+When using records of an ActiveRecord class as notification objects, add this to your class:
+
+```ruby
+class Recipe < ApplicationRecord
+    notification_object
+end
+```
+
+Now associated notifications are easy to access:
+
+```ruby
+notifications = Recipe.first.belonging_notifications
+```
+
 ### Groups
+
+Groups are a powerful way to bulk-create notifications for multiple objects that don't necessarily have a common class.
 
 #### Defining a group
 
+You define groups in your `NotificationHandler` configuration:
+
+```ruby
+NotificationHandler.configure do |config|
+    config.define_group :subscribers, User.where(subscriber: true)
+end
+```
+
+When creating a notification for the group `:subscribers`, one notification will be added for every target that fulfills this scope: `User.where(subscriber: true)`. You can also target objects from different classes:
+
+```ruby
+NotificationHandler.configure do |config|
+    config.define_group :subscribers, User.where(subscriber: true) + Admin.all
+end
+```
+
 #### Using a group
+
+Bulk-creation of notifications for a certain group is fairly simple:
+
+```ruby
+notification = Notification.create object: Recipe.first, group: :subscribers
+```
+
+**Note:** You are not able to set the `target` attribute when a `group` has been specified.
 
 ---
 
