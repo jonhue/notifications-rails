@@ -59,9 +59,36 @@ To wrap things up, migrate the changes to your database:
 
 ### Pushers
 
+A pusher handles the process of sending your notifications to various services for you.
+
 #### Defining a pusher
 
+You define pushers in your `NotificationPusher` configuration. Using:
+
+```ruby
+NotificationPusher.configure do |config|
+    config.define_pusher name, options
+end
+```
+
+More details about defining a specific pusher (name and available options) are available in the respective documentation of the gem.
+
 #### Using a pusher
+
+It is super simple to initialize a push:
+
+```ruby
+notification = Notification.create target: User.first, object: Recipe.first
+notification.push name, custom_options
+```
+
+Where `name` is the name of the defined pusher and `custom_options` are the options that will override the default options the pusher has been defined with.
+
+You are also able to do the exact same in just one line of code:
+
+```ruby
+notification = Notification.create target: User.first, object: Recipe.first, push: name, push_options: custom_options
+```
 
 ### Writing a custom pusher
 
