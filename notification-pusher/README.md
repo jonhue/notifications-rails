@@ -2,7 +2,7 @@
 
 [![Gem Version](https://badge.fury.io/rb/notification-pusher.svg)](https://badge.fury.io/rb/notification-pusher) <img src="https://travis-ci.org/jonhue/notifications-rails.svg?branch=master" />
 
-...
+Push your notifications to various services. Including Email, ActionCable, OneSignal (cross-platform notifications).
 
 ---
 

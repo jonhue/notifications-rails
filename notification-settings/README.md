@@ -2,7 +2,7 @@
 
 [![Gem Version](https://badge.fury.io/rb/notification-settings.svg)](https://badge.fury.io/rb/notification-settings) <img src="https://travis-ci.org/jonhue/notifications-rails.svg?branch=master" />
 
-...
+Integrates with your authentication solution to craft a personalized user notification platform.
 
 ---
 

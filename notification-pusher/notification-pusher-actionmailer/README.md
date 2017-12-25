@@ -2,7 +2,7 @@
 
 [![Gem Version](https://badge.fury.io/rb/notification-pusher-actionmailer.svg)](https://badge.fury.io/rb/notification-pusher-actionmailer) <img src="https://travis-ci.org/jonhue/notifications-rails.svg?branch=master" />
 
-...
+A pusher to send your notifications via email utilizing ActionMailer.
 
 ---
 

@@ -2,7 +2,7 @@
 
 [![Gem Version](https://badge.fury.io/rb/notification-renderer.svg)](https://badge.fury.io/rb/notification-renderer) <img src="https://travis-ci.org/jonhue/notifications-rails.svg?branch=master" />
 
-...
+Render your notifications on multiple platforms by specifying notification types.
 
 ---
 

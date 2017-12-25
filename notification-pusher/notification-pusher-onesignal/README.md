@@ -2,7 +2,7 @@
 
 [![Gem Version](https://badge.fury.io/rb/notification-pusher-onesignal.svg)](https://badge.fury.io/rb/notification-pusher-onesignal) <img src="https://travis-ci.org/jonhue/notifications-rails.svg?branch=master" />
 
-...
+A pusher to send cross-platform notifications with OneSignal.
 
 ---
 

@@ -5,8 +5,8 @@ Gem::Specification.new do |gem|
     gem.name                  = 'notification-renderer'
     gem.version               = version
     gem.platform              = Gem::Platform::RUBY
-    gem.summary               = '...'
-    gem.description           = '...'
+    gem.summary               = 'Render your notifications on multiple platforms by specifying notification types'
+    gem.description           = 'Render your notifications on multiple platforms by specifying notification types.'
     gem.authors               = 'Jonas Hübotter'
     gem.email                 = 'jonas.huebotter@gmail.com'
     gem.homepage              = 'https://github.com/jonhue/notifications-rails/tree/master/notification-renderer'

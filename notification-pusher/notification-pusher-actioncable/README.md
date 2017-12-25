@@ -2,7 +2,7 @@
 
 [![Gem Version](https://badge.fury.io/rb/notification-pusher-actioncable.svg)](https://badge.fury.io/rb/notification-pusher-actioncable) <img src="https://travis-ci.org/jonhue/notifications-rails.svg?branch=master" />
 
-...
+A pusher to serve your notifications through WebSockets wit ActionCable.
 
 ---
 

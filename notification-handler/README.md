@@ -2,7 +2,7 @@
 
 [![Gem Version](https://badge.fury.io/rb/notification-handler.svg)](https://badge.fury.io/rb/notification-handler) <img src="https://travis-ci.org/jonhue/notifications-rails.svg?branch=master" />
 
-...
+Create and modify your notifications through a simple API.
 
 ---
 

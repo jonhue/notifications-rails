@@ -5,8 +5,8 @@ Gem::Specification.new do |gem|
     gem.name                  = 'notification-settings'
     gem.version               = version
     gem.platform              = Gem::Platform::RUBY
-    gem.summary               = '...'
-    gem.description           = '...'
+    gem.summary               = 'Integrates with your authentication solution to craft a personalized user notification platform'
+    gem.description           = 'Integrates with your authentication solution to craft a personalized user notification platform.'
     gem.authors               = 'Jonas Hübotter'
     gem.email                 = 'jonas.huebotter@gmail.com'
     gem.homepage              = 'https://github.com/jonhue/notifications-rails/tree/master/notification-settings'
