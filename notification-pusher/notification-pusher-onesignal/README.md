@@ -74,6 +74,10 @@ end
 You can also store OneSignal information in your notification opposed to specifying it when pushing:
 
 ```ruby
+notification.metadata[:onesignal_url] = Rail.application.routes.url_helpers.root_url
+notification.metadata[:onesignal_contents] = {
+    en: 'My notification'
+}
 ```
 
 
@@ -84,8 +88,6 @@ You can also store OneSignal information in your notification opposed to specify
 **`from`** Sender email address. Takes a string. Defaults to email specified in `ApplicationMailer`.
 
 **`renderer`** Specify a renderer. Takes a string. Defaults to `'actionmailer'`.
-
----
 
 ---
 
