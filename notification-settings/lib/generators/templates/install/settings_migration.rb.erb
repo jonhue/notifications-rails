@@ -4,6 +4,8 @@ class SettingsMigration < ActiveRecord::Migration<%= migration_version %>
 
             t.references :object, polymorphic: true, index: true
 
+            t.string :status
+
             t.timestamps
 
         end

@@ -12,11 +12,12 @@ Integrates with your authentication solution to craft a personalized user notifi
 * [Usage](#usage)
     * [Categories](#categories)
     * [Subscriptions](#subscriptions)
-    * [Defining a Status](#defining-a-status)
+    * [Status](#status)
     * [Pusher specific settings](#pusher-specific-settings)
     * [Device specific settings](#device-specific-settings)
     * [Updating settings](#updating-settings)
 * [Configuration](#configuration)
+    * [Status](#status)
 * [To Do](#to-do)
 * [Contributing](#contributing)
     * [Contributors](#contributors)
@@ -59,9 +60,20 @@ To wrap things up, migrate the changes to your database:
 
 ## Usage
 
-Basic `Setting` API
+To add settings to a notification target add `notification_settings` to the class:
 
-`notification_settings` usage
+```ruby
+class User < ApplicationRecord
+    notification_target
+    notification_settings
+end
+```
+
+This will create a `NotificationSettings::Setting` record for every newly created object. It is accessible by calling:
+
+```ruby
+User.first.notification_setting
+```
 
 ### Categories
 
@@ -71,9 +83,31 @@ Basic `Setting` API
 
 ...
 
-### Defining a status
+### Status
 
-...
+NotificationSettings comes with a handy feature called Status. The status of a record can temporarily disable the ability to create notifications for or to push notifications of a target.
+
+This is how to define a status:
+
+```ruby
+User.first.notification_setting.status = 'do not disturb'
+User.first.notification_setting.save
+```
+
+**Note:** You can set `status` to any string you like.
+
+`status` has three possible values that are being used as defaults. Normally it defaults to `'online'`. If the `last_seen` [configuration](#configuration) option has been set, it can also default to `'idle'` or `'offline'` depending on the `idle_after` and `offline_after` [configuration](#configuration) options.
+
+If you have set `status` to a custom value, you can get back to using the defaults by setting it back to `nil`.
+
+You can define statuses that prevent creating new notifications for a target and statuses that just prevent pushing them:
+
+```ruby
+NotificationSettings.configure do |config|
+    config.do_not_notify_statuses = ['do not notify']
+    config.do_not_push_statuses = ['do not disturb']
+end
+```
 
 ### Pusher specific settings
 
@@ -95,11 +129,21 @@ You can configure NotificationSettings by passing a block to `configure`. This c
 
 ```ruby
 NotificationSettings.configure do |config|
-    config.placeholder = true
+    config.idle_after = 10.minutes
 end
 ```
 
-**`placeholder`** ...
+### Status
+
+**`idle_after`** Time duration without activity after which the status defaults to `'idle'`. Takes a time. Defaults to `10.minutes`.
+
+**`offline_after`** Time duration without activity after which the status defaults to `'offline'`. Takes a time. Defaults to `3.hours`.
+
+**`last_seen`** Stringified datetime attribute name of `object` that defines the time of the last activity. Takes a string. Defaults to `'last_seen'`.
+
+**`do_not_notify_statuses`** Array of possible statuses that will prevent creating notifications for a target. Takes an array of strings. Defaults to `[]`.
+
+**`do_not_push_statuses`** Array of possible statuses that will prevent pushing notifications of a target. Takes an array of strings. Defaults to `['do not disturb']`.
 
 ---
 
