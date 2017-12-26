@@ -49,30 +49,33 @@ Define this pusher in your `NotificationPusher` configuration:
 
 ```ruby
 NotificationPusher.configure do |config|
-    config.define_pusher :ActionMailer
+    config.define_pusher :OneSignal, app_id: '', auth_key: ''
 end
 ```
 
-You can pass a `from` parameter, which will override the default email address specified in `ApplicationMailer`:
-
-```ruby
-NotificationPusher.configure do |config|
-    config.define_pusher :ActionMailer, from: 'my@email.com'
-end
-```
-
-Then add a renderer called `_actionmailer.html.erb` to every notification type you aim to support. Learn more [here](https://github.com/jonhue/notifications-rails/tree/master/notification-renderer).
-
-Now you can push your notifications:
+Now you can push your notifications to OneSignal:
 
 ```ruby
 notification = Notification.create target: User.first, object: Recipe.first
-notification.push :ActionMailer, to: 'another@email.com'
+notification.push :OneSignal, player_ids: [], url: Rail.application.routes.url_helpers.root_url, contents: {
+    en: notifocation.recipe.title
+}
 ```
 
-**Note:** If the email address, you want to push to, is the same as `notification.target.email` you can omit the `to` parameter.
+To get player id's you could use the [devise-onesignal](https://github.com/jonhue/devise-onesignal) gem. This is how that would look:
 
-It is also possible to override the email address sending this notification, by passing a `from` parameter.
+```ruby
+player_ids = []
+notification.target.devices.each do |device|
+    player_ids << device.onesignal_id
+end
+```
+
+You can also store OneSignal information in your notification opposed to specifying it when pushing:
+
+```ruby
+```
+
 
 ### Options
 
