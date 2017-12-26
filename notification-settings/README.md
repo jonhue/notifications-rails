@@ -15,6 +15,7 @@ Integrates with your authentication solution to craft a personalized user notifi
     * [Defining a Status](#defining-a-status)
     * [Pusher specific settings](#pusher-specific-settings)
     * [Device specific settings](#device-specific-settings)
+    * [Updating settings](#updating-settings)
 * [Configuration](#configuration)
 * [To Do](#to-do)
 * [Contributing](#contributing)
@@ -79,6 +80,10 @@ Basic `Setting` API
 ...
 
 ### Device specific settings
+
+...
+
+### Updating settings
 
 ...
 

@@ -13,10 +13,12 @@ module NotificationRenderer
 
         attr_accessor :default_type
         attr_accessor :default_renderer
+        attr_accessor :auto_read
 
         def initialize
             @default_type = 'notification'
             @default_renderer = 'index'
+            @auto_read = true
         end
 
     end

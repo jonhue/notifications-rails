@@ -221,6 +221,8 @@ end
 
 **`default_renderer`** Choose your default renderer. Takes a string. Defaults to `'index'`.
 
+**`auto_read`** Automatically mark rendered notifications as read. Takes a boolean. Defaults to `true`.
+
 ---
 
 ## To Do
