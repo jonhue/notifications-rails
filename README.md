@@ -4,6 +4,8 @@
 
 The most powerful notification solution for Rails. NotificationsRails simplifies the handling, rendering, user-integration and cross-platform pushing of notifications through its simple API.
 
+It integrated with [Native] (https://github.com/NativeGap/native-rails) to create a cross platform Rails app.
+
 ---
 
 ## Table of Contents
