@@ -90,6 +90,12 @@ You are also able to do the exact same in just one line of code:
 notification = Notification.create target: User.first, object: Recipe.first, push: name, push_options: custom_options
 ```
 
+It is possible to use mutliple pushers at a time:
+
+```ruby
+notification.push [name_one, name_two], { name_one: custom_options, name_two: custom_options }
+```
+
 **Note:** In this case, pass `custom_options` as a `Hash`.
 
 ### Writing a custom pusher
