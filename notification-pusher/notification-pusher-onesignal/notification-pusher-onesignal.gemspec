@@ -18,6 +18,7 @@ Gem::Specification.new do |gem|
     gem.required_ruby_version = '>= 2.3'
 
     gem.add_dependency 'railties', '>= 5.0'
+    gem.add_dependency 'one_signal', '~> 1.2'
     gem.add_dependency 'notification-pusher', version
 
     gem.add_development_dependency 'rspec', '~> 3.7'

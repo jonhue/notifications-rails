@@ -41,14 +41,6 @@ If you always want to be up to date fetch the latest from GitHub in your `Gemfil
 gem 'notification-pusher-actionmailer', github: 'jonhue/notifications-rails/tree/master/notification-pusher/notification-pusher-actionmailer'
 ```
 
-Now run the generator:
-
-    $ rails g notification_pusher_actionmailer:install
-
-To wrap things up, migrate the changes to your database:
-
-    $ rails db:migrate
-
 ---
 
 ## Usage
