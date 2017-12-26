@@ -95,7 +95,7 @@ notification = Notification.create target: User.first, object: Recipe.first, pus
 It is possible to use mutliple pushers at a time:
 
 ```ruby
-notification.push [name_one, name_two], { name_one: custom_options, name_two: custom_options }
+notification.push [name_one, name_two], name_one: custom_options, name_two: custom_options
 ```
 
 ### Writing a custom pusher
