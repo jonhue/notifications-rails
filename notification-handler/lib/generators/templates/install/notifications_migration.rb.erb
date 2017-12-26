@@ -7,7 +7,7 @@ class NotificationsMigration < ActiveRecord::Migration<%= migration_version %>
 
             t.boolean :read, default: false, null: false, index: true
 
-            t.text :metadata
+            t.text :metadata, default: '{}'
 
             t.timestamps
 
