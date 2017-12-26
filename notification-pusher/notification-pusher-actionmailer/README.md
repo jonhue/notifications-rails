@@ -11,7 +11,6 @@ A pusher to send your notifications via email utilizing ActionMailer.
 * [Installation](#installation)
 * [Usage](#usage)
     * [Options](#options)
-* [Configuration](#configuration)
 * [To Do](#to-do)
 * [Contributing](#contributing)
     * [Contributors](#contributors)
@@ -54,25 +53,42 @@ To wrap things up, migrate the changes to your database:
 
 ## Usage
 
-Basic usage
-
-### Options
-
-...
-
----
-
-## Configuration
-
-You can configure NotificationPusher for ActionMailer by passing a block to `configure`. This can be done in `config/initializers/notification-pusher-actionmailer.rb`:
+Define this pusher in your `NotificationPusher` configuration:
 
 ```ruby
-NotificationPusher::ActionMailer.configure do |config|
-    config.placeholder = true
+NotificationPusher.configure do |config|
+    config.define_pusher :ActionMailer
 end
 ```
 
-**`placeholder`** ...
+You can pass a `from` parameter, which will override the default email address specified in `ApplicationMailer`:
+
+```ruby
+NotificationPusher.configure do |config|
+    config.define_pusher :ActionMailer, from: 'my@email.com'
+end
+```
+
+Then add a renderer called `_actionmailer.html.erb` to every notification type you aim to support. Learn more [here](https://github.com/jonhue/notifications-rails/tree/master/notification-renderer).
+
+Now you can push your notifications:
+
+```ruby
+notification = Notification.create target: User.first, object: Recipe.first
+notification.push :ActionMailer, to: 'another@email.com'
+```
+
+**Note:** If the email address, you want to push to, is the same as `notification.target.email` you can omit the `to` parameter.
+
+It is also possible to override the email address sending this notification, by passing a `from` parameter.
+
+### Options
+
+**`to`** Receiver email address. Takes a string.
+
+**`from`** Sender email address. Takes a string. Defaults to email specified in `ApplicationMailer`.
+
+**`renderer`** Specify a renderer. Takes a string. Defaults to `'actionmailer'`.
 
 ---
 

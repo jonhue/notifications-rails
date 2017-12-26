@@ -90,9 +90,38 @@ You are also able to do the exact same in just one line of code:
 notification = Notification.create target: User.first, object: Recipe.first, push: name, push_options: custom_options
 ```
 
+**Note:** In this case, pass `custom_options` as a `Hash`.
+
 ### Writing a custom pusher
 
-...
+Writing custom pushers is fairly simple. Just add a new subclass to `NotificationPusher`:
+
+```ruby
+module NotificationPusher
+    class CustomPusher
+
+        def initialize notification, options = {}
+            # ...
+        end
+
+    end
+end
+```
+
+This is how to define and use your pusher:
+
+```ruby
+NotificationPusher.configure do |config|
+    config.define_pusher :CustomPusher, option_one: 'value_one'
+end
+```
+
+```ruby
+notification = Notification.create target: User.first, object: Recipe.first
+notification.push :CustomPusher, option_one: 'value_two'
+```
+
+For further reference take a look at the default [ActionMailer](notification-pusher-actionmailer), [ActionCable](notification-pusher-actioncable) and [OneSignal](notification-pusher-onesignal) pusher.
 
 ---
 

@@ -28,7 +28,7 @@ module NotificationPusher
                     pusher = NotificationPusher::Pusher.find_by_name(self.push).last
                     if defined?(NotificationPusher.const_get(pusher.name))
                         options = pusher.options.merge! self.push_options
-                        pusher.instances << NotificationPusher.const_get(pusher.name).new options
+                        pusher.instances << NotificationPusher.const_get(pusher.name).new self, options
                     end
                 end
             end
