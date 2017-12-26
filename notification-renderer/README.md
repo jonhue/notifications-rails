@@ -122,7 +122,7 @@ NotificationRenderer introduces some view helpers to assist you in embedding not
 <%= render_notification Notification.first %>
 ```
 
-Rendering a notification will set its `read` attribute to `true`.
+Rendering a notification will set its `read` attribute to `true`. This behavior can be [configured](#configuration).
 
 You can also specify a renderer. It defaults to `'index'`.
 
