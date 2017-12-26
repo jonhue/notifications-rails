@@ -74,7 +74,7 @@ end
 You can also store OneSignal information in your notification opposed to specifying it when pushing:
 
 ```ruby
-notification.metadata[:onesignal_url] = Rail.application.routes.url_helpers.root_url
+notification.metadata[:onesignal_url] = Rails.application.routes.url_helpers.root_url
 notification.metadata[:onesignal_contents] = {
     en: 'My notification'
 }
