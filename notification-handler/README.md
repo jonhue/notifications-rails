@@ -150,12 +150,6 @@ Now associated notifications are easy to access:
 notifications = Recipe.first.belonging_notifications
 ```
 
-You can create a notification from an `object`:
-
-```ruby
-Recipe.first.notify target: User.first
-```
-
 ...
 
 ### Groups
