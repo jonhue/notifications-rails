@@ -3,6 +3,7 @@ class SettingsMigration < ActiveRecord::Migration<%= migration_version %>
         create_table :notification_settings_settings do |t|
 
             t.references :object, polymorphic: true, index: true
+            t.references :subscription, index: true
 
             t.string :status
             
