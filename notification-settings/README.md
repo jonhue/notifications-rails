@@ -13,9 +13,11 @@ Integrates with your authentication solution to craft a personalized user notifi
     * [Categories](#categories)
     * [Subscriptions](#subscriptions)
     * [Status](#status)
-    * [Pusher specific settings](#pusher-specific-settings)
-    * [Device specific settings](#device-specific-settings)
-    * [Updating settings](#updating-settings)
+    * [Settings](#settings)
+          * [Category specific settings](#category-specific-settings)
+          * [Object specific settings](#object-specific-settings)
+          * [Pusher specific settings](#pusher-specific-settings)
+          * [Updating settings](#updating-settings)
 * [Configuration](#configuration)
     * [Status](#status)
 * [To Do](#to-do)
@@ -109,15 +111,31 @@ NotificationSettings.configure do |config|
 end
 ```
 
-### Pusher specific settings
+### Settings
+
+You can disable notifications for a given notification target:
+
+```ruby
+s = User.first.notification_setting
+s.settings[:enabled] = false
+s.save
+```
+
+This will prevent you from creating any new notifications with this user as target.
+
+#### Category specific settings
 
 ...
 
-### Device specific settings
+#### Object specific settings
 
 ...
 
-### Updating settings
+#### Pusher specific settings
+
+...
+
+#### Updating settings
 
 ...
 
