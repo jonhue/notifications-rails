@@ -15,7 +15,6 @@ Integrates with your authentication solution to craft a personalized user notifi
     * [Status](#status)
     * [Settings](#settings)
         * [Category specific settings](#category-specific-settings)
-        * [Object specific settings](#object-specific-settings)
         * [Pusher specific settings](#pusher-specific-settings)
         * [Updating settings](#updating-settings)
 * [Configuration](#configuration)
@@ -132,25 +131,13 @@ s.category_settings[:category] = { enabled: false }
 s.save
 ```
 
-#### Object specific settings
-
-He can have object specific settings:
-
-```ruby
-o = Recipe.first
-symbol = "#{o.class.to_s}=#{o.id.to_s}".to_sym
-s.object_settings[symbol] = { enabled: false }
-s.save
-```
-
 #### Pusher specific settings
 
-He can have global, category or object specific pusher settings:
+He can have global or category specific pusher settings:
 
 ```ruby
 s.settings[:ActionMailer] = false
 s.category_settings[:category] = { ActionMailer: false }
-s.object_settings["#{o.class.to_s}=#{o.id.to_s}".to_sym] = { ActionMailer: false }
 s.save
 ```
 
