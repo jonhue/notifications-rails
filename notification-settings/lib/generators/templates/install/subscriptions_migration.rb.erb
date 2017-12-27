@@ -1,0 +1,12 @@
+class SubscriptionsMigration < ActiveRecord::Migration<%= migration_version %>
+    def change
+        create_table :notification_settings_subscriptions do |t|
+
+            t.references :target, polymorphic: true, index: true
+            t.references :object, polymorphic: true, index: true
+
+            t.timestamps
+
+        end
+    end
+end
