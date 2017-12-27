@@ -24,6 +24,10 @@ class InstallGenerator < Rails::Generators::Base
         migration_template 'settings_migration.rb.erb', 'db/migrate/notification_settings_migration.rb', migration_version: migration_version
     end
 
+    def create_subscriptions_migration_file
+        migration_template 'subscriptions_migration.rb.erb', 'db/migrate/notification_subscriptions_migration.rb', migration_version: migration_version
+    end
+
     def show_readme
         readme 'README.md'
     end
