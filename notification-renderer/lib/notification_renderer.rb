@@ -7,6 +7,4 @@ module NotificationRenderer
     autoload :NotificationLibrary, 'notification_renderer/notification_library'
     autoload :NotificationScopes, 'notification_renderer/notification_scopes'
 
-    require 'notification_renderer/railtie'
-
 end

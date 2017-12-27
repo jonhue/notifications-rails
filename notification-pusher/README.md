@@ -14,7 +14,6 @@ Push your notifications to various services. Including Email, ActionCable, OneSi
         * [Defining a pusher](#defining-a-pusher)
         * [Using a pusher](#using-a-pusher)
     * [Writing a custom pusher](#writing-a-custom-pusher)
-* [Configuration](#configuration)
 * [To Do](#to-do)
 * [Contributing](#contributing)
     * [Contributors](#contributors)
@@ -63,7 +62,7 @@ A pusher handles the process of sending your notifications to various services f
 
 #### Defining a pusher
 
-You define pushers in your `NotificationPusher` configuration. Using:
+You define pushers in your `NotificationPusher` configuration (`config/initializers/notification-pusher.rb`). Using:
 
 ```ruby
 NotificationPusher.configure do |config|
@@ -128,20 +127,6 @@ notification.push :CustomPusher, option_one: 'value_two'
 ```
 
 For further reference take a look at the default [ActionMailer](notification-pusher-actionmailer), [ActionCable](notification-pusher-actioncable) and [OneSignal](notification-pusher-onesignal) pusher.
-
----
-
-## Configuration
-
-You can configure NotificationPusher by passing a block to `configure`. This can be done in `config/initializers/notification-pusher.rb`:
-
-```ruby
-NotificationPusher.configure do |config|
-    config.placeholder = true
-end
-```
-
-**`placeholder`** ...
 
 ---
 

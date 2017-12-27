@@ -1,11 +1,11 @@
 module NotificationPusher
-    module ActionCable
-
-        require 'action_cable/configuration'
+    class ActionCable
 
         # require 'action_cable/engine'
 
-        require 'action_cable/railtie'
+        def initialize notification, options = {}
+            # ...
+        end
 
     end
 end

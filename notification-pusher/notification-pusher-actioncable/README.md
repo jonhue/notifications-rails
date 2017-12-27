@@ -11,7 +11,6 @@ A pusher to serve your notifications through WebSockets wit ActionCable.
 * [Installation](#installation)
 * [Usage](#usage)
     * [Options](#options)
-* [Configuration](#configuration)
 * [To Do](#to-do)
 * [Contributing](#contributing)
     * [Contributors](#contributors)
@@ -42,14 +41,6 @@ If you always want to be up to date fetch the latest from GitHub in your `Gemfil
 gem 'notification-pusher-actioncable', github: 'jonhue/notifications-rails/tree/master/notification-pusher/notification-pusher-actioncable'
 ```
 
-Now run the generator:
-
-    $ rails g notification_pusher_actioncable:install
-
-To wrap things up, migrate the changes to your database:
-
-    $ rails db:migrate
-
 ---
 
 ## Usage
@@ -59,20 +50,6 @@ Basic usage
 ### Options
 
 ...
-
----
-
-## Configuration
-
-You can configure NotificationPusher for ActionCable by passing a block to `configure`. This can be done in `config/initializers/notification-pusher-actioncable.rb`:
-
-```ruby
-NotificationPusher::ActionCable.configure do |config|
-    config.placeholder = true
-end
-```
-
-**`placeholder`** ...
 
 ---
 

@@ -12,6 +12,4 @@ module NotificationSettings
     autoload :NotificationLibrary, 'notification_settings/notification_library'
     autoload :NotificationScopes, 'notification_settings/notification_scopes'
 
-    require 'notification_settings/railtie'
-
 end
