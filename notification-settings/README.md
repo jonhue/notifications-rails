@@ -125,15 +125,34 @@ This will prevent you from creating any new notifications with this user as targ
 
 #### Category specific settings
 
-...
+A user can also have category specific settings:
+
+```ruby
+s.category_settings[:category] = { enabled: false }
+s.save
+```
 
 #### Object specific settings
 
-...
+He can have object specific settings:
+
+```ruby
+o = Recipe.first
+symbol = "#{o.class.to_s}=#{o.id.to_s}".to_sym
+s.object_settings[symbol] = { enabled: false }
+s.save
+```
 
 #### Pusher specific settings
 
-...
+He can have global, category or object specific pusher settings:
+
+```ruby
+s.settings[:ActionMailer] = false
+s.category_settings[:category] = { ActionMailer: false }
+s.object_settings["#{o.class.to_s}=#{o.id.to_s}".to_sym] = { ActionMailer: false }
+s.save
+```
 
 #### Updating settings
 
@@ -161,7 +180,7 @@ end
 
 **`do_not_notify_statuses`** Array of possible statuses that will prevent creating notifications for a target. Takes an array of strings. Defaults to `[]`.
 
-**`do_not_push_statuses`** Array of possible statuses that will prevent pushing notifications of a target. Takes an array of strings. Defaults to `['do not disturb']`.
+**`do_not_push_statuses`** Array of possible statuses that will prevent pushing notifications of a target. Takes an array of strings. Defaults to `['do not disturb']`
 
 ---
 
