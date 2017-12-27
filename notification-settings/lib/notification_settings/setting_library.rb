@@ -1,5 +1,7 @@
 module NotificationSettings
     module SettingLibrary
+        
+        belongs_to :subscription, optional: true
 
         def status
             if self.object.respond_to?(NotificationSettings.configuration.last_seen) && ( Time.now - self.object.send(NotificationSettings.configuration.last_seen) ).round >= NotificationSettings.configuration.idle_after && ( Time.now - self.object.send(NotificationSettings.configuration.last_seen) ).round < NotificationSettings.configuration.offline_after
