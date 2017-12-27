@@ -7,6 +7,8 @@ class SettingsMigration < ActiveRecord::Migration<%= migration_version %>
             t.string :status
             
             t.text :settings, default: '{}'
+            t.text :category_settings, default: '{}'
+            t.text :object_settings, default: '{}'
 
             t.timestamps
 
