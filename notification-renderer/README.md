@@ -102,6 +102,16 @@ notification = Notification.create target: User.first, object: Recipe.first, typ
 
 **Note:** The `type` attribute of any new `Notification` record will default to the [`default_type` configuration](#configuration).
 
+You can also scope records by their type:
+
+```ruby
+# Return records with `notification` as type
+Notification.notification_type
+
+# Return records with `follow` as type
+Notification.follow_type
+```
+
 ### Renderers
 
 In your renderers you can access the `Notification` record through the `notification` variable. This is how a renderer could look like:
