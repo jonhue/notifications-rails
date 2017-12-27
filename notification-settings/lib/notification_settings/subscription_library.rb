@@ -2,7 +2,7 @@ module NotificationSettings
     module SubscriptionLibrary
         
         has_many :notifications, class_name: '::Notification'
-        has_one :setting
+        has_one :notification_setting, class_name: 'Setting'
         
         after_create_commit :create_notification_setting
         
