@@ -49,7 +49,7 @@ Define this pusher in your `NotificationPusher` configuration:
 
 ```ruby
 NotificationPusher.configure do |config|
-    config.define_pusher :OneSignal, app_id: '', auth_key: ''
+    config.define_pusher :OneSignal, app_id: 'f158a844-9f3c-4207-b246-e93603b0a970', auth_key: 'kODc3N2ItOTNC00NGzOGYtMzI5OWQ3ZmQ'
 end
 ```
 
@@ -57,7 +57,7 @@ Now you can push your notifications to OneSignal:
 
 ```ruby
 notification = Notification.create target: User.first, object: Recipe.first
-notification.push :OneSignal, player_ids: [], url: Rails.application.routes.url_helpers.root_url, contents: {
+notification.push :OneSignal, player_ids: [f158a844-9f3c-4207-b246-e93603b0a970], url: Rails.application.routes.url_helpers.root_url, contents: {
     en: notification.object.title
 }
 ```
