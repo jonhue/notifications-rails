@@ -3,6 +3,8 @@ module NotificationHandler
 
         def self.included base
             base.extend ClassMethods
+            base.extend NotificationSettings::Object if defined?(NotificationSettings)
+            base.extend NotificationSettings::Subscriber if defined?(NotificationSettings)
         end
 
         module ClassMethods
