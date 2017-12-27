@@ -5,6 +5,8 @@ class NotificationSettings::Setting < ActiveRecord::Base
     extend NotificationSettings::SettingLibrary
     
     serialize :settings, Hash
+    serialize :category_settings, Hash
+    serialize :object_settings, Hash
 
     belongs_to :object, polymorphic: true
 
