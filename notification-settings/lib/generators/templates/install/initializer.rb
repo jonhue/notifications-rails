@@ -1,5 +1,9 @@
 NotificationSettings.configure do |config|
 
+    # Choose your default notification category. Takes a string.
+    # config.default_category = 'notification'
+
+
     ### STATUS ###
 
     # Time duration without activity after which the status defaults to `'idle'`. Takes a time.

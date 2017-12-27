@@ -69,7 +69,23 @@ User.first.notification_setting
 
 ### Categories
 
-...
+NotificationSettings uses categories to allow your notification targets to define specific preferences. This is how you are able to specify the `category` of a `Notification` record:
+
+```ruby
+notification = Notification.create target: User.first, object: Recipe.first, category: 'notification'
+```
+
+**Note:** The `category` attribute of any new `Notification` record will default to the [`default_category` configuration](#configuration).
+
+You can also scope records by their category:
+
+```ruby
+# Return records with `'notification'` as category
+Notification.notification_category
+
+# Return records with `'follow'` as category
+Notification.follow_category
+```
 
 ### Settings
 
@@ -163,9 +179,11 @@ You can configure NotificationSettings by passing a block to `configure`. This c
 
 ```ruby
 NotificationSettings.configure do |config|
-    config.idle_after = 10.minutes
+    config.default_category = 'notification'
 end
 ```
+
+**`default_category`** Choose your default notification category. Takes a string. Defaults to `'notification'`.
 
 ### Status
 

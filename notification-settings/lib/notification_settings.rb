@@ -10,6 +10,7 @@ module NotificationSettings
     autoload :SettingLibrary, 'notification_settings/setting_library'
     autoload :SubscriptionLibrary, 'notification_settings/subscription_library'
     autoload :NotificationLibrary, 'notification_settings/notification_library'
+    autoload :NotificationScopes, 'notification_settings/notification_scopes'
 
     require 'notification_settings/railtie'
 
