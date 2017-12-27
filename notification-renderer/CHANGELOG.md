@@ -4,9 +4,19 @@
 
 * nothing yet
 
+### 1.0.0.beta4 - 2017-12-27
+
+* features
+    * add helpers
+    * add `default_renderer` and `auto_read` configuration options
+    * add grouping functionality
+* enhancements
+    * allow defining renderers for `type` generator
+
 ### 1.0.0.beta3 - 2017-12-25
 
-* introduce `type` generator
+* features
+    * introduce `type` generator
 
 ### 1.0.0.beta2 - 2017-12-23
 
