@@ -1,8 +1,7 @@
 module NotificationSettings
-    module Object
+    module Target
 
         has_one :notification_setting, as: :object, class_name: 'NotificationSettings::Setting', dependent: :destroy
-        include NotificationSettings::Object::InstanceMethods
 
         after_create_commit :create_notification_setting
 
