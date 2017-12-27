@@ -61,16 +61,7 @@ To wrap things up, migrate the changes to your database:
 
 ## Usage
 
-To add settings to a notification target add `notification_settings` to the class:
-
-```ruby
-class User < ApplicationRecord
-    notification_target
-    notification_settings
-end
-```
-
-This will create a `NotificationSettings::Setting` record for every newly created object. It is accessible by calling:
+NotificationSettings will create a `NotificationSettings::Setting` record for every newly created `notification_target`-object. It is accessible by calling:
 
 ```ruby
 User.first.notification_setting
@@ -115,8 +106,6 @@ s.category_settings[:category] = { ActionMailer: false }
 ### Subscriptions
 
 Subscriptions are a way to better handle settings for notifications from different objects to one notification target.
-
-To get started add `notification_subscriber` to your `notification_target` models and `notification_subscribable` to `notification_object` models.
 
 This is how to subscribe/unsubscribe a target to an object:
 
