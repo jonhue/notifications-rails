@@ -14,9 +14,7 @@ module NotificationHandler
 
         module InstanceMethods
 
-            def notify options = {}
-                Notification.create object: self, options
-            end
+            # ...
 
         end
 
