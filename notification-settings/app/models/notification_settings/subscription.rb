@@ -4,7 +4,7 @@ class NotificationSettings::Subscription < ActiveRecord::Base
 
     extend NotificationSettings::SubscriptionLibrary
 
-    belongs_to :target, polymorphic: true
-    belongs_to :object, polymorphic: true
+    belongs_to :subscriber, polymorphic: true
+    belongs_to :subscribable, polymorphic: true
 
 end
