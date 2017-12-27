@@ -11,12 +11,12 @@ Integrates with your authentication solution to craft a personalized user notifi
 * [Installation](#installation)
 * [Usage](#usage)
     * [Categories](#categories)
-    * [Subscriptions](#subscriptions)
-    * [Status](#status)
     * [Settings](#settings)
         * [Category specific settings](#category-specific-settings)
         * [Pusher specific settings](#pusher-specific-settings)
         * [Updating settings](#updating-settings)
+    * [Subscriptions](#subscriptions)
+    * [Status](#status)
 * [Configuration](#configuration)
     * [Status](#status)
 * [To Do](#to-do)
@@ -80,9 +80,65 @@ User.first.notification_setting
 
 ...
 
-### Subscriptions
+### Settings
+
+You can disable notifications for a given notification target:
+
+```ruby
+s = User.first.notification_setting
+s.settings[:enabled] = false
+```
+
+This will prevent you from creating any new notifications with this user as target.
+
+#### Category specific settings
+
+A user can also have category specific settings:
+
+```ruby
+s.category_settings[:category] = { enabled: false }
+```
+
+#### Pusher specific settings
+
+He can have global or category specific pusher settings:
+
+```ruby
+s.settings[:ActionMailer] = false
+s.category_settings[:category] = { ActionMailer: false }
+```
+
+#### Updating settings
 
 ...
+
+### Subscriptions
+
+Subscriptions are a way to better handle settings for notifications from different objects to one notification target.
+
+To get started add `notification_subscriber` to your `notification_target` models and `notification_subscribable` to `notification_object` models.
+
+This is how to subscribe/unsubscribe a target to an object:
+
+```ruby
+User.first.subscribe Recipe.first
+User.first.unsubscribe Recipe.first
+```
+
+Now you can easily notify all subscribers from the subscribable object:
+
+```ruby
+Recipe.first.notify_subscribers push: :ActionMailer
+```
+
+You can customize settings for a single subscription just as you would for a notification target:
+
+```ruby
+s = User.first.notification_subscriptions.first.notification_setting
+s.settings[:enabled] = false
+```
+
+[Learn more](#settings)
 
 ### Status
 
@@ -109,41 +165,6 @@ NotificationSettings.configure do |config|
     config.do_not_push_statuses = ['do not disturb']
 end
 ```
-
-### Settings
-
-You can disable notifications for a given notification target:
-
-```ruby
-s = User.first.notification_setting
-s.settings[:enabled] = false
-s.save
-```
-
-This will prevent you from creating any new notifications with this user as target.
-
-#### Category specific settings
-
-A user can also have category specific settings:
-
-```ruby
-s.category_settings[:category] = { enabled: false }
-s.save
-```
-
-#### Pusher specific settings
-
-He can have global or category specific pusher settings:
-
-```ruby
-s.settings[:ActionMailer] = false
-s.category_settings[:category] = { ActionMailer: false }
-s.save
-```
-
-#### Updating settings
-
-...
 
 ---
 
