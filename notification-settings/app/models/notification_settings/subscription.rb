@@ -9,7 +9,5 @@ class NotificationSettings::Subscription < ActiveRecord::Base
     
     has_many :notifications, class_name: '::Notification'
     has_one :notification_setting, class_name: 'Setting'
-        
-    after_create_commit :create_notification_setting
 
 end
