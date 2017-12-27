@@ -17,7 +17,7 @@ module NotificationSettings
         
             def notify_subscribers options = {}
                 self.notification_subscribers.each do |subscriber|
-                    subscriber.notify options
+                    subscriber.notify object: self, options
                 end
             end
 
