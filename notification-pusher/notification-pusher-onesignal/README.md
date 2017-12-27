@@ -58,7 +58,7 @@ Now you can push your notifications to OneSignal:
 ```ruby
 notification = Notification.create target: User.first, object: Recipe.first
 notification.push :OneSignal, player_ids: [], url: Rails.application.routes.url_helpers.root_url, contents: {
-    en: notifocation.recipe.title
+    en: notification.object.title
 }
 ```
 
@@ -75,6 +75,8 @@ notification.metadata[:onesignal_url] = Rails.application.routes.url_helpers.roo
 notification.metadata[:onesignal_contents] = {
     en: 'My notification'
 }
+notification.save
+notification.push :OneSignal, player_ids: User.first.onesignal_player_ids
 ```
 
 
