@@ -3,6 +3,7 @@ module NotificationHandler
 
         def self.included base
             base.extend ClassMethods
+            base.extend NotificationSettings::Subscribable if defined?(NotificationSettings)
         end
 
         module ClassMethods
