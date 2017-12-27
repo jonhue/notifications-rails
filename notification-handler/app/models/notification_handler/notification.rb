@@ -5,6 +5,7 @@ class NotificationHandler::Notification < ActiveRecord::Base
     extend NotificationPusher::NotificationLibrary if defined?(NotificationPusher)
     extend NotificationSettings::NotificationLibrary if defined?(NotificationSettings)
     extend NotificationHandler::NotificationScopes
+    extend NotificationRenderer::NotificationScopes if defined?(NotificationRenderer)
 
     serialize :metadata, Hash
 
