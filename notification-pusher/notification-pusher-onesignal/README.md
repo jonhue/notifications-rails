@@ -57,7 +57,7 @@ Now you can push your notifications to OneSignal:
 
 ```ruby
 notification = Notification.create target: User.first, object: Recipe.first
-notification.push :OneSignal, player_ids: [], url: Rail.application.routes.url_helpers.root_url, contents: {
+notification.push :OneSignal, player_ids: [], url: Rails.application.routes.url_helpers.root_url, contents: {
     en: notifocation.recipe.title
 }
 ```
@@ -65,10 +65,7 @@ notification.push :OneSignal, player_ids: [], url: Rail.application.routes.url_h
 To get player id's you could use the [devise-onesignal](https://github.com/jonhue/devise-onesignal) gem. This is how that would look:
 
 ```ruby
-player_ids = []
-notification.target.devices.each do |device|
-    player_ids << device.onesignal_id
-end
+notification.push :OneSignal, player_ids: User.first.onesignal_player_ids
 ```
 
 You can also store OneSignal information in your notification opposed to specifying it when pushing:
@@ -83,11 +80,15 @@ notification.metadata[:onesignal_contents] = {
 
 ### Options
 
-**`to`** Receiver email address. Takes a string.
+**`app_id` (required)** OneSignal App ID. Takes a string.
 
-**`from`** Sender email address. Takes a string. Defaults to email specified in `ApplicationMailer`.
+**`auth_key` (required)** OneSignal API authentication key. Takes a string.
 
-**`renderer`** Specify a renderer. Takes a string. Defaults to `'actionmailer'`.
+**`player_ids`** Array of OneSignal Player ID's a notification should be pushed to. Takes an array of strings.
+
+**`url`** Specify a URL for this notification. Takes a string.
+
+**`contents`** Globalized content of the notification. Takes a hash with languages as keys and strings as values.
 
 ---
 
