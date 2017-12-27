@@ -16,8 +16,6 @@ module NotificationSettings
                 valid = false if !self.target.notification_setting.settings.dig(:enabled)
                 ## Category
                 valid = false if !self.target.notification_setting.category_settings.dig(self.category.to_sym, :enabled)
-                ## Object
-                valid = false if !self.target.notification_setting.object_settings.dig("#{self.object_type}=#{self.object_id.to_s}".to_sym, :enabled)
             end
             
             valid
@@ -36,15 +34,11 @@ module NotificationSettings
                         valid = false if !self.target.notification_setting.settings.dig(pusher.to_sym) || ( !self.target.notification_setting.settings.dig(:index) && self.target.notification_setting.settings.dig(pusher.to_sym).nil? )
                         ## Category
                         valid = false if !self.target.notification_setting.category_settings.dig(self.category.to_sym, pusher.to_sym) || ( !self.target.notification_setting.category_settings.dig(self.category.to_sym, :index) && self.target.notification_setting.category_settings.dig(self.category.to_sym, pusher.to_sym).nil? )
-                        ## Object
-                        valid = false if !self.target.notification_setting.object_settings.dig("#{self.object_type}=#{self.object_id.to_s}", pusher.to_sym) || ( !self.target.notification_setting.object_settings.dig("#{self.object_type}=#{self.object_id.to_s}", :index) && self.target.notification_setting.object_settings.dig("#{self.object_type}=#{self.object_id.to_s}", pusher.to_sym).nil? )
                     end
                 else
                     valid = false if !self.target.notification_setting.settings.dig(self.push.to_sym) || ( !self.target.notification_setting.settings.dig(:index) && self.target.notification_setting.settings.dig(self.push.to_sym).nil? )
                     ## Category
                     valid = false if !self.target.notification_setting.category_settings.dig(self.category.to_sym, self.push.to_sym) || ( !self.target.notification_setting.category_settings.dig(self.category.to_sym, :index) && self.target.notification_setting.category_settings.dig(self.category.to_sym, self.push.to_sym).nil? )
-                    ## Object
-                    valid = false if !self.target.notification_setting.object_settings.dig("#{self.object_type}=#{self.object_id.to_s}", self.push.to_sym) || ( !self.target.notification_setting.object_settings.dig("#{self.object_type}=#{self.object_id.to_s}", :index) && self.target.notification_setting.object_settings.dig("#{self.object_type}=#{self.object_id.to_s}", self.push.to_sym).nil? )
                 end
             end
             
