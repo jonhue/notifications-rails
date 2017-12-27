@@ -4,7 +4,7 @@ module NotificationSettings
 
     require 'notification_settings/engine'
 
-    autoload :Object, 'notification_settings/object'
+    autoload :Target, 'notification_settings/target'
     autoload :Subscriber, 'notification_settings/subscriber'
     autoload :Subscribable, 'notification_settings/subscribable'
     autoload :SettingLibrary, 'notification_settings/setting_library'
