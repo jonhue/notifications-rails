@@ -1,7 +1,7 @@
-require 'railties'
+require 'rails/railtie'
 
 module NotificationPusher
-    module ActionMailer
+    class ActionCable
         class Engine < ::Rails::Engine
         end
     end

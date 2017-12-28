@@ -1,6 +1,6 @@
 class NotificationPusher::ActionMailer
 
-    require 'actionmailer/engine'
+    require 'notification_pusher/action_mailer/engine'
 
     def initialize notification, options = {}
         NotificationPusherActionmailerMailer.push notification, options

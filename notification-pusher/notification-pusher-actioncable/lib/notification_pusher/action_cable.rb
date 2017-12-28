@@ -1,6 +1,6 @@
 class NotificationPusher::ActionCable
 
-    require 'actioncable/engine'
+    require 'notification_pusher/action_cable/engine'
 
     def initialize notification, options = {}
         # ...
