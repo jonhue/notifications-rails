@@ -82,6 +82,8 @@ It is also possible to override the email address sending this notification, by 
 
 **`renderer`** Specify a renderer. Takes a string. Defaults to `'actionmailer'`.
 
+**`layout`** Layout used for template rendering. Takes a string. Defaults to layout specified in `ApplicationMailer`.
+
 ---
 
 ## To Do
