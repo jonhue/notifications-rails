@@ -12,7 +12,7 @@ module NotificationRenderer
 
         def create_templates
             options[:renderers].split(' ')&.each do |template|
-                template '_template.html.erb', "app/views/notifications/#{options[:type]}/_#{template}.html.erb"
+                template '_template.html', "app/views/notifications/#{options[:type]}/_#{template}.html.erb"
             end
         end
 
