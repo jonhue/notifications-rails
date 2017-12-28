@@ -46,7 +46,7 @@ Or install it yourself as:
 If you always want to be up to date fetch the latest from GitHub in your `Gemfile`:
 
 ```ruby
-gem 'notification-settings', github: 'jonhue/notifications-rails/tree/master/notification-settings'
+gem 'notification-settings', github: 'jonhue/notifications-rails'
 ```
 
 Now run the generator:

@@ -38,7 +38,7 @@ Or install it yourself as:
 If you always want to be up to date fetch the latest from GitHub in your `Gemfile`:
 
 ```ruby
-gem 'notification-pusher-onesignal', github: 'jonhue/notifications-rails/tree/master/notification-pusher/notification-pusher-onesignal'
+gem 'notification-pusher-onesignal', github: 'jonhue/notifications-rails'
 ```
 
 ---
