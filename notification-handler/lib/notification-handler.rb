@@ -2,8 +2,6 @@ module NotificationHandler
 
     require 'notification_handler/configuration'
 
-    require 'notification_handler/engine'
-
     autoload :Group, 'notification_handler/group'
 
     autoload :Target, 'notification_handler/target'

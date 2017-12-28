@@ -1,12 +1,22 @@
 module NotificationSettings
     module SubscriptionLibrary
-        
-        after_create_commit :create_notification_setting
-        
-        private
-        
-        def create_notification_setting
-            self.notification_setting.create!
+
+        extend ActiveSupport::Concern
+
+        included do
+            after_create_commit :create_notification_setting
+
+            include NotificationSettings::SubscriptionLibrary::InstanceMethods
+        end
+
+        module InstanceMethods
+
+            private
+
+            def create_notification_setting
+                self.notification_setting.create!
+            end
+
         end
 
     end

@@ -18,7 +18,7 @@ module NotificationHandler
         end
 
         def define_group name, target_scope
-            ::NotificationHandler::Group.new name: name.to_sym, target_scope: target_scope
+            ::NotificationHandler::Group.new name.to_sym, target_scope
         end
 
     end

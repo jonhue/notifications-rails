@@ -18,8 +18,7 @@ module NotificationHandler
         module InstanceMethods
 
             def notify options = {}
-                options[:target] = self
-                Notification.create options
+                self.notifications.create options
             end
 
         end
