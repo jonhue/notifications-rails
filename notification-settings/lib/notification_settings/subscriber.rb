@@ -3,9 +3,9 @@ module NotificationSettings
 
         has_many :notification_subscriptions, as: :subscriber, class_name: 'NotificationSettings::Subscription', dependent: :destroy
         has_many :notification_subscribables, through: :notification_subscriptions, source: :subscribable
-        
+
         def subscribe options = {}
-            NotificationSettings::Subscription.create subscriber: self, options
+            NotificationSettings::Subscription.create subscriber: self, options: options
         end
 
         def unsubscribe subscribable
