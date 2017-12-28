@@ -11,6 +11,13 @@ module NotificationPusher
             @options = options
         end
 
+        def push notification, options = {}
+            default_options = self.options
+            options = default_options.merge! options
+            instance = NotificationPusher.const_get(self.name).new notification, options
+            self.instances << instance
+        end
+
         def self.find_by_name name
             ObjectSpace.each_object(NotificationPusher::Pusher).select { |pusher| pusher.name == name }
         end
