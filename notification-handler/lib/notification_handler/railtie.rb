@@ -1,4 +1,4 @@
-require 'railties'
+require 'rails/railtie'
 require 'activerecord'
 
 module NotificationHandler

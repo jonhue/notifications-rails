@@ -1,4 +1,4 @@
-require 'railties'
+require 'rails/railtie'
 
 module NotificationHandler
     class Engine < ::Rails::Engine
