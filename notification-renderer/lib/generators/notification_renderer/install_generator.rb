@@ -23,7 +23,7 @@ module NotificationRenderer
         end
 
         def create_notifications_migration_file
-            migration_template 'notifications_migration.rb.erb', 'db/migrate/notifications_renderer_migration.rb', migration_version: migration_version
+            migration_template 'notifications_migration.rb.erb', 'db/migrate/notification_renderer_migration.rb', migration_version: migration_version
         end
 
         def create_templates

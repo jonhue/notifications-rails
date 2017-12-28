@@ -1,6 +1,29 @@
-class NotificationsMigration < ActiveRecord::Migration<%= migration_version %>
+class NotificationSettingsMigration < ActiveRecord::Migration<%= migration_version %>
     def change
         add_column :notifications, :subscription_id, :bigint, index: true
         add_column :notifications, :category, :string, index: true
+
+        create_table :notification_settings_settings do |t|
+
+            t.references :object, polymorphic: true, index: true
+            t.references :subscription, index: true
+
+            t.string :status
+
+            t.text :settings
+            t.text :category_settings
+
+            t.timestamps
+
+        end
+
+        create_table :notification_settings_subscriptions do |t|
+
+            t.references :subscriber, polymorphic: true, index: true
+            t.references :subscribable, polymorphic: true, index: true
+
+            t.timestamps
+
+        end
     end
 end

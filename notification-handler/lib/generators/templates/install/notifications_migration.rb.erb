@@ -1,4 +1,4 @@
-class NotificationsMigration < ActiveRecord::Migration<%= migration_version %>
+class NotificationHandlerMigration < ActiveRecord::Migration<%= migration_version %>
     def change
         create_table :notifications do |t|
 
@@ -7,7 +7,7 @@ class NotificationsMigration < ActiveRecord::Migration<%= migration_version %>
 
             t.boolean :read, default: false, null: false, index: true
 
-            t.text :metadata, default: '{}'
+            t.text :metadata
 
             t.timestamps
 

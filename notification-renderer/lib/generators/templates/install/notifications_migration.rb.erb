@@ -1,4 +1,4 @@
-class NotificationsMigration < ActiveRecord::Migration<%= migration_version %>
+class NotificationRendererMigration < ActiveRecord::Migration<%= migration_version %>
     def change
         add_column :notifications, :type, :string, index: true
     end

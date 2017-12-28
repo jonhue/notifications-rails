@@ -22,16 +22,8 @@ module NotificationSettings
             template 'initializer.rb', 'config/initializers/notification-settings.rb'
         end
 
-        def create_settings_migration_file
-            migration_template 'settings_migration.rb.erb', 'db/migrate/notification_settings_migration.rb', migration_version: migration_version
-        end
-
-        def create_subscriptions_migration_file
-            migration_template 'subscriptions_migration.rb.erb', 'db/migrate/notification_settings_subscriptions_migration.rb', migration_version: migration_version
-        end
-
         def create_notifications_migration_file
-            migration_template 'notifications_migration.rb.erb', 'db/migrate/notification_settings_notifications_migration.rb', migration_version: migration_version
+            migration_template 'notifications_migration.rb.erb', 'db/migrate/notification_settings_migration.rb', migration_version: migration_version
         end
 
         def show_readme
