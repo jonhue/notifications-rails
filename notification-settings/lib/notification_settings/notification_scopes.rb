@@ -1,3 +1,6 @@
+require 'notification-handler'
+require 'active_support'
+
 module NotificationSettings
     module NotificationScopes
 

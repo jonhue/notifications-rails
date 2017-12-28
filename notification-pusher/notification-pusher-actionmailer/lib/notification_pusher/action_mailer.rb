@@ -1,3 +1,5 @@
+require 'notification-renderer'
+
 class NotificationPusher::ActionMailer
 
     require 'notification_pusher/action_mailer/engine'

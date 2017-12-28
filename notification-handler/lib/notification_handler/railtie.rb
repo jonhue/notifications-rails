@@ -1,5 +1,6 @@
 require 'rails/railtie'
 require 'active_record'
+require 'active_support'
 
 module NotificationHandler
     class Railtie < Rails::Railtie

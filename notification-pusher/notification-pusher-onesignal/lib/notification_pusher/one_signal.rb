@@ -1,3 +1,5 @@
+require 'one_signal'
+
 class NotificationPusher::OneSignal
 
     def initialize notification, options = {}

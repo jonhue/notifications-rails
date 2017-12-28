@@ -1,14 +1,25 @@
+require 'active_support'
+
 module NotificationSettings
     module Target
 
-        has_one :notification_setting, as: :object, class_name: 'NotificationSettings::Setting', dependent: :destroy
+        extend ActiveSupport::Concern
 
-        after_create_commit :create_notification_setting
+        included do
+            has_one :notification_setting, as: :object, class_name: 'NotificationSettings::Setting', dependent: :destroy
+            after_create_commit :create_notification_setting
 
-        private
+            include NotificationSettings::Target::InstanceMethods
+        end
 
-        def create_notification_setting
-            self.notification_setting.create!
+        module InstanceMethods
+
+            private
+
+            def create_notification_setting
+                self.notification_setting.create!
+            end
+
         end
 
     end

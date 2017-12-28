@@ -1,16 +1,28 @@
+require 'active_support'
+
 module NotificationSettings
     module Subscriber
 
-        has_many :notification_subscriptions, as: :subscriber, class_name: 'NotificationSettings::Subscription', dependent: :destroy
-        has_many :notification_subscribables, through: :notification_subscriptions, source: :subscribable
+        extend ActiveSupport::Concern
 
-        def subscribe options = {}
-            self.notification_subscriptions.create options
+        included do
+            has_many :notification_subscriptions, as: :subscriber, class_name: 'NotificationSettings::Subscription', dependent: :destroy
+            has_many :notification_subscribables, through: :notification_subscriptions, source: :subscribable
+
+            include NotificationSettings::Subscriber::InstanceMethods
         end
 
-        def unsubscribe subscribable
-            subscription = self.notification_subscriptions.find_by subscribable_id: subscribable.id, subscribable_type: subscribable.class.to_s
-            subscription.destroy
+        module InstanceMethods
+
+            def subscribe options = {}
+                self.notification_subscriptions.create options
+            end
+
+            def unsubscribe subscribable
+                subscription = self.notification_subscriptions.find_by subscribable_id: subscribable.id, subscribable_type: subscribable.class.to_s
+                subscription.destroy
+            end
+
         end
 
     end

@@ -10,8 +10,8 @@ module NotificationHandler
                 has_many :notifications, as: :target, dependent: :destroy
                 include NotificationHandler::Target::InstanceMethods
 
-                extend NotificationSettings::Target if defined?(NotificationSettings)
-                extend NotificationSettings::Subscriber if defined?(NotificationSettings)
+                include NotificationSettings::Target if defined?(NotificationSettings)
+                include NotificationSettings::Subscriber if defined?(NotificationSettings)
             end
         end
 
