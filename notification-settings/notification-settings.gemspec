@@ -13,7 +13,7 @@ Gem::Specification.new do |gem|
     gem.license               = 'MIT'
 
     gem.files                 = Dir['README.md', 'CHANGELOG.md', 'LICENSE', 'lib/**/*']
-    gem.require_paths         = ['lib']
+    gem.require_paths         = ['lib/notification_settings.rb']
 
     gem.required_ruby_version = '>= 2.3'
 
