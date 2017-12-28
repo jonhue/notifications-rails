@@ -11,7 +11,7 @@ module NotificationPusher
             @options = options
         end
 
-        def find_by_name name
+        def self.find_by_name name
             ObjectSpace.each_object(NotificationPusher::Pusher).select { |pusher| pusher.name == name }
         end
 

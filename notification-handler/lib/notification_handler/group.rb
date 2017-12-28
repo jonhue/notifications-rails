@@ -9,7 +9,7 @@ module NotificationHandler
             @target_scope = target_scope
         end
 
-        def find_by_name name
+        def self.find_by_name name
             ObjectSpace.each_object(NotificationHandler::Group).select { |group| group.name == name.to_sym }
         end
 
