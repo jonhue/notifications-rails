@@ -1,11 +1,9 @@
-module NotificationPusher
-    class ActionMailer
+class NotificationPusher::ActionMailer
 
-        require 'action_mailer'
+    require 'actionmailer/engine'
 
-        def initialize notification, options = {}
-            NotificationPusherActionmailerMailer.push notification, options
-        end
-
+    def initialize notification, options = {}
+        NotificationPusherActionmailerMailer.push notification, options
     end
+
 end

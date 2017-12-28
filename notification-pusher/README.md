@@ -102,14 +102,12 @@ notification.push [name_one, name_two], name_one: custom_options, name_two: cust
 Writing custom pushers is fairly simple. Just add a new subclass to `NotificationPusher`:
 
 ```ruby
-module NotificationPusher
-    class CustomPusher
+class NotificationPusher::CustomPusher
 
-        def initialize notification, options = {}
-            # ...
-        end
-
+    def initialize notification, options = {}
+        # ...
     end
+    
 end
 ```
 
