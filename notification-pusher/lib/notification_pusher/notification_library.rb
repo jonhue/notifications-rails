@@ -7,8 +7,8 @@ module NotificationPusher
         extend ActiveSupport::Concern
 
         included do
-            attr_accessor :push
-            attr_accessor :push_options
+            attr_accessor :pusher
+            attr_accessor :pusher_options
 
             after_create_commit :initialize_pusher
 
@@ -18,23 +18,23 @@ module NotificationPusher
         module InstanceMethods
 
             def push name, options = {}
-                self.push = class_name
-                self.push_options = options
+                self.pusher = class_name
+                self.pusher_options = options
                 self.initialize_pusher
             end
 
             private
 
             def initialize_pusher
-                unless self.push.nil?
-                    if self.push.kind_of?(Array)
-                        self.push.each do |class_name|
+                unless self.pusher.nil?
+                    if self.pusher.kind_of?(Array)
+                        self.pusher.each do |class_name|
                             pusher = NotificationPusher::Pusher.find_by_name(class_name).first
-                            pusher.push(self, self.push_options[class_name.to_sym])
+                            pusher.push(self, self.pusher_options[class_name.to_sym])
                         end
                     else
-                        pusher = NotificationPusher::Pusher.find_by_name(self.push).first
-                        pusher.push(self, self.push_options)
+                        pusher = NotificationPusher::Pusher.find_by_name(self.pusher).first
+                        pusher.push(self, self.pusher_options)
                     end
                 end
             end

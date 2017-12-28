@@ -86,7 +86,7 @@ Where `name` is the name of the defined pusher and `custom_options` are the opti
 You are also able to do the exact same in just one line of code:
 
 ```ruby
-notification = Notification.create target: User.first, object: Recipe.first, push: name, push_options: custom_options
+notification = Notification.create target: User.first, object: Recipe.first, pusher: name, pusher_options: custom_options
 ```
 
 **Note:** In this case, pass `custom_options` as a `Hash`.
@@ -107,7 +107,7 @@ class NotificationPusher::CustomPusher
     def initialize notification, options = {}
         # ...
     end
-    
+
 end
 ```
 
