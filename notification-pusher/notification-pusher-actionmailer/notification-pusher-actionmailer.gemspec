@@ -12,7 +12,7 @@ Gem::Specification.new do |gem|
     gem.homepage              = 'https://github.com/jonhue/notifications-rails/tree/master/notification-pusher/notification-pusher-actionmailer'
     gem.license               = 'MIT'
 
-    gem.files                 = Dir['README.md', 'CHANGELOG.md', 'LICENSE', 'lib/**/*']
+    gem.files                 = Dir['README.md', 'CHANGELOG.md', 'LICENSE', 'lib/**/*', 'app/**/*']
     gem.require_paths         = ['lib']
 
     gem.required_ruby_version = '>= 2.3'

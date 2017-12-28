@@ -1,4 +1,4 @@
-class NotificationPusherActionmailerMailer < ApplicationMailer
+class NotificationPusher::ActionMailer::NotificationMailer < ApplicationMailer
 
     def push notification, options = {}
         @notification = notification

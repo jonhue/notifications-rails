@@ -20,7 +20,7 @@ module NotificationHandler
         end
 
         def define_group name, target_scope
-            self.groups << ::NotificationHandler::Group.new name.to_sym, target_scope
+            self.groups << ::NotificationHandler::Group.new(name.to_sym, target_scope)
         end
 
     end

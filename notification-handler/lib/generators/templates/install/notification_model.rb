@@ -1,6 +1,2 @@
-class Notification < ApplicationRecord
-
-    include NotificationHandler::NotificationLibrary
-    include NotificationHandler::NotificationScopes
-
+class Notification < NotificationHandler::Notification
 end
