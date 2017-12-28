@@ -12,7 +12,8 @@ module NotificationPusher
     class Configuration
 
         def define_pusher name, options = {}
-            ::NotificationPusher::Pusher.new name: name, options: options
+            options[:name] = name
+            ::NotificationPusher::Pusher.new options
         end
 
     end

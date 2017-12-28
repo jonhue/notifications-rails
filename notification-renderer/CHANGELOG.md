@@ -4,6 +4,13 @@
 
 * nothing yet
 
+### 1.0.0.beta5 - 2017-12-28
+
+* bugfixes
+    * fix generators
+    * fix lib loading problems
+    * fix syntax errors
+
 ### 1.0.0.beta4 - 2017-12-27
 
 * features

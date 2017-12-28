@@ -5,8 +5,9 @@ module NotificationSettings
         has_many :notification_subscribers, through: :notification_subscriptions, source: :subscriber
 
         def notify_subscribers options = {}
+            options[:object] = self
             self.notification_subscribers.each do |subscriber|
-                subscriber.notify object: self, options: options
+                subscriber.notify options
             end
         end
 

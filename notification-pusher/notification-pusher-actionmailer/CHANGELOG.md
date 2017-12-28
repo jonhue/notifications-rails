@@ -4,6 +4,10 @@
 
 * nothing yet
 
+### 1.0.0.beta5 - 2017-12-28
+
+* no changes
+
 ### 1.0.0.beta4 - 2017-12-27
 
 * features

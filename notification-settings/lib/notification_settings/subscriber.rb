@@ -5,7 +5,8 @@ module NotificationSettings
         has_many :notification_subscribables, through: :notification_subscriptions, source: :subscribable
 
         def subscribe options = {}
-            NotificationSettings::Subscription.create subscriber: self, options: options
+            options[:subscriber] = self
+            NotificationSettings::Subscription.create options
         end
 
         def unsubscribe subscribable
