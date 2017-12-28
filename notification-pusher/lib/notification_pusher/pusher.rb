@@ -21,7 +21,8 @@ module NotificationPusher
         end
 
         def self.find_by_name name
-            ObjectSpace.each_object(NotificationPusher::Pusher).select { |pusher| pusher.name == name }
+            NotificationPusher.configuration.pushers.select { |pusher| pusher.name == name }
+            # ObjectSpace.each_object(NotificationPusher::Pusher).select { |pusher| pusher.name == name }
         end
 
     end

@@ -10,7 +10,8 @@ module NotificationHandler
         end
 
         def self.find_by_name name
-            ObjectSpace.each_object(NotificationHandler::Group).select { |group| group.name == name.to_sym }
+            NotificationHandler.configuration.groups.select { |group| group.name == name.to_sym }
+            # ObjectSpace.each_object(NotificationHandler::Group).select { |group| group.name == name.to_sym }
         end
 
     end

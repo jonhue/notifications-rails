@@ -11,8 +11,14 @@ module NotificationPusher
 
     class Configuration
 
+        attr_accessor :pushers
+
+        def initialize
+            @pushers = []
+        end
+
         def define_pusher name, options = {}
-            ::NotificationPusher::Pusher.new name, options
+            self.pushers << ::NotificationPusher::Pusher.new name, options
         end
 
     end
