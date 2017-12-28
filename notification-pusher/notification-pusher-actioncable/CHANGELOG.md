@@ -4,6 +4,11 @@
 
 * nothing yet
 
+### 1.0.0.beta6 - 2017-12-28
+
+* bugfixes
+    * fix lib loading problems
+
 ### 1.0.0.beta5 - 2017-12-28
 
 * no changes
