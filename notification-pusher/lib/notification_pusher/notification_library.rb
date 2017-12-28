@@ -27,11 +27,11 @@ module NotificationPusher
                     if self.push.kind_of?(Array)
                         self.push.each do |class_name|
                             pusher = NotificationPusher::Pusher.find_by_name(class_name).first
-                            pusher.push(self, self.push_options[class_name.to_sym]) if defined?(NotificationPusher.const_get(pusher.name))
+                            pusher.push(self, self.push_options[class_name.to_sym])
                         end
                     else
                         pusher = NotificationPusher::Pusher.find_by_name(self.push).first
-                        pusher.push(self, self.push_options) if defined?(NotificationPusher.const_get(pusher.name))
+                        pusher.push(self, self.push_options)
                     end
                 end
             end
