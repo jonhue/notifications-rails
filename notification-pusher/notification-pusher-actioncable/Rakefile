@@ -1,9 +1,6 @@
 require 'bundler/gem_tasks'
 require 'rspec/core/rake_task'
 
-system "gem build notification-pusher/notification-pusher-actioncable/notification-pusher-actioncable.gemspec"
-
-
 RSpec::Core::RakeTask.new
 
 task default: :spec

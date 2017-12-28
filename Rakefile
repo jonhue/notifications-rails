@@ -27,9 +27,6 @@ task :default do
 end
 
 
-system "gem build notifications-rails.gemspec"
-
-
 RSpec::Core::RakeTask.new
 
 task default: :spec
