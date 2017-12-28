@@ -18,12 +18,12 @@ module NotificationPusher
         module InstanceMethods
 
             def push name, options = {}
-                self.pusher = class_name
+                self.pusher = name
                 self.pusher_options = options
                 self.initialize_pusher
             end
 
-            private
+            protected
 
             def initialize_pusher
                 unless self.pusher.nil?
