@@ -72,15 +72,9 @@ You can also store OneSignal information in your notification opposed to specify
 
 ```ruby
 notification.metadata[:onesignal_url] = Rails.application.routes.url_helpers.root_url
-notification.metadata[:onesignal_contents] = {
-    en: 'My notification content'
-}
-notification.metadata[:onesignal_headers] = {
-    en: 'My notification header'
-}
-notification.metadata[:onesignal_subtitle] = {
-    en: 'My notification subtitle'
-}
+notification.metadata[:onesignal_contents] = { en: 'My notification content' }
+notification.metadata[:onesignal_headers] = { en: 'My notification header' }
+notification.metadata[:onesignal_subtitle] = { en: 'My notification subtitle' }
 notification.save
 notification.push :OneSignal, player_ids: User.first.onesignal_player_ids
 ```
