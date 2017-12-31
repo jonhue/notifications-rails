@@ -12,7 +12,7 @@ Gem::Specification.new do |gem|
     gem.homepage              = 'https://github.com/jonhue/notifications-rails'
     gem.license               = 'MIT'
 
-    gem.files                 = Dir['README.md', 'INSTALL.md', 'LICENSE']
+    gem.files                 = Dir['README.md', 'INSTALL.md', 'LICENSE', 'lib/notifications-rails.rb']
 
     gem.post_install_message  = IO.read('INSTALL.md')
 
