@@ -4,6 +4,13 @@
 
 * nothing yet
 
+### 1.2.0 - 2018-01-02
+
+* features
+    * added dependents functionality to subscribers feature
+* bugfixes
+    * fixed `uninitialized constant NotificationSettings::Object`
+
 ### 1.1.2 - 2018-01-01
 
 * bugfixes

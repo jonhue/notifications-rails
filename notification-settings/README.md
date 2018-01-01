@@ -136,6 +136,29 @@ Now you can easily notify all subscribers from the subscribable object:
 Recipe.first.notify_subscribers push: :ActionMailer
 ```
 
+Let's assume that we have a group which has multiple chats. When sending notifications to subscribers of a given chat, we only want them to get notified. But when sending notifications about the group, we want to have everyone notified, that is either subscribed to the group or subscribed to one of its chats. To do that you have to add the `private` method `notification_dependents` to your model (in this case `Group`) and return an array of ActiveRecord objects whose subscribers should receive notifications for objects of this class.
+
+```ruby
+has_many :chats
+has_many :talks
+
+private
+
+def notification_dependents
+    self.chats
+end
+```
+
+It is possible to override that behavior when notifying subscribers:
+
+```ruby
+# Disable notification dependents
+Group.first.notify_subscribers dependents: nil
+
+# Override notification dependents
+Group.first.notify_subscribers dependents: Group.first.chats + Group.first.talks
+```
+
 You can customize settings for a single subscription just as you would for a notification target:
 
 ```ruby

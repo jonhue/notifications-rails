@@ -10,7 +10,6 @@ module NotificationHandler
                 has_many :belonging_notifications, as: :object, class_name: 'Notification', dependent: :destroy
                 include NotificationHandler::Object::InstanceMethods
 
-                include NotificationSettings::Object if defined?(NotificationSettings)
                 include NotificationSettings::Subscribable if defined?(NotificationSettings)
             end
         end

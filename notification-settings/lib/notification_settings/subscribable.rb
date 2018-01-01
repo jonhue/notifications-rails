@@ -16,9 +16,24 @@ module NotificationSettings
 
             def notify_subscribers options = {}
                 options[:object] = self
-                self.notification_subscribers.each do |subscriber|
+                subscribers = notify_dependents options.delete(:dependents)
+                self.notification_subscribers&.each { |subscriber| subscribers << subscriber }
+                subscribers.to_a.uniq&.each do |subscriber|
                     subscriber.notify options
                 end
+            end
+
+            def notify_dependents dependents
+                subscribers = []
+                dependents ||= self.notification_dependents
+                dependents&.each { |dependent| dependent.notification_subscribers&.each { |subscriber| subscribers << subscriber } }
+                subscribers
+            end
+
+            private
+
+            def notification_dependents
+                []
             end
 
         end
