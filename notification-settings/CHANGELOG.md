@@ -4,6 +4,11 @@
 
 * nothing yet
 
+### 1.1.2 - 2018-01-01
+
+* bugfixes
+    * fixed length of indexes in generated migration files
+
 ### 1.0.0 - 2017-12-28
 
 * bugfixes
