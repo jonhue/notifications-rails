@@ -14,7 +14,8 @@ module NotificationSettings
 
         module InstanceMethods
 
-            def subscribe options = {}
+            def subscribe subscribable, options = {}
+                options[:subscribable] = subscribable
                 self.notification_subscriptions.create options
             end
 
