@@ -92,7 +92,7 @@ notification.push :OneSignal, player_ids: User.first.onesignal_player_ids
 
 **`contents`** Globalized content of the notification. Takes a hash with languages as keys and strings as values.
 
-**`headings`** Globalized header of the notification. Takes a hash with languages as keys and strings as values.
+**`headers`** Globalized header of the notification. Takes a hash with languages as keys and strings as values.
 
 **`subtitle`** Globalized subtitle of the notification. Takes a hash with languages as keys and strings as values.
 
