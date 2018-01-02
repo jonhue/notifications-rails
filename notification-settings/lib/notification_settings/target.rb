@@ -7,7 +7,7 @@ module NotificationSettings
 
         included do
             has_one :notification_setting, as: :object, class_name: 'NotificationSettings::Setting', dependent: :destroy
-            after_create_commit :create_notification_setting
+            before_create :create_notification_setting
 
             include NotificationSettings::Target::InstanceMethods
         end
@@ -17,7 +17,7 @@ module NotificationSettings
             private
 
             def create_notification_setting
-                self.notification_setting.create!
+                self.build_notification_setting
             end
 
         end
