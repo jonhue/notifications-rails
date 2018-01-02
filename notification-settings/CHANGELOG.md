@@ -4,6 +4,11 @@
 
 * nothing yet
 
+### 1.2.1 - 2018-01-02
+
+* bugfixes
+    * fixed `undefined method `create!' for nil:NilClass` when creating `notification_target` objects
+
 ### 1.2.0 - 2018-01-02
 
 * features
