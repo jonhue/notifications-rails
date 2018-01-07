@@ -8,7 +8,7 @@ Gem::Specification.new do |gem|
     gem.summary               = 'A pusher to serve your notifications through WebSockets wit ActionCable'
     gem.description           = 'A pusher to serve your notifications through WebSockets wit ActionCable.'
     gem.authors               = 'Jonas Hübotter'
-    gem.email                 = 'jonas.huebotter@gmail.com'
+    gem.email                 = 'me@jonhue.me'
     gem.homepage              = 'https://github.com/jonhue/notifications-rails/tree/master/notification-pusher/notification-pusher-actioncable'
     gem.license               = 'MIT'
 
