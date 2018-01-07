@@ -8,7 +8,7 @@ Gem::Specification.new do |gem|
     gem.summary               = 'Render your notifications on multiple platforms by specifying notification types'
     gem.description           = 'Render your notifications on multiple platforms by specifying notification types.'
     gem.authors               = 'Jonas Hübotter'
-    gem.email                 = 'jonas.huebotter@gmail.com'
+    gem.email                 = 'me@jonhue.me'
     gem.homepage              = 'https://github.com/jonhue/notifications-rails/tree/master/notification-renderer'
     gem.license               = 'MIT'
 
