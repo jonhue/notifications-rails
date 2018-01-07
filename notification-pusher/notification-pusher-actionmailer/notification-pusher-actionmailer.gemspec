@@ -8,7 +8,7 @@ Gem::Specification.new do |gem|
     gem.summary               = 'A pusher to send your notifications via email utilizing ActionMailer'
     gem.description           = 'A pusher to send your notifications via email utilizing ActionMailer.'
     gem.authors               = 'Jonas Hübotter'
-    gem.email                 = 'jonas.huebotter@gmail.com'
+    gem.email                 = 'me@jonhue.me'
     gem.homepage              = 'https://github.com/jonhue/notifications-rails/tree/master/notification-pusher/notification-pusher-actionmailer'
     gem.license               = 'MIT'
 
