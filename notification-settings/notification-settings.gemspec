@@ -8,7 +8,7 @@ Gem::Specification.new do |gem|
     gem.summary               = 'Integrates with your authentication solution to craft a personalized user notification platform'
     gem.description           = 'Integrates with your authentication solution to craft a personalized user notification platform.'
     gem.authors               = 'Jonas Hübotter'
-    gem.email                 = 'jonas.huebotter@gmail.com'
+    gem.email                 = 'me@jonhue.me'
     gem.homepage              = 'https://github.com/jonhue/notifications-rails/tree/master/notification-settings'
     gem.license               = 'MIT'
 
