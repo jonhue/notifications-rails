@@ -1,6 +1,6 @@
 module NotificationRendererHelper
 
-    def render_notification notification, renderer = NotificationRenderer.configuration.default_renderer, attribute, notifications_count
+    def render_notification notification, renderer = NotificationRenderer.configuration.default_renderer, attribute = nil, notifications_count = nil
         notification.update_attributes read: true if NotificationRenderer.configuration.auto_read
         render "notifications/#{notification.type}/#{renderer}", notification: notification, attribute: attribute, notifications_count: notifications_count
     end
