@@ -20,7 +20,7 @@ module NotificationSettings
             end
 
             def unsubscribe subscribable
-                subscription = self.notification_subscriptions.find_by subscribable_id: subscribable.id, subscribable_type: subscribable.class.to_s
+                subscription = self.notification_subscriptions.find_by subscribable_id: subscribable.id, subscribable_type: subscribable.class.name
                 subscription.destroy
             end
 
