@@ -6,11 +6,7 @@ module NotificationRenderer
 
         extend ActiveSupport::Concern
 
-        included do
-            include NotificationRenderer::NotificationScopes::InstanceMethods
-        end
-
-        module InstanceMethods
+        module ClassMethods
 
             def method_missing m, *args
                 if m.to_s[/(.+)_type/]
