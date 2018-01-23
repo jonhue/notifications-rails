@@ -6,6 +6,8 @@ module NotificationHandler
         extend ActiveSupport::Concern
 
         included do
+            self.inheritance_column = :_type_disabled
+            
             before_validation :create_for_group
             after_commit :cache
 
