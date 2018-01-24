@@ -30,6 +30,7 @@ module NotificationRenderer
                         k = v.grouping_by group_by
                     end
                 end
+                notifications
             end
 
         end
