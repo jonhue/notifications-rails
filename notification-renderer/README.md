@@ -18,6 +18,8 @@ Render your notifications on multiple platforms by specifying notification types
         * [`render_notification`](#render_notification)
         * [`render_notifications`](#render_notifications)
     * [Grouping](#grouping)
+        * [by notification types](#by-notification-types)
+        * [by notification dates](#by-notification-dates)
 * [Configuration](#configuration)
 * [To Do](#to-do)
 * [Contributing](#contributing)
@@ -167,27 +169,29 @@ It wraps the rendered notifications in a `div`:
 You can group any ActiveRecord array of `Notification` records by an attribute value:
 
 ```ruby
-Notification.grouping('object.article')
-Notification.grouping('metadata[:title]')
+Notification.grouping(['object.article'])
+Notification.grouping(['object.article', 'metadata[:title]'])
 ```
+
+**Note:** Notifications will be grouped in order.
 
 When rendering notifications you often want to group them by the object they belong to. This is how to group notifications by the associated object:
 
 ```erb
-<%= render_notifications_grouped Notification.all, 'object', 'feed' %>
+<%= render_notifications_grouped Notification.all, ['object'], renderer: 'feed' %>
 ```
 
 You can also group notifications by nested attributes:
 
 ```erb
-<%= render_notifications_grouped Notification.all, 'object.article' %>
-<%= render_notifications_grouped Notification.all, 'metadata[:title]' %>
+<%= render_notifications_grouped Notification.all, ['object.article'] %>
+<%= render_notifications_grouped Notification.all, ['metadata[:title]'] %>
 ```
 
 It is also possible to group notifications for just one object:
 
 ```erb
-<%= render_notifications_grouped Notification.where(object_id: 1, object_type: 'Comment'), 'object' %>
+<%= render_notifications_grouped Notification.where(object_id: 1, object_type: 'Comment'), ['object'] %>
 ```
 
 This will render the last notification for every group and pass the attributes value grouped by to your renderer:
@@ -195,13 +199,14 @@ This will render the last notification for every group and pass the attributes v
 ```erb
 <!-- View -->
 
-<%= render_notifications_grouped Notification.all, 'object.article' %>
+<%= render_notifications_grouped Notification.notification_type, ['object.article'] %>
+```
 
-
+```erb
 <!-- Renderer -->
 
 <% if notification_grouped? %>
-    <%= notification.target.name %> and <%= (notification_count - 1).to_s %> others commented on <%= attribute.title %>.
+    <%= notification.target.name %> and <%= (notifications.count - 1).to_s %> others commented on <%= attributes['object.article'].title %>.
 <% else %>
     <%= notification.target.name %> commented on <%= notification.object.article.title %>.
 <% end %>
@@ -209,11 +214,50 @@ This will render the last notification for every group and pass the attributes v
 
 Grouping makes the following two methods available in your renderer:
 
-**`attribute`** The value of the attribute used for grouping.
+**`attributes`** Hash of attributes grouped by and their values.
 
-**`notification_count`** The notification count for the group of the current notification.
+**`notifications`** The ActiveRecord array of notifications including the currently rendered notification.
 
 You may check whether a template is being used for grouping by using the `notification_grouped?` helper method.
+
+#### by notification types
+
+It is common, if rendering multiple notification types at once, to group the notifications by their type:
+
+```erb
+<%= render_notifications_grouped Notification.all, ['object.article'], group_by_type: true %>
+```
+
+This is identical to the following:
+
+```erb
+<%= render_notifications_grouped Notification.all, [:type, 'object.article'] %>
+```
+
+#### by notification dates
+
+It is also often required to group notifications by their date of creation:
+
+```erb
+<%= render_notifications_grouped Notification.all, ['object.article'], group_by_date: :month %>
+```
+
+This is identical to the following:
+
+```erb
+<%= render_notifications_grouped Notification.all, ['created_at.beginning_of_month', 'object.article'] %>
+```
+
+Accepted values are:
+
+* `:minute`
+* `:hour`
+* `:day`
+* `:week`
+* `:month`
+* `:year`
+
+**Note:** If used together with `group_by_type`, notifications will be grouped first by creation date and then by `:type`.
 
 ---
 

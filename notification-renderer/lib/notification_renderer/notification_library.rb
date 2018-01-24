@@ -6,20 +6,36 @@ module NotificationRenderer
 
         extend ActiveSupport::Concern
 
-        included do
-            include NotificationRenderer::NotificationLibrary::InstanceMethods
-        end
+        module ClassMethods
 
-        module InstanceMethods
+            def grouping group_by
+                notifications = self
+                group_by.each do |method|
+                    notifications = recursive_grouping notifications, method
+                end
+                notifications
+            end
 
-            def self.grouping group_by
+            private
+
+            def grouping_by group_by
                 group_by{ |notification| notification.send(group_by) }
             end
 
-            def type
-                self[:type] || NotificationRenderer.configuration.default_type
+            def recursive_grouping notifications, group_by
+                notifications.each_pair do |k, v|
+                    if v.is_a? Hash
+                        recursive_grouping v, group_by
+                    else
+                        k = v.grouping_by group_by
+                    end
+                end
             end
 
+        end
+
+        def type
+            self[:type] || NotificationRenderer.configuration.default_type
         end
 
     end
