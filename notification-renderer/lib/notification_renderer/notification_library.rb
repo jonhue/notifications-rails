@@ -16,19 +16,21 @@ module NotificationRenderer
                 notifications
             end
 
-            private
-
             def grouping_by group_by
-                group_by{ |notification| notification.send(group_by) }
+                self.group_by{ |notification| notification.send(group_by) }
             end
 
             def recursive_grouping notifications, group_by
-                notifications.each_pair do |k, v|
-                    if v.is_a? Hash
-                        recursive_grouping v, group_by
-                    else
-                        k = v.grouping_by group_by
+                if notifications.is_a? Hash
+                    notifications.each_pair do |k, v|
+                        if v.is_a? Hash
+                            recursive_grouping v, group_by
+                        else
+                            k = v.grouping_by group_by
+                        end
                     end
+                else
+                    notifications.grouping_by group_by
                 end
                 notifications
             end
