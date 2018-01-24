@@ -18,8 +18,8 @@ Render your notifications on multiple platforms by specifying notification types
         * [`render_notification`](#render_notification)
         * [`render_notifications`](#render_notifications)
     * [Grouping](#grouping)
-        * [by notification types](#by-notification-types)
-        * [by notification dates](#by-notification-dates)
+        * [Grouping by notification types](#grouping-by-notification-types)
+        * [Grouping by notification dates](#grouping-by-notification-dates)
 * [Configuration](#configuration)
 * [To Do](#to-do)
 * [Contributing](#contributing)
@@ -220,7 +220,7 @@ Grouping makes the following two methods available in your renderer:
 
 You may check whether a template is being used for grouping by using the `notification_grouped?` helper method.
 
-#### by notification types
+#### Grouping by notification types
 
 It is common, if rendering multiple notification types at once, to group the notifications by their type:
 
@@ -234,7 +234,7 @@ This is identical to the following:
 <%= render_notifications_grouped Notification.all, [:type, 'object.article'] %>
 ```
 
-#### by notification dates
+#### Grouping by notification dates
 
 It is also often required to group notifications by their date of creation:
 
