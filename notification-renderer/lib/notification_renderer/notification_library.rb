@@ -9,7 +9,7 @@ module NotificationRenderer
         module ClassMethods
 
             def grouping group_by
-                notifications = self
+                notifications = all
                 group_by.each do |method|
                     notifications = recursive_grouping notifications, method
                 end
@@ -17,7 +17,7 @@ module NotificationRenderer
             end
 
             def grouping_by group_by
-                self.group_by{ |notification| notification.send(group_by) }
+                all.group_by{ |notification| notification.send(group_by) }
             end
 
             def recursive_grouping notifications, group_by
