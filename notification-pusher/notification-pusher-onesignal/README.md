@@ -65,7 +65,7 @@ notification.push :OneSignal, player_ids: ['f158a844-9f3c-4207-b246-e93603b0a970
 To get player id's you could use the [devise-onesignal](https://github.com/jonhue/devise-onesignal) gem. This is how that would look:
 
 ```ruby
-notification.push :OneSignal, player_ids: User.first.onesignal_player_ids
+notification.push :OneSignal, player_ids: notification.target.onesignal_player_ids
 ```
 
 You can also store OneSignal information in your notification opposed to specifying it when pushing:
@@ -76,7 +76,7 @@ notification.metadata[:onesignal_contents] = { en: 'My notification content' }
 notification.metadata[:onesignal_headers] = { en: 'My notification header' }
 notification.metadata[:onesignal_subtitle] = { en: 'My notification subtitle' }
 notification.save
-notification.push :OneSignal, player_ids: User.first.onesignal_player_ids
+notification.push :OneSignal, player_ids: notification.target.onesignal_player_ids
 ```
 
 
