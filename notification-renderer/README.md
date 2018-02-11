@@ -169,8 +169,8 @@ It wraps the rendered notifications in a `div`:
 You can group any ActiveRecord array of `Notification` records by an attribute value:
 
 ```ruby
-Notification.grouping(['object.article'])
-Notification.grouping(['object.article', 'metadata[:title]'])
+Notification.all.grouping(['object.article'])
+Notification.all.grouping(['object.article', 'metadata[:title]'])
 ```
 
 **Note:** Notifications will be grouped in order.
