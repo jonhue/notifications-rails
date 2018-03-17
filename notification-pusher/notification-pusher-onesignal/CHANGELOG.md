@@ -4,6 +4,11 @@
 
 * nothing yet
 
+### 1.2.4 - 2018/03/17
+
+* bugfixes
+    * rename `headers` option to `headings`
+
 ### 1.1.0 - 2017/12/29
 
 * features
