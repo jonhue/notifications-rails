@@ -23,8 +23,6 @@ module NotificationPusher
                 self.initialize_pusher
             end
 
-            protected
-
             def initialize_pusher
                 unless self.pusher.nil?
                     if self.pusher.kind_of?(Array)

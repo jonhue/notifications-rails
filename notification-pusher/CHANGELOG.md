@@ -4,6 +4,11 @@
 
 * nothing yet
 
+### 1.2.5 - 2018/04/25
+
+* bugfixes
+    * fixed #4 - Calling `push` on a notification instance throws an error
+
 ### 1.0.0 - 2017/12/28
 
 * bugfixes
