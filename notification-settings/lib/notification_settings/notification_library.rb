@@ -16,7 +16,7 @@ module NotificationSettings
         module InstanceMethods
 
             def category
-                self[:category] || NotificationRenderer.configuration.default_category
+                self[:category] || NotificationRenderer.configuration.default_type
             end
 
             private
