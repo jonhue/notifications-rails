@@ -9,7 +9,7 @@ module NotificationRendererHelper
         options = defaults.merge options
 
         notification.update_attributes read: true if NotificationRenderer.configuration.auto_read
-        render "notifications/#{notification.type}/#{options[:renderer]}", notification: notification, attributes: options[:attributes], notifications: options[:notifications]
+        render partial: "notifications/#{notification.type}/#{options[:renderer]}", locals: { notification: notification, attributes: options[:attributes], notifications: options[:notifications] }
     end
 
     def render_notifications notifications, options = {}
