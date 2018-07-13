@@ -9,7 +9,7 @@ Gem::Specification.new do |gem|
   gem.summary               = 'The most powerful (cross-platform) '\
                               'notifications handler & pusher API for Rails'
   gem.description           = 'The most powerful notification solution for '\
-                              'Rails. NotificationsRails simplifies the '\
+                              'Rails. Notifications Rails simplifies the '\
                               'handling, rendering, user-integration and '\
                               'cross-platform pushing of notifications '\
                               'through its simple API.'
