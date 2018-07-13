@@ -92,7 +92,7 @@ Tests are written with RSpec.
 
 ## To do
 
-We use [GitHub projects](https://github.com/jonhue/notifications-rails/projects/1) to coordinate the work on this project.
+We use [GitHub projects](https://github.com/jonhue/notifications-rails/projects/9) to coordinate the work on this project.
 
 To propose your ideas, initiate the discussion by adding a [new issue](https://github.com/jonhue/notifications-rails/issues/new).
 
