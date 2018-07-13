@@ -5,7 +5,7 @@ require 'rails/generators/migration'
 
 module NotificationPusher
   class InstallGenerator < Rails::Generators::Base
-    source_root File.join File.dirname(__FILE__), '../templates/install'
+    source_root(File.join(File.dirname(__FILE__), '../templates/install'))
     desc 'Install NotificationPusher'
 
     def create_initializer

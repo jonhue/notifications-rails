@@ -5,7 +5,7 @@ require 'rails/generators/migration'
 
 module NotificationRenderer
   class TypeGenerator < Rails::Generators::Base
-    source_root File.join File.dirname(__FILE__), '../templates/type'
+    source_root(File.join(File.dirname(__FILE__), '../templates/type'))
     desc 'Create a new notification type'
     class_option :type,
                  desc: 'Specify the notification type',
