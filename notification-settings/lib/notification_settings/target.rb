@@ -7,7 +7,10 @@ module NotificationSettings
     extend ActiveSupport::Concern
 
     included do
-      has_one :notification_setting, as: :object, class_name: 'NotificationSettings::Setting', dependent: :destroy
+      has_one :notification_setting,
+              as: :object,
+              class_name: 'NotificationSettings::Setting',
+              dependent: :destroy
       before_create :create_notification_setting
 
       include NotificationSettings::Target::InstanceMethods
@@ -17,7 +20,7 @@ module NotificationSettings
       private
 
       def create_notification_setting
-        self.build_notification_setting
+        build_notification_setting
       end
     end
   end

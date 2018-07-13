@@ -20,7 +20,7 @@ module NotificationRendererHelper
     options = defaults.merge options
 
     content_tag :div, class: 'notification-renderer notifications' do
-      notifications.each do |notification|
+      notifications&.each do |notification|
         render_notification notification, renderer: options[:renderer]
       end
     end

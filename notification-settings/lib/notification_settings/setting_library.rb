@@ -12,14 +12,48 @@ module NotificationSettings
 
     module InstanceMethods
       def status
-        if self.object.respond_to?(NotificationSettings.configuration.last_seen) && ( Time.now - self.object.send(NotificationSettings.configuration.last_seen) ).round >= NotificationSettings.configuration.idle_after && ( Time.now - self.object.send(NotificationSettings.configuration.last_seen) ).round < NotificationSettings.configuration.offline_after
+        if idle? && !offline?
           default = 'idle'
-        elsif self.object.respond_to?(NotificationSettings.configuration.last_seen) && ( Time.now - self.object.send(NotificationSettings.configuration.last_seen) ).round >= NotificationSettings.configuration.offline_after
+        elsif offline?
           default = 'offline'
         else
           'online'
         end
         self[:status] || default
+      end
+
+      private
+
+      def idle?
+        return unless time_since_last_seen_round
+
+        time_since_last_seen_round >= idle_after
+      end
+
+      def offline?
+        return unless time_since_last_seen_round
+
+        time_since_last_seen_round >= offline_after
+      end
+
+      def time_since_last_seen_round
+        time_since_last_seen&.round
+      end
+
+      def time_since_last_seen
+        return unless object.respond_to?(
+          NotificationSettings.configuration.last_seen
+        )
+
+        Time.now - object.send(NotificationSettings.configuration.last_seen)
+      end
+
+      def idle_after
+        NotificationSettings.configuration.idle_after
+      end
+
+      def offline_after
+        NotificationSettings.configuration.offline_after
       end
     end
   end

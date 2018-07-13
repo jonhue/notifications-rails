@@ -12,16 +12,16 @@ module NotificationSettings
     end
 
     module InstanceMethods
-      def method_missing m, *args
-        if m.to_s[/(.+)_category/]
-          where category: $1.singularize.classify
+      def method_missing(method, *args)
+        if method.to_s[/(.+)_category/]
+          where(category: $1.singularize.classify)
         else
           super
         end
       end
 
-      def respond_to? m, include_private = false
-        super || m.to_s[/(.+)_category/]
+      def respond_to_missing?(method, include_private = false)
+        super || method.to_s[/(.+)_category/]
       end
     end
   end

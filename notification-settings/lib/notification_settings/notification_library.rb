@@ -9,7 +9,10 @@ module NotificationSettings
 
     included do
       before_create :validate_create
-      belongs_to :subscription, class_name: 'NotificationSettings::Subscription', optional: true
+
+      belongs_to :subscription,
+                 class_name: 'NotificationSettings::Subscription',
+                 optional: true
 
       include NotificationSettings::NotificationLibrary::InstanceMethods
     end
@@ -22,48 +25,73 @@ module NotificationSettings
       private
 
       def validate_create
-        valid = true
-
-        if self.target.notification_setting.present?
-          # Status
-          valid = false if NotificationSettings.configuration.do_not_notify_statuses.include?(self.target.notification_setting.status)
-
-          # Settings
-          valid = false if !self.target.notification_setting.settings.dig(:enabled)
-          ## Category
-          valid = false if !self.target.notification_setting.category_settings.dig(self.category.to_sym, :enabled)
-        end
-
-        valid
+        throw(:abort) unless can_create?
       end
 
-      def validate_push
-        valid = true
-
-        if self.target.notification_setting.present?
-          # Status
-          valid = false if NotificationSettings.configuration.do_not_push_statuses.include?(self.target.notification_setting.status)
-
-          # Settings
-          if self.push.kind_of?(Array)
-            self.push.each do |pusher|
-              valid = false if !self.target.notification_setting.settings.dig(pusher.to_sym) || ( !self.target.notification_setting.settings.dig(:index) && self.target.notification_setting.settings.dig(pusher.to_sym).nil? )
-              ## Category
-              valid = false if !self.target.notification_setting.category_settings.dig(self.category.to_sym, pusher.to_sym) || ( !self.target.notification_setting.category_settings.dig(self.category.to_sym, :index) && self.target.notification_setting.category_settings.dig(self.category.to_sym, pusher.to_sym).nil? )
-            end
-          else
-            valid = false if !self.target.notification_setting.settings.dig(self.push.to_sym) || ( !self.target.notification_setting.settings.dig(:index) && self.target.notification_setting.settings.dig(self.push.to_sym).nil? )
-            ## Category
-            valid = false if !self.target.notification_setting.category_settings.dig(self.category.to_sym, self.push.to_sym) || ( !self.target.notification_setting.category_settings.dig(self.category.to_sym, :index) && self.target.notification_setting.category_settings.dig(self.category.to_sym, self.push.to_sym).nil? )
+      def can_create?
+        if target.notification_setting.present?
+          unless status_allows_create? &&
+                 settings_allow_create? &&
+                 category_allows_create?
+            return false
           end
         end
+        true
+      end
 
-        valid
+      def status_allows_create?
+        !do_not_notify_statuses.include?(target.notification_setting.status)
+      end
+
+      def settings_allow_create?
+        target.notification_setting.settings.dig(:enabled)
+      end
+
+      def category_allows_create?
+        target.notification_setting.category_settings.dig(
+          category.to_sym,
+          :enabled
+        )
       end
 
       def initialize_pusher
-        return unless validate_push
+        return unless can_push?
         super
+      end
+
+      def validate_push
+        if target.notification_setting.present?
+          return false unless status_allows_push?
+
+          if push.is_a?(Array)
+            push.each do |pusher|
+              return false unless settings_allow_push?(pusher) && category_allows_push?(pusher)
+            end
+          else
+            return false unless settings_allow_push?(push) && category_allows_push?(push)
+          end
+        end
+        true
+      end
+
+      def status_allows_push?
+        !do_not_push_statuses.include?(target.notification_setting.status)
+      end
+
+      def settings_allow_push?(pusher)
+        target.notification_setting.settings.dig(pusher.to_sym) && (target.notification_setting.settings.dig(:index) || target.notification_setting.settings.dig(pusher.to_sym).present?)
+      end
+
+      def category_allows_push?(pusher)
+        target.notification_setting.category_settings.dig(category.to_sym, pusher.to_sym) && (target.notification_setting.category_settings.dig(category.to_sym, :index) || target.notification_setting.category_settings.dig(category.to_sym, pusher.to_sym).present?)
+      end
+
+      def do_not_notify_statuses
+        NotificationSettings.configuration.do_not_notify_statuses
+      end
+
+      def do_not_push_statuses
+        NotificationSettings.configuration.do_not_push_statuses
       end
     end
   end
