@@ -1,63 +1,80 @@
+# frozen_string_literal: true
+
 module NotificationRendererHelper
+  def render_notification(notification,
+                          renderer: default_renderer,
+                          attributes: nil,
+                          notifications: nil)
+    notification.update(read: true) if auto_read
+    render(
+      partial: "notifications/#{notification.type}/#{renderer}",
+      locals: {
+        notification: notification,
+        attributes: attributes,
+        notifications: notifications
+      }
+    )
+  end
 
-    def render_notification notification, options = {}
-        defaults = {
-            renderer: NotificationRenderer.configuration.default_renderer,
-            attributes: nil,
-            notifications: nil
-        }
-        options = defaults.merge options
+  def render_notifications(notifications, renderer: default_renderer)
+    content_tag :div, class: 'notification-renderer notifications' do
+      notifications&.each do |notification|
+        render_notification(notification, renderer: renderer)
+      end
+    end
+  end
 
-        notification.update_attributes read: true if NotificationRenderer.configuration.auto_read
-        render partial: "notifications/#{notification.type}/#{options[:renderer]}", locals: { notification: notification, attributes: options[:attributes], notifications: options[:notifications] }
+  def render_notifications_grouped(notifications, group_by,
+                                   renderer: default_renderer,
+                                   group_by_date: false,
+                                   group_by_type: false)
+    group_by.unshift(:type) if group_by_type
+    if group_by_date
+      group_by.unshift("created_at.beginning_of_#{group_by_date}")
     end
 
-    def render_notifications notifications, options = {}
-        defaults = {
-            renderer: NotificationRenderer.configuration.default_renderer
-        }
-        options = defaults.merge options
-
-        content_tag :div, class: 'notification-renderer notifications' do
-            notifications.each do |notification|
-                render_notification notification, renderer: options[:renderer]
-            end
-        end
+    content_tag :div, class: 'notification-renderer notifications' do
+      recursive_notification_grouping(
+        notifications.grouping(group_by), group_by, renderer
+      )
     end
+  end
 
-    def render_notifications_grouped notifications, group_by, options = {}
-        defaults = {
-            renderer: NotificationRenderer.configuration.default_renderer,
-            group_by_date: false,
-            group_by_type: false
-        }
-        options = defaults.merge options
+  def notification_grouped?
+    local_assigns[:attributes] && local_assigns[:notifications]
+  end
 
-        group_by.unshift :type if options[:group_by_type]
-        group_by.unshift "created_at.beginning_of_#{options[:group_by_date]}" if options[:group_by_date]
+  private
 
-        content_tag :div, class: 'notification-renderer notifications' do
-            recursive_render_notifications_grouped notifications.grouping(options[:group_by]), options
-        end
+  def recursive_notification_grouping(notifications, group_by, renderer,
+                                      attributes)
+    i = 0
+    notifications.each do |k, v|
+      attributes[group_by[i]] = k
+      i += 1
+      recursive_render_notifications_grouped(v, renderer, attributes)
     end
+  end
 
-    def notification_grouped?
-        local_assigns[:attributes] && local_assigns[:notifications]
+  def recursive_render_notifications_grouped(notifications, renderer,
+                                             attributes)
+    if notifications.is_a?(Hash)
+      recursive_notification_grouping(
+        notifications, group_by, renderer, attributes
+      )
+    else
+      render_notification(notifications.last,
+                          renderer: renderer,
+                          attributes: attributes,
+                          notifications: notifications)
     end
+  end
 
-    private
+  def auto_read
+    NotificationRenderer.configuration.auto_read
+  end
 
-    def recursive_render_notifications_grouped notifications, i = 0, options = {}
-        options[:attributes] = {} unless options.has_key? :attributes
-        notifications.each_pair do |k, v|
-            options[:attributes][options[:group_by][i]] = k
-            i += 1
-            if v.is_a? Hash
-                recursive_render_notifications_grouped v, options
-            else
-                render_notification v.last, renderer: options[:renderer], attributes: options[:attributes], notifications: v
-            end
-        end
-    end
-
+  def default_renderer
+    NotificationRenderer.configuration.default_renderer
+  end
 end

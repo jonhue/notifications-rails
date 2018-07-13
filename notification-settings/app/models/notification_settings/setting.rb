@@ -1,5 +1,7 @@
-class NotificationSettings::Setting < ActiveRecord::Base
+# frozen_string_literal: true
 
+module NotificationSettings
+  class Setting < ActiveRecord::Base
     self.table_name = 'notification_settings_settings'
 
     include NotificationSettings::SettingLibrary
@@ -9,5 +11,5 @@ class NotificationSettings::Setting < ActiveRecord::Base
 
     belongs_to :object, polymorphic: true, optional: true
     belongs_to :subscription, optional: true
-
+  end
 end

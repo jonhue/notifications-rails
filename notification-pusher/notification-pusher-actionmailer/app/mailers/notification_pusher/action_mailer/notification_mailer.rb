@@ -1,10 +1,15 @@
-class NotificationPusher::ActionMailer::NotificationMailer < ApplicationMailer
+# frozen_string_literal: true
 
-    def push notification, options = {}
-        render(layout: options[:layout]) if options.has_key?(:layout)
+module NotificationPusher
+  class ActionMailer
+    class NotificationMailer < ApplicationMailer
+      def push(notification,
+               from:, to: nil, renderer: 'actionmailer', layout: nil)
+        render(layout: layout) unless layout.nil?
         @notification = notification
-        @renderer = options[:renderer] || 'actionmailer'
-        mail to: options[:to] || notification.target.email, from: options[:from]
+        @renderer = renderer
+        mail(to: to || notification.target.email, from: from)
+      end
     end
-
+  end
 end

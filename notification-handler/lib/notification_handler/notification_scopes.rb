@@ -1,17 +1,21 @@
+# frozen_string_literal: true
+
 require 'active_support'
 
 module NotificationHandler
-    module NotificationScopes
+  module NotificationScopes
+    extend ActiveSupport::Concern
 
-        extend ActiveSupport::Concern
+    included do
+      scope :read, -> { where(read: true) }
+      scope :unread, -> { where(read: false) }
 
-        included do
-            scope :read, -> { where(read: true) }
-            scope :unread, -> { where(read: false) }
-
-            include NotificationRenderer::NotificationScopes if defined?(NotificationRenderer)
-            include NotificationSettings::NotificationScopes if defined?(NotificationSettings)
-        end
-
+      if defined?(NotificationRenderer)
+        include NotificationRenderer::NotificationScopes
+      end
+      if defined?(NotificationSettings)
+        include NotificationSettings::NotificationScopes
+      end
     end
+  end
 end
