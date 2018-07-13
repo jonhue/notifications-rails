@@ -2,10 +2,12 @@
 
 require 'notification-renderer'
 
-class NotificationPusher::ActionCable
-  require 'notification_pusher/action_cable/engine'
+module NotificationPusher
+  class ActionCable
+    require 'notification_pusher/action_cable/engine'
 
-  def initialize notification, options = {}
-    # ...
+    def initialize(notification, options = {})
+      # ...
+    end
   end
 end

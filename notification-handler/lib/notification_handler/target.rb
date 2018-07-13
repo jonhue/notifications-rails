@@ -2,8 +2,8 @@
 
 module NotificationHandler
   module Target
-    def self.included base
-      base.extend ClassMethods
+    def self.included(base)
+      base.extend(ClassMethods)
     end
 
     module ClassMethods
@@ -12,13 +12,15 @@ module NotificationHandler
         include NotificationHandler::Target::InstanceMethods
 
         include NotificationSettings::Target if defined?(NotificationSettings)
-        include NotificationSettings::Subscriber if defined?(NotificationSettings)
+        if defined?(NotificationSettings)
+          include NotificationSettings::Subscriber
+        end
       end
     end
 
     module InstanceMethods
-      def notify options = {}
-        self.notifications.create options
+      def notify(options = {})
+        notifications.create(options)
       end
     end
   end

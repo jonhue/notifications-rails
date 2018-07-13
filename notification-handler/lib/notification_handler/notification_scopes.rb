@@ -10,8 +10,12 @@ module NotificationHandler
       scope :read, -> { where(read: true) }
       scope :unread, -> { where(read: false) }
 
-      include NotificationRenderer::NotificationScopes if defined?(NotificationRenderer)
-      include NotificationSettings::NotificationScopes if defined?(NotificationSettings)
+      if defined?(NotificationRenderer)
+        include NotificationRenderer::NotificationScopes
+      end
+      if defined?(NotificationSettings)
+        include NotificationSettings::NotificationScopes
+      end
     end
   end
 end

@@ -22,8 +22,8 @@ Gem::Specification.new do |gem|
 
   gem.required_ruby_version = '>= 2.2.2'
 
-  gem.add_dependency 'one_signal', '~> 1.2'
   gem.add_dependency 'notification-pusher', version
+  gem.add_dependency 'one_signal', '~> 1.2'
 
   gem.add_development_dependency 'rspec'
   gem.add_development_dependency 'rubocop'

@@ -17,8 +17,8 @@ module NotificationPusher
       @pushers = []
     end
 
-    def define_pusher name, options = {}
-      self.pushers << ::NotificationPusher::Pusher.new(name, options)
+    def define_pusher(name, options = {})
+      pushers << ::NotificationPusher::Pusher.new(name, options)
     end
   end
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class NotificationsChannel < ApplicationCable::Channel
   def subscribed
     # stream_from "some_channel"
@@ -7,6 +9,5 @@ class NotificationsChannel < ApplicationCable::Channel
     # Any cleanup needed when channel is unsubscribed
   end
 
-  def change
-  end
+  def change; end
 end

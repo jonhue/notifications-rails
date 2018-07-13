@@ -24,8 +24,8 @@ Gem::Specification.new do |gem|
   gem.required_ruby_version = '>= 2.2.2'
 
   gem.add_dependency 'notification-handler', version
-  gem.add_dependency 'notification-renderer', version
   gem.add_dependency 'notification-pusher', version
+  gem.add_dependency 'notification-renderer', version
   gem.add_dependency 'notification-settings', version
 
   gem.add_development_dependency 'rspec'

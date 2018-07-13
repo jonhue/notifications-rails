@@ -20,40 +20,48 @@ module NotificationHandler
 
       include NotificationHandler::NotificationLibrary::InstanceMethods
 
-      include NotificationRenderer::NotificationLibrary if defined?(NotificationRenderer)
-      include NotificationPusher::NotificationLibrary if defined?(NotificationPusher)
-      include NotificationSettings::NotificationLibrary if defined?(NotificationSettings)
+      if defined?(NotificationRenderer)
+        include NotificationRenderer::NotificationLibrary
+      end
+      if defined?(NotificationPusher)
+        include NotificationPusher::NotificationLibrary
+      end
+      if defined?(NotificationSettings)
+        include NotificationSettings::NotificationLibrary
+      end
     end
 
     module InstanceMethods
       def read?
-        self.read
+        read
       end
+
       def unread?
-        !self.read
+        !read
       end
 
       private
 
       def create_for_group
-        unless self.group.nil?
-          target_scope = NotificationHandler::Group.find_by_name(self.group).last.target_scope
-          target_scope&.each do |target|
-            notification = self.dup
-            notification.target = target
-            notification.group = nil
-            notification.save
-          end
-          return false
+        return if group.nil?
+
+        target_scope = NotificationHandler::Group.find_by_name(group)
+                                                 .last.target_scope
+        target_scope&.each do |target|
+          notification = dup
+          notification.target = target
+          notification.group = nil
+          notification.save
         end
+        return false
       end
 
       def cache
-        if self.read_changed?
-          self.target.read_notification_count = self.target.notifications.read.count
-          self.target.unread_notification_count = self.target.notifications.unread.count
-          self.target.save!
-        end
+        return unless read_changed?
+
+        target.read_notification_count = target.notifications.read.count
+        target.unread_notification_count = target.notifications.unread.count
+        target.save!
       end
     end
   end
