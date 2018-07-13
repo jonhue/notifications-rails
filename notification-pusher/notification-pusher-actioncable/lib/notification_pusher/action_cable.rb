@@ -1,11 +1,11 @@
+# frozen_string_literal: true
+
 require 'notification-renderer'
 
 class NotificationPusher::ActionCable
+  require 'notification_pusher/action_cable/engine'
 
-    require 'notification_pusher/action_cable/engine'
-
-    def initialize notification, options = {}
-        # ...
-    end
-
+  def initialize notification, options = {}
+    # ...
+  end
 end
