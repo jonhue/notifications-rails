@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module NotificationRenderer
   class << self
     attr_accessor :configuration

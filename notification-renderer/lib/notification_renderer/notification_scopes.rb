@@ -8,16 +8,16 @@ module NotificationRenderer
     extend ActiveSupport::Concern
 
     module ClassMethods
-      def method_missing m, *args
-        if m.to_s[/(.+)_type/]
-          where type: $1.singularize.classify
+      def method_missing(method, *args)
+        if method.to_s[/(.+)_type/]
+          where(type: $1.singularize.classify)
         else
           super
         end
       end
 
-      def respond_to? m, include_private = false
-        super || m.to_s[/(.+)_type/]
+      def respond_to_missing?(method, include_private = false)
+        super || method.to_s[/(.+)_type/]
       end
     end
   end
