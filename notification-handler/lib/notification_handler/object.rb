@@ -12,9 +12,8 @@ module NotificationHandler
                  as: :object, class_name: 'Notification', dependent: :destroy
         include NotificationHandler::Object::InstanceMethods
 
-        if defined?(NotificationSettings)
-          include NotificationSettings::Subscribable
-        end
+        return unless defined?(NotificationSettings)
+        include NotificationSettings::Subscribable
       end
     end
 

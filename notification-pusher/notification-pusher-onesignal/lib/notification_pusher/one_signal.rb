@@ -4,20 +4,17 @@ require 'one_signal'
 
 module NotificationPusher
   class OneSignal
-    def initialize(notification,
-                   app_id:, auth_key:, player_ids:, url: nil, contents: nil,
-                   headings: nil, subtitle: nil)
+    def initialize(notification, options = {})
       return unless options[:player_ids].any?
-      ::OneSignal::Notification.create(
-        params: {
-          app_id: app_id,
-          url: url_param(url, notification),
-          contents: contents_param(contents, notification),
-          headings: headings_param(headings, notification),
-          subtitle: subtitle_param(subtitle, notification),
-          include_player_ids: player_ids
-        }, opts: { auth_key: auth_key }
-      )
+
+      ::OneSignal::Notification.create params: {
+        app_id: options[:app_id],
+        url: url_param(options[:url], notification),
+        contents: contents_param(options[:contents], notification),
+        headings: headings_param(options[:headings], notification),
+        subtitle: subtitle_param(options[:subtitle], notification),
+        include_player_ids: options[:player_ids]
+      }, opts: { auth_key: options[:auth_key] }
     end
 
     private

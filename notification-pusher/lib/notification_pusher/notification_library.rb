@@ -18,8 +18,8 @@ module NotificationPusher
 
     module InstanceMethods
       def push(name, options = {})
-        pusher = name
-        pusher_options = options
+        self.pusher = name
+        self.pusher_options = options
         initialize_pusher
       end
 
@@ -27,15 +27,19 @@ module NotificationPusher
 
       def initialize_pusher
         return if pusher.nil?
+
         if pusher.is_a?(Array)
           pusher.each do |class_name|
-            pusher = NotificationPusher::Pusher.find_by_name(class_name).first
-            pusher.push(self, pusher_options[class_name.to_sym])
+            initiate_push(class_name, pusher_options[class_name.to_sym])
           end
         else
-          pusher = NotificationPusher::Pusher.find_by_name(pusher).first
-          pusher.push(self, pusher_options)
+          initiate_push(pusher, pusher_options)
         end
+      end
+
+      def initiate_push(class_name, options = {})
+        pusher = NotificationPusher::Pusher.find_by_name(class_name).first
+        pusher.push(self, options)
       end
     end
   end

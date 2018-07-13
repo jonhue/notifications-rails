@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails/generators'
 require 'rails/generators/migration'
 
@@ -27,6 +29,7 @@ module NotificationHandler
         migration_version: migration_version
       )
     end
+
     def create_notification_model
       template 'notification_model.rb', 'app/models/notification.rb'
     end

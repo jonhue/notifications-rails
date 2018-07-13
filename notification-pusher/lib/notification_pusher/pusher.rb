@@ -4,7 +4,7 @@ module NotificationPusher
   class Pusher
     attr_reader :name
 
-    def initialize name, options = {}
+    def initialize(name, options = {})
       @instances = []
       @name = name
       @options = options

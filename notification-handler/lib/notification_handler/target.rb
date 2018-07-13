@@ -12,9 +12,8 @@ module NotificationHandler
         include NotificationHandler::Target::InstanceMethods
 
         include NotificationSettings::Target if defined?(NotificationSettings)
-        if defined?(NotificationSettings)
-          include NotificationSettings::Subscriber
-        end
+        return unless defined?(NotificationSettings)
+        include NotificationSettings::Subscriber
       end
     end
 

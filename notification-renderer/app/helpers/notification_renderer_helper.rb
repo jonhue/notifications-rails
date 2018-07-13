@@ -34,9 +34,8 @@ module NotificationRendererHelper
     end
 
     content_tag :div, class: 'notification-renderer notifications' do
-      recursive_render_notifications_grouped(
-        notifications.grouping(group_by), group_by,
-        renderer: renderer
+      recursive_notification_grouping(
+        notifications.grouping(group_by), group_by, renderer
       )
     end
   end
@@ -47,24 +46,27 @@ module NotificationRendererHelper
 
   private
 
-  def recursive_render_notifications_grouped(notifications, group_by, iter = 0,
-                                             renderer: default_renderer,
-                                             attributes: {})
-    notifications.each_pair do |k, v|
-      attributes[group_by[iter]] = k
-      iter += 1
-      if v.is_a?(Hash)
-        recursive_render_notifications_grouped(
-          v, group_by, renderer: renderer, attributes: attributes
-        )
-      else
-        render_notification(
-          v.last,
-          renderer: renderer,
-          attributes: attributes,
-          notifications: v
-        )
-      end
+  def recursive_notification_grouping(notifications, group_by, renderer,
+                                      attributes)
+    i = 0
+    notifications.each do |k, v|
+      attributes[group_by[i]] = k
+      i += 1
+      recursive_render_notifications_grouped(v, renderer, attributes)
+    end
+  end
+
+  def recursive_render_notifications_grouped(notifications, renderer,
+                                             attributes)
+    if notifications.is_a?(Hash)
+      recursive_notification_grouping(
+        notifications, group_by, renderer, attributes
+      )
+    else
+      render_notification(notifications.last,
+                          renderer: renderer,
+                          attributes: attributes,
+                          notifications: notifications)
     end
   end
 

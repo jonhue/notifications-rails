@@ -32,7 +32,7 @@ module NotificationSettings
         if target.notification_setting.present?
           unless status_allows_create? &&
                  settings_allow_create? &&
-                 category_allows_create?
+                 category_settings_allow_create?
             return false
           end
         end
@@ -47,7 +47,7 @@ module NotificationSettings
         target.notification_setting.settings.dig(:enabled)
       end
 
-      def category_allows_create?
+      def category_settings_allow_create?
         target.notification_setting.category_settings.dig(
           category.to_sym,
           :enabled
@@ -59,17 +59,30 @@ module NotificationSettings
         super
       end
 
-      def validate_push
+      def can_push?
         if target.notification_setting.present?
           return false unless status_allows_push?
 
           if push.is_a?(Array)
-            push.each do |pusher|
-              return false unless settings_allow_push?(pusher) && category_allows_push?(pusher)
-            end
+            return false unless can_use_pushers?(push)
           else
-            return false unless settings_allow_push?(push) && category_allows_push?(push)
+            return false unless can_use_pusher?(push)
           end
+        end
+        true
+      end
+
+      def can_use_pushers?(pushers)
+        pushers.each do |pusher|
+          return false unless can_use_pusher?(pusher)
+        end
+        true
+      end
+
+      def can_use_pusher?(pusher)
+        unless settings_allow_push?(pusher) &&
+               category_settings_allow_push?(pusher)
+          return false
         end
         true
       end
@@ -79,11 +92,44 @@ module NotificationSettings
       end
 
       def settings_allow_push?(pusher)
-        target.notification_setting.settings.dig(pusher.to_sym) && (target.notification_setting.settings.dig(:index) || target.notification_setting.settings.dig(pusher.to_sym).present?)
+        return global_settings_allow_push? unless local_pusher_settings?(pusher)
+        local_settings_allow_push?(pusher)
       end
 
-      def category_allows_push?(pusher)
-        target.notification_setting.category_settings.dig(category.to_sym, pusher.to_sym) && (target.notification_setting.category_settings.dig(category.to_sym, :index) || target.notification_setting.category_settings.dig(category.to_sym, pusher.to_sym).present?)
+      def local_pusher_settings?(pusher)
+        local_settings_allow_push?(pusher).present?
+      end
+
+      def local_settings_allow_push?(pusher)
+        target.notification_setting.settings.dig(pusher.to_sym)
+      end
+
+      def global_settings_allow_push?
+        target.notification_setting.settings.dig(:index)
+      end
+
+      def category_settings_allow_push?(pusher)
+        if local_pusher_category_settings?(pusher)
+          local_category_settings_allow_push?(pusher)
+        else
+          global_category_settings_allow_push?
+        end
+      end
+
+      def local_pusher_category_settings?(pusher)
+        local_category_settings_allow_push?(pusher).present?
+      end
+
+      def local_category_settings_allow_push?(pusher)
+        target.notification_setting.category_settings.dig(
+          category.to_sym, pusher.to_sym
+        )
+      end
+
+      def global_category_settings_allow_push?
+        target.notification_setting.category_settings.dig(
+          category.to_sym, :index
+        )
       end
 
       def do_not_notify_statuses

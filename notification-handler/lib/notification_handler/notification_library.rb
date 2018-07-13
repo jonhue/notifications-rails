@@ -53,7 +53,7 @@ module NotificationHandler
           notification.group = nil
           notification.save
         end
-        return false
+        false
       end
 
       def cache
