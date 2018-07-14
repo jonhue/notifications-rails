@@ -17,7 +17,6 @@ It integrates with the [Native](https://github.com/NativeGap/nativegap-rails) ge
 * [To do](#to-do)
 * [Contributing](#contributing)
   * [Semantic versioning](#semantic-versioning)
-* [License](#license)
 
 ---
 
