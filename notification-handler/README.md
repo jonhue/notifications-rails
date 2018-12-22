@@ -1,6 +1,6 @@
 # NotificationHandler
 
-[![Gem Version](https://badge.fury.io/rb/notification-handler.svg)](https://badge.fury.io/rb/notification-handler) <img src="https://travis-ci.org/jonhue/notifications-rails.svg?branch=master" />
+[![Gem Version](https://badge.fury.io/rb/notifications-handler.svg)](https://badge.fury.io/rb/notifications-handler) ![Travis](https://travis-ci.org/jonhue/notifications-rails.svg?branch=master)
 
 Create and modify your notifications through a simple API.
 
@@ -10,19 +10,17 @@ Create and modify your notifications through a simple API.
 
 * [Installation](#installation)
 * [Usage](#usage)
-    * [`Notification` API](#notification-api)
-    * [`notification_target`](#notification_target)
-    * [`notification_object`](#notification_object)
-    * [Groups](#groups)
-        * [Defining a group](#defining-a-group)
-        * [Using a group](#using-a-group)
-    * [Caching](#caching)
+  * [`Notification` API](#notification-api)
+  * [`notification_target`](#notification_target)
+  * [`notification_object`](#notification_object)
+  * [Groups](#groups)
+    * [Defining a group](#defining-a-group)
+    * [Using a group](#using-a-group)
+  * [Caching](#caching)
 * [Configuration](#configuration)
 * [To Do](#to-do)
 * [Contributing](#contributing)
-    * [Contributors](#contributors)
-    * [Semantic versioning](#semantic-versioning)
-* [License](#license)
+  * [Semantic versioning](#semantic-versioning)
 
 ---
 
@@ -78,8 +76,8 @@ To store information in your `Notification` record you can use the `metadata` at
 
 ```ruby
 notification.metadata = {
-    title: 'My first notification',
-    content: "It looks great, doesn't it?"
+  title: 'My first notification',
+  content: "It looks great, doesn't it?"
 }
 ```
 
@@ -116,7 +114,7 @@ To use records of an ActiveRecord class as notification targets, add the followi
 
 ```ruby
 class User < ApplicationRecord
-    notification_target
+  notification_target
 end
 ```
 
@@ -129,7 +127,7 @@ notifications = User.first.notifications
 You can create a notification from a `target`:
 
 ```ruby
-User.first.notify object: Recipe.first
+User.first.notify(object: Recipe.first)
 ```
 
 ...
@@ -140,7 +138,7 @@ When using records of an ActiveRecord class as notification objects, add this to
 
 ```ruby
 class Recipe < ApplicationRecord
-    notification_object
+  notification_object
 end
 ```
 
@@ -162,7 +160,7 @@ You define groups in your `NotificationHandler` configuration:
 
 ```ruby
 NotificationHandler.configure do |config|
-    config.define_group :subscribers, User.where(subscriber: true)
+  config.define_group :subscribers, User.where(subscriber: true)
 end
 ```
 
@@ -170,7 +168,7 @@ When creating a notification for the group `:subscribers`, one notification will
 
 ```ruby
 NotificationHandler.configure do |config|
-    config.define_group :subscribers, User.where(subscriber: true) + Admin.all
+  config.define_group :subscribers, User.where(subscriber: true) + Admin.all
 end
 ```
 
@@ -179,7 +177,7 @@ end
 Bulk-creation of notifications for a certain group is fairly simple:
 
 ```ruby
-notification = Notification.create object: Recipe.first, group: :subscribers
+notification = Notification.create(object: Recipe.first, group: :subscribers)
 ```
 
 **Note:** You are not able to set the `target` attribute when a `group` has been specified.
@@ -203,7 +201,7 @@ You can configure NotificationHandler by passing a block to `configure`. This ca
 
 ```ruby
 NotificationHandler.configure do |config|
-    config.cache = true
+  config.cache = true
 end
 ```
 
@@ -213,7 +211,7 @@ end
 
 ## To Do
 
-[Here](https://github.com/jonhue/notifications-rails/projects/2) is the full list of current projects.
+We use [GitHub projects](https://github.com/jonhue/notifications-rails/projects/2) to coordinate the work on this project.
 
 To propose your ideas, initiate the discussion by adding a [new issue](https://github.com/jonhue/notifications-rails/issues/new).
 
@@ -225,36 +223,6 @@ We hope that you will consider contributing to NotificationHandler. Please read 
 
 [Learn more about contributing to this repository](https://github.com/jonhue/notifications-rails/blob/master/CONTRIBUTING.md), [Code of Conduct](https://github.com/jonhue/notifications-rails/blob/master/CODE_OF_CONDUCT.md)
 
-### Contributors
-
-Give the people some :heart: who are working on this project. See them all at:
-
-https://github.com/jonhue/notifications-rails/graphs/contributors
-
 ### Semantic Versioning
 
 NotificationHandler follows Semantic Versioning 2.0 as defined at http://semver.org.
-
-## License
-
-MIT License
-
-Copyright (c) 2017 Jonas Hübotter
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.

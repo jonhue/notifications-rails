@@ -1,6 +1,6 @@
 # NotificationSettings
 
-[![Gem Version](https://badge.fury.io/rb/notification-settings.svg)](https://badge.fury.io/rb/notification-settings) <img src="https://travis-ci.org/jonhue/notifications-rails.svg?branch=master" />
+[![Gem Version](https://badge.fury.io/rb/notifications-settings.svg)](https://badge.fury.io/rb/notifications-settings) ![Travis](https://travis-ci.org/jonhue/notifications-rails.svg?branch=master)
 
 Integrates with your authentication solution to craft a personalized user notification platform.
 
@@ -10,20 +10,18 @@ Integrates with your authentication solution to craft a personalized user notifi
 
 * [Installation](#installation)
 * [Usage](#usage)
-    * [Categories](#categories)
-    * [Settings](#settings)
-        * [Category specific settings](#category-specific-settings)
-        * [Pusher specific settings](#pusher-specific-settings)
-        * [Updating settings](#updating-settings)
-    * [Subscriptions](#subscriptions)
-    * [Status](#status)
+  * [Categories](#categories)
+  * [Settings](#settings)
+    * [Category specific settings](#category-specific-settings)
+    * [Pusher specific settings](#pusher-specific-settings)
+    * [Updating settings](#updating-settings)
+  * [Subscriptions](#subscriptions)
+  * [Status](#status)
 * [Configuration](#configuration)
-    * [Status](#status)
+  * [Status](#status)
 * [To Do](#to-do)
 * [Contributing](#contributing)
-    * [Contributors](#contributors)
-    * [Semantic versioning](#semantic-versioning)
-* [License](#license)
+  * [Semantic versioning](#semantic-versioning)
 
 ---
 
@@ -72,7 +70,7 @@ User.first.notification_setting
 NotificationSettings uses categories to allow your notification targets to define specific preferences. This is how you are able to specify the `category` of a `Notification` record:
 
 ```ruby
-notification = Notification.create target: User.first, object: Recipe.first, category: 'notification'
+notification = Notification.create(target: User.first, object: Recipe.first, category: 'notification')
 ```
 
 **Note:** The `category` attribute of any new `Notification` record will default to the [`default_category` configuration](#configuration).
@@ -126,14 +124,14 @@ Subscriptions are a way to better handle settings for notifications from differe
 This is how to subscribe/unsubscribe a target to an object:
 
 ```ruby
-User.first.subscribe Recipe.first
-User.first.unsubscribe Recipe.first
+User.first.subscribe(Recipe.first)
+User.first.unsubscribe(Recipe.first)
 ```
 
 Now you can easily notify all subscribers from the subscribable object:
 
 ```ruby
-Recipe.first.notify_subscribers push: :ActionMailer
+Recipe.first.notify_subscribers(push: :ActionMailer)
 ```
 
 Let's assume that we have a group which has multiple chats. When sending notifications to subscribers of a given chat, we only want them to get notified. But when sending notifications about the group, we want to have everyone notified, that is either subscribed to the group or subscribed to one of its chats. To do that you have to add the `private` method `notification_dependents` to your model (in this case `Group`) and return an array of ActiveRecord objects whose subscribers should receive notifications for objects of this class.
@@ -145,7 +143,7 @@ has_many :talks
 private
 
 def notification_dependents
-    self.chats
+  self.chats
 end
 ```
 
@@ -153,10 +151,10 @@ It is possible to override that behavior when notifying subscribers:
 
 ```ruby
 # Disable notification dependents
-Group.first.notify_subscribers dependents: nil
+Group.first.notify_subscribers(dependents: nil)
 
 # Override notification dependents
-Group.first.notify_subscribers dependents: Group.first.chats + Group.first.talks
+Group.first.notify_subscribers(dependents: Group.first.chats + Group.first.talks)
 ```
 
 You can customize settings for a single subscription just as you would for a notification target:
@@ -189,8 +187,8 @@ You can define statuses that prevent creating new notifications for a target and
 
 ```ruby
 NotificationSettings.configure do |config|
-    config.do_not_notify_statuses = ['do not notify']
-    config.do_not_push_statuses = ['do not disturb']
+  config.do_not_notify_statuses = ['do not notify']
+  config.do_not_push_statuses = ['do not disturb']
 end
 ```
 
@@ -202,7 +200,7 @@ You can configure NotificationSettings by passing a block to `configure`. This c
 
 ```ruby
 NotificationSettings.configure do |config|
-    config.default_category = 'notification'
+  config.default_category = 'notification'
 end
 ```
 
@@ -224,7 +222,7 @@ end
 
 ## To Do
 
-[Here](https://github.com/jonhue/notifications-rails/projects/4) is the full list of current projects.
+We use [GitHub projects](https://github.com/jonhue/notifications-rails/projects/4) to coordinate the work on this project.
 
 To propose your ideas, initiate the discussion by adding a [new issue](https://github.com/jonhue/notifications-rails/issues/new).
 
@@ -236,36 +234,6 @@ We hope that you will consider contributing to NotificationSettings. Please read
 
 [Learn more about contributing to this repository](https://github.com/jonhue/notifications-rails/blob/master/CONTRIBUTING.md), [Code of Conduct](https://github.com/jonhue/notifications-rails/blob/master/CODE_OF_CONDUCT.md)
 
-### Contributors
-
-Give the people some :heart: who are working on this project. See them all at:
-
-https://github.com/jonhue/notifications-rails/graphs/contributors
-
 ### Semantic Versioning
 
 NotificationSettings follows Semantic Versioning 2.0 as defined at http://semver.org.
-
-## License
-
-MIT License
-
-Copyright (c) 2017 Jonas Hübotter
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
