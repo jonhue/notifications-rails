@@ -7,11 +7,7 @@ module NotificationSettings
   module NotificationScopes
     extend ActiveSupport::Concern
 
-    included do
-      include NotificationSettings::NotificationScopes::InstanceMethods
-    end
-
-    module InstanceMethods
+    module ClassMethods
       def method_missing(method, *args)
         if method.to_s[/(.+)_category/]
           where(category: $1.singularize.classify)
