@@ -44,14 +44,15 @@ module NotificationSettings
       end
 
       def settings_allow_create?
-        target.notification_setting.settings.dig(:enabled)
+        target.notification_setting.settings.fetch(:enabled, true)
       end
 
       def category_settings_allow_create?
-        target.notification_setting.category_settings.dig(
+        value = target.notification_setting.category_settings.dig(
           category.to_sym,
           :enabled
         )
+        value.nil? ? true : value
       end
 
       def initialize_pusher
