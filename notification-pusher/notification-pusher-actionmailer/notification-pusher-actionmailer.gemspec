@@ -23,10 +23,10 @@ Gem::Specification.new do |gem|
 
   gem.required_ruby_version = '>= 2.2.2'
 
-  gem.add_dependency 'actionmailer', '~> 5.2'
+  gem.add_dependency 'actionmailer', '~> 5.1'
   gem.add_dependency 'notification-pusher', version
   gem.add_dependency 'notification-renderer', version
-  gem.add_dependency 'railties', '~> 5.2'
+  gem.add_dependency 'railties', '~> 5.1'
 
   gem.add_development_dependency 'rspec'
   gem.add_development_dependency 'rubocop'

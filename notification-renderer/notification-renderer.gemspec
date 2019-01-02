@@ -22,10 +22,10 @@ Gem::Specification.new do |gem|
 
   gem.required_ruby_version = '>= 2.2.2'
 
-  gem.add_dependency 'actionview', '~> 5.2'
-  gem.add_dependency 'activesupport', '~> 5.2'
+  gem.add_dependency 'actionview', '~> 5.1'
+  gem.add_dependency 'activesupport', '~> 5.1'
   gem.add_dependency 'notification-handler', version
-  gem.add_dependency 'railties', '~> 5.2'
+  gem.add_dependency 'railties', '~> 5.1'
 
   gem.add_development_dependency 'rspec'
   gem.add_development_dependency 'rubocop'
