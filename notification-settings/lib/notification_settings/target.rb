@@ -11,16 +11,14 @@ module NotificationSettings
               as: :object,
               class_name: 'NotificationSettings::Setting',
               dependent: :destroy
-      before_create :create_notification_setting
+      before_create :build_notification_setting
 
       include NotificationSettings::Target::InstanceMethods
     end
 
     module InstanceMethods
-      private
-
-      def create_notification_setting
-        build_notification_setting
+      def notification_setting
+        super || build_notification_setting
       end
     end
   end
