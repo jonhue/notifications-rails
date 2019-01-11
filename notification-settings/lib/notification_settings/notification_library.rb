@@ -66,7 +66,7 @@ module NotificationSettings
 
           if pusher.is_a?(Array)
             return false unless can_use_pushers?(pusher)
-          else
+          elsif pusher
             return false unless can_use_pusher?(pusher)
           end
         end
