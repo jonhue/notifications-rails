@@ -106,7 +106,7 @@ module NotificationSettings
       end
 
       def global_settings_allow_push?
-        target.notification_setting.settings.dig(:index)
+        target.notification_setting.settings.fetch(:index, true)
       end
 
       def category_settings_allow_push?(pusher)
@@ -122,15 +122,19 @@ module NotificationSettings
       end
 
       def local_category_settings_allow_push?(pusher)
-        target.notification_setting.category_settings.dig(
-          category.to_sym, pusher.to_sym
+        value = target.notification_setting.category_settings.dig(
+          category.to_sym,
+          pusher.to_sym
         )
+        value.nil? ? true : value
       end
 
       def global_category_settings_allow_push?
-        target.notification_setting.category_settings.dig(
-          category.to_sym, :index
+        value = target.notification_setting.category_settings.dig(
+          category.to_sym,
+          :index
         )
+        value.nil? ? true : value
       end
 
       def do_not_notify_statuses
