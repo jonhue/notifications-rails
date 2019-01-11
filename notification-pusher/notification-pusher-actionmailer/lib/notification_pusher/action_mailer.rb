@@ -7,8 +7,13 @@ module NotificationPusher
     require 'notification_pusher/action_mailer/engine'
 
     def initialize(notification, options = {})
+      @notification = notification
+      @options = options
+    end
+
+    def call
       ::NotificationPusher::ActionMailer::NotificationMailer.push(
-        notification, options
+        @notification, @options
       )
     end
   end

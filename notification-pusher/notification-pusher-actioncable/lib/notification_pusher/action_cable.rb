@@ -7,6 +7,11 @@ module NotificationPusher
     require 'notification_pusher/action_cable/engine'
 
     def initialize(notification, options = {})
+      @notification = notification
+      @options = options
+    end
+
+    def call
       # ...
     end
   end
