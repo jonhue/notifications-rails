@@ -62,12 +62,9 @@ module NotificationSettings
 
       def can_push?
         if target.notification_setting.present?
-          return false unless status_allows_push?
-
-          if pusher.is_a?(Array)
-            return false unless can_use_pushers?(pusher)
-          elsif pusher
-            return false unless can_use_pusher?(pusher)
+          unless status_allows_push? &&
+                 can_use_pushers?(Array(pusher))
+            return false
           end
         end
         true
