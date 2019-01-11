@@ -12,8 +12,8 @@ Integrates with your authentication solution to craft a personalized user notifi
 * [Usage](#usage)
   * [Categories](#categories)
   * [Settings](#settings)
-    * [Category specific settings](#category-specific-settings)
-    * [Pusher specific settings](#pusher-specific-settings)
+    * [Category-specific settings](#category-specific-settings)
+    * [Pusher-specific settings](#pusher-specific-settings)
     * [Updating settings](#updating-settings)
   * [Subscriptions](#subscriptions)
   * [Status](#status)
@@ -96,21 +96,24 @@ s.settings[:enabled] = false
 
 This will prevent you from creating any new notifications with this user as target.
 
-#### Category specific settings
+The default is `true` (enabled) for this setting and the other settings.
 
-A user can also have category specific settings:
+#### Category-specific settings
+
+A user can also have category-specific settings:
 
 ```ruby
 s.category_settings[:category] = { enabled: false }
 ```
 
-#### Pusher specific settings
+#### Pusher-specific settings
 
-He can have global or category specific pusher settings:
+He can have global or category-specific pusher settings:
 
 ```ruby
-s.settings[:ActionMailer] = false
-s.category_settings[:category] = { ActionMailer: false }
+s.settings[:pusher_enabled] = false                       # Prevent pushing via *any* pusher
+s.settings[:ActionMailer] = false                         # Prevent pushing via :ActionMailer pusher
+s.category_settings[:category] = { ActionMailer: false }  # Prevent pushing via :ActionMailer pusher for :category
 ```
 
 #### Updating settings
