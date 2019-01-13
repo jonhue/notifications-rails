@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'rails/railtie'
+require 'rails/engine'
 require 'active_record'
 
 module NotificationSettings
