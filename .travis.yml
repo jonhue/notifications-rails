@@ -6,5 +6,4 @@ rvm:
   - 2.5
   - 2.6
 script:
-  - bundle exec rspec
-  - bundle exec rubocop
+  - bin/test_all
