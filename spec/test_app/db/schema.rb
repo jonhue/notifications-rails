@@ -45,4 +45,13 @@ ActiveRecord::Schema.define do
     t.index ["read"], name: "index_notifications_on_read"
     t.index ["target_type", "target_id"], name: "index_notifications_on_target_type_and_target_id"
   end
+
+  create_table "recipes", force: :cascade do |t|
+    t.text "ingredients"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "name"
+    t.boolean "subscriber"
+  end
 end

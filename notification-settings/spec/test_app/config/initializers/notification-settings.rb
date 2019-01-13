@@ -1,9 +1,10 @@
+# frozen_string_literal: true
+
 # rubocop:disable Metrics/LineLength
 
 NotificationSettings.configure do |config|
   # Choose your default notification category. Takes a string.
   # config.default_category = 'notification'
-
 
   ### STATUS ###
 

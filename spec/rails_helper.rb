@@ -17,3 +17,5 @@ require 'rspec/rails'
 RSpec.configure do |config|
   config.use_transactional_fixtures = true
 end
+
+require_relative 'support/general_shared_context'
