@@ -56,12 +56,12 @@ RSpec.describe NotificationPusher::NotificationLibrary, type: :model do
     end
 
     context 'called inside a transaction' do
-      xit "doesn't cause duplicate push from after_create_commit" do
+      it "doesn't cause duplicate push from after_create_commit" do
         expect(NotificationPusher::Null).to receive(:new).once
         User.transaction do
           notification = create_notification
           notification.push :Null
-        end # <- The after_create_commit is triggered here
+        end
       end
     end
   end
