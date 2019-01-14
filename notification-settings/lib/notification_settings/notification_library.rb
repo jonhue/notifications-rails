@@ -22,7 +22,18 @@ module NotificationSettings
         self[:category] || NotificationSettings.configuration.default_category
       end
 
+      def category_setting
+        target.notification_setting.category_settings.fetch(category.to_sym, {})
+      end
+
+      def push(pushers, pusher_options = {})
+        return unless can_push?(pushers)
+        super
+      end
+
       private
+
+      # Overall ability to create
 
       def validate_create
         throw(:abort) unless can_create?
@@ -44,26 +55,20 @@ module NotificationSettings
       end
 
       def category_settings_allow_create?
-        value = target.notification_setting.category_settings.dig(
-          category.to_sym,
-          :enabled
-        )
-        value.nil? ? true : value
+        category_setting.fetch(:enabled, true)
       end
 
-      def initialize_pusher
-        return unless can_push?
-        super
-      end
+      # Overall ability to push
 
-      def can_push?
+      # pusher may be an array or a single value
+      def can_push?(pusher)
         return true unless target.notification_setting.present?
         status_allows_push? &&
           can_use_pushers?(Array(pusher))
       end
 
       def can_use_pushers?(pushers)
-        pushers.all? do |pusher|
+        pushers.any? do |pusher|
           can_use_pusher?(pusher)
         end
       end
@@ -77,50 +82,67 @@ module NotificationSettings
         !do_not_push_statuses.include?(target.notification_setting.status)
       end
 
+      # settings_allow_push?
+
       def settings_allow_push?(pusher)
-        return global_settings_allow_push? unless local_pusher_settings?(pusher)
-        local_settings_allow_push?(pusher)
+        if local_pusher_setting?(pusher)
+          local_settings_allow_push?(pusher)
+        else
+          global_settings_allow_push?
+        end
       end
 
-      def local_pusher_settings?(pusher)
-        local_settings_allow_push?(pusher).present?
+      # local_settings_allow_push?
+
+      def local_pusher_setting?(pusher)
+        !local_pusher_setting(pusher).nil?
       end
 
       def local_settings_allow_push?(pusher)
-        target.notification_setting.settings.dig(pusher.to_sym)
+        local_pusher_setting(pusher, true)
       end
+
+      def local_pusher_setting(pusher, default = nil)
+        target.notification_setting.settings.fetch(pusher.to_sym, default)
+      end
+
+      # global_settings_allow_push?
 
       def global_settings_allow_push?
         target.notification_setting.settings.fetch(:pusher_enabled, true)
       end
 
+      # category_settings_allow_push?
+
       def category_settings_allow_push?(pusher)
-        if local_pusher_category_settings?(pusher)
+        if local_pusher_category_setting?(pusher)
           local_category_settings_allow_push?(pusher)
         else
           global_category_settings_allow_push?
         end
       end
 
-      def local_pusher_category_settings?(pusher)
-        local_category_settings_allow_push?(pusher).present?
+      # local_category_settings_allow_push?
+
+      def local_pusher_category_setting?(pusher)
+        !local_pusher_category_setting(pusher).nil?
       end
 
       def local_category_settings_allow_push?(pusher)
-        value = target.notification_setting.category_settings.dig(
-          category.to_sym,
-          pusher.to_sym
-        )
-        value.nil? ? true : value
+        local_pusher_category_setting(pusher, true)
       end
 
-      def global_category_settings_allow_push?
-        value = target.notification_setting.category_settings.dig(
-          category.to_sym,
-          :pusher_enabled
-        )
-        value.nil? ? true : value
+      def local_pusher_category_setting(pusher, default = nil)
+        category_setting.fetch(pusher.to_sym, default)
       end
+
+      # global_category_settings_allow_push?
+
+      def global_category_settings_allow_push?
+        category_setting.fetch(:pusher_enabled, true)
+      end
+
+      # Status
 
       def do_not_notify_statuses
         NotificationSettings.configuration.do_not_notify_statuses
