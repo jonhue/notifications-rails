@@ -9,6 +9,7 @@ module NotificationSettings
 
     included do
       before_create :validate_create
+      validates :target, presence: true
 
       belongs_to :subscription,
                  class_name: 'NotificationSettings::Subscription',
@@ -40,7 +41,7 @@ module NotificationSettings
       end
 
       def can_create?
-        return true unless target.notification_setting.present?
+        return true unless target && target.notification_setting.present?
         status_allows_create? &&
           settings_allow_create? &&
           category_settings_allow_create?
