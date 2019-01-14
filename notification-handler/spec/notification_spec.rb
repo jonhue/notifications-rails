@@ -43,4 +43,24 @@ RSpec.describe NotificationHandler::NotificationLibrary, type: :model do
       expect(Notification.unread).to eq []
     end
   end
+
+  describe 'sending to group' do
+    let(:subscriber_user) { User.create! subscriber: true }
+    let(:notification) { Notification.create(group: :subscribers) }
+
+    before { [user, subscriber_user] }
+
+    it do
+      notification
+      # expect(notification).to_not be_persisted
+      expect(notification.target).to be_nil
+
+      expect(Notification.where(target: user).last).to be_nil
+      notification = Notification.where(target: subscriber_user).last
+      expect(notification.target).to eq subscriber_user
+
+      # FIXME: It seems to be creating an extra Notification record with a null target.
+      expect(Notification.where(target: nil).last).to be_present
+    end
+  end
 end
