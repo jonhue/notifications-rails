@@ -39,7 +39,7 @@ module NotificationPusher
 
       def initiate_push(class_name, options = {})
         pusher = NotificationPusher::Pusher.find_by_name(class_name).first
-        pusher.push(self, options)
+        pusher.call(self, options)
       end
     end
   end
