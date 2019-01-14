@@ -7,9 +7,9 @@ recommendations of [keepachangelog.com](http://keepachangelog.com/).
 
 ### Breaking Changes
 
-- Change Pusher API to not push immediately when initialized. If you have any custom pushers, you
-  need to add `call` method to it move any code that isn't just for initializion out of `initialize`
-  and into `call`. [#49] (#55)
+- Change Pusher API to not push immediately when initialized. **Important**: If you have any custom
+  pushers, you need to add a `call` method to it and *move* any code out of `initialize` (except
+  code that is just doing initialization) and into the `call` method. [#49] (#55)
 
 ### Deprecated
 
