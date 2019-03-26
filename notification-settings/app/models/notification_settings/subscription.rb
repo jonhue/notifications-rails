@@ -4,7 +4,7 @@ module NotificationSettings
   class Subscription < ActiveRecord::Base
     self.table_name = 'notification_settings_subscriptions'
 
-    include NotificationSettings::SubscriptionLibrary
+    after_create_commit :create_notification_setting!
 
     belongs_to :subscriber, polymorphic: true
     belongs_to :subscribable, polymorphic: true
