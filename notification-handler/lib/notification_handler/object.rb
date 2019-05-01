@@ -13,6 +13,7 @@ module NotificationHandler
         include NotificationHandler::Object::InstanceMethods
 
         return unless defined?(NotificationSettings)
+
         include NotificationSettings::Subscribable
       end
     end

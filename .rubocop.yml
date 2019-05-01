@@ -12,6 +12,11 @@ Metrics/BlockLength:
   Exclude:
     - spec/**/*_spec.rb
 
+Naming/FileName:
+  Exclude:
+    - lib/notifications-rails.rb
+    - notification-*/**/lib/notification-*.rb
+
 Style/Documentation:
   Enabled: false
 

@@ -30,6 +30,7 @@ module NotificationSettings
 
       def can_create?
         return true unless target.notification_setting.present?
+
         status_allows_create? &&
           settings_allow_create? &&
           category_settings_allow_create?
@@ -53,11 +54,13 @@ module NotificationSettings
 
       def initialize_pusher
         return unless can_push?
+
         super
       end
 
       def can_push?
         return true unless target.notification_setting.present?
+
         status_allows_push? &&
           can_use_pushers?(Array(pusher))
       end
@@ -79,6 +82,7 @@ module NotificationSettings
 
       def settings_allow_push?(pusher)
         return global_settings_allow_push? unless local_pusher_settings?(pusher)
+
         local_settings_allow_push?(pusher)
       end
 

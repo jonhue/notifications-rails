@@ -14,6 +14,7 @@ module NotificationPusher
       options = @options.merge!(options)
 
       return unless defined?(NotificationPusher.const_get(@name))
+
       instance = NotificationPusher.const_get(@name).new(notification, options)
       instance.call
       @instances << instance
