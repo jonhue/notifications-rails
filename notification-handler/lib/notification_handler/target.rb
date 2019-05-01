@@ -13,6 +13,7 @@ module NotificationHandler
 
         include NotificationSettings::Target if defined?(NotificationSettings)
         return unless defined?(NotificationSettings)
+
         include NotificationSettings::Subscriber
       end
     end
