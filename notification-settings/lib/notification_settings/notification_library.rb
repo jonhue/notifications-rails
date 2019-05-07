@@ -29,6 +29,7 @@ module NotificationSettings
 
       def push(pushers, pusher_options = {})
         return unless can_push?(pushers)
+
         super
       end
 

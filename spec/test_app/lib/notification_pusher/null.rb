@@ -1,1 +1,0 @@
-../../../../notification-pusher/spec/test_app/lib/notification_pusher/null.rb

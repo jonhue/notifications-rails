@@ -1,1 +1,0 @@
-../../../../notification-pusher/spec/test_app/config/initializers/notification-pusher.rb

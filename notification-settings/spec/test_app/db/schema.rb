@@ -1,1 +1,0 @@
-../../../../spec/test_app/db/schema.rb

@@ -28,7 +28,8 @@ module NotificationPusher
 
     def self.find_by_name!(name)
       find_by_name(name) ||
-        raise(ArgumentError, "Could not find a registered pusher for #{name}. " \
+        raise(ArgumentError,
+              "Could not find a registered pusher for #{name}. " \
               "Make sure you register it with config.define_pusher :#{name}")
     end
   end

@@ -18,15 +18,11 @@ module NotificationPusher
 
     module InstanceMethods
       def push(pushers, pusher_options = {})
-        unless pushers
-          raise ArgumentError, 'Expected a pusher or array of pushers but got nil'
-        end
-        if pushers.is_a?(Array)
-          pushers.each do |pusher|
-            push(pusher, pusher_options[pusher.to_sym] || {})
-          end
-        else
-          push!(pushers, pusher_options)
+        return unless pushers
+        return push!(pushers, pusher_options) unless pushers.is_a?(Array)
+
+        pushers.each do |pusher|
+          push(pusher, pusher_options[pusher.to_sym] || {})
         end
       end
 
@@ -37,9 +33,11 @@ module NotificationPusher
 
       private
 
-      # If pusher attribute was specified when object was built/created, push using that pusher
+      # If pusher attribute was specified when object was built/created,
+      # push using that pusher
       def push_using_pusher_from_attributes
         return if pusher.nil?
+
         push(pusher, pusher_options || {})
       end
     end

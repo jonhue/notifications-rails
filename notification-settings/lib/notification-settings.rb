@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 module NotificationSettings
-  require 'notification_settings/configuration'
+  require_relative 'notification_settings/configuration'
 
-  require 'notification_settings/engine'
+  require_relative 'notification_settings/engine'
 
   autoload :Target, 'notification_settings/target'
   autoload :Subscriber, 'notification_settings/subscriber'

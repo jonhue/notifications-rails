@@ -2,6 +2,7 @@
 
 version = File.read(File.expand_path('../VERSION', __dir__)).strip
 
+# rubocop:disable Metrics/BlockLength
 Gem::Specification.new do |gem|
   gem.name                  = 'notification-settings'
   gem.version               = version
@@ -29,13 +30,11 @@ Gem::Specification.new do |gem|
   gem.add_dependency 'notification-handler', version
   gem.add_dependency 'railties', '>= 5.0'
 
-  gem.add_development_dependency 'byebug'
-  gem.add_development_dependency 'combustion'
+  gem.add_development_dependency 'factory_bot'
   gem.add_development_dependency 'pry'
-  gem.add_development_dependency 'pry-rescue'
-  gem.add_development_dependency 'pry-stack_explorer'
   gem.add_development_dependency 'rails'
   gem.add_development_dependency 'rspec-rails'
   gem.add_development_dependency 'rubocop-rspec'
   gem.add_development_dependency 'sqlite3'
 end
+# rubocop:enable Metrics/BlockLength

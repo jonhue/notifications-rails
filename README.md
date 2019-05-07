@@ -82,10 +82,14 @@ Tests are written with RSpec.
 
 ## Release
 
-1. Change the gem version [here](VERSION)
-2. Publish to https://rubygems.org
+1. Review breaking changes and deprecations in CHANGELOG.md
+2. Change the gem version [here](VERSION)
+3. Publish to https://rubygems.org
 
     `$ sh release.sh <version>`
+
+4. Create a new release and include breaking changes and deprecations from CHANGELOG.md
+5. Reset CHANGELOG.md
 
 ---
 

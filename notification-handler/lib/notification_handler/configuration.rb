@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require_relative 'group'
+
 module NotificationHandler
   class << self
     attr_accessor :configuration

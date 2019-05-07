@@ -1,21 +1,23 @@
 # frozen_string_literal: true
 
-require 'bundler'
-Bundler.require :default, :development
+require 'rails/all'
+
+require 'factory_bot'
+require 'rspec/rails'
+
+ENV['RAILS_ENV'] = 'test'
+require 'support/rails_app/config/environment'
+
+ActiveRecord::Migration.maintain_test_schema!
+ActiveRecord::Schema.verbose = false
+load 'support/rails_app/db/schema.rb'
 
 require 'spec_helper'
 
-require 'active_record/connection_adapters/sqlite3_adapter'
-ActiveRecord::ConnectionAdapters::SQLite3Adapter.represent_boolean_as_integer = true
-
-# https://github.com/pat/combustion
-Combustion.path = 'spec/test_app'
-Combustion.initialize! :active_record
-
-require 'rspec/rails'
-
 RSpec.configure do |config|
-  config.use_transactional_fixtures = true
-end
+  config.include FactoryBot::Syntax::Methods
 
-require_relative 'support/general_shared_context'
+  config.before :suite do
+    FactoryBot.find_definitions
+  end
+end

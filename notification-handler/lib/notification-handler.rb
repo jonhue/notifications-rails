@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 module NotificationHandler
-  require 'notification_handler/configuration'
+  require_relative 'notification_handler/configuration'
 
-  require 'notification_handler/engine'
+  require_relative 'notification_handler/engine'
 
   autoload :Group, 'notification_handler/group'
 

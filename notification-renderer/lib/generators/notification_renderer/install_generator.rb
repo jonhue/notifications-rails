@@ -19,7 +19,7 @@ module NotificationRenderer
     end
 
     def create_initializer
-      template 'initializer.rb', 'config/initializers/notification-renderer.rb'
+      template 'initializer.rb', 'config/initializers/notification_renderer.rb'
     end
 
     def create_notifications_migration_file

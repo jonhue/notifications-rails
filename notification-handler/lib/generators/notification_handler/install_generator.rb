@@ -19,7 +19,7 @@ module NotificationHandler
     end
 
     def create_initializer
-      template 'initializer.rb', 'config/initializers/notification-handler.rb'
+      template 'initializer.rb', 'config/initializers/notification_handler.rb'
     end
 
     def create_notifications_migration_file

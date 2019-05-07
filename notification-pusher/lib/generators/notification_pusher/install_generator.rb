@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
 require 'rails/generators'
-require 'rails/generators/migration'
 
 module NotificationPusher
   class InstallGenerator < Rails::Generators::Base
@@ -9,7 +8,7 @@ module NotificationPusher
     desc 'Install NotificationPusher'
 
     def create_initializer
-      template 'initializer.rb', 'config/initializers/notification-pusher.rb'
+      template 'initializer.rb', 'config/initializers/notification_pusher.rb'
     end
   end
 end
