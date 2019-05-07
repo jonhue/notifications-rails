@@ -11,6 +11,4 @@ module NotificationHandler
   autoload :Object, 'notification_handler/object'
   autoload :NotificationLibrary, 'notification_handler/notification_library'
   autoload :NotificationScopes, 'notification_handler/notification_scopes'
-
-  require 'notification_handler/railtie'
 end

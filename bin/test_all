@@ -1,0 +1,28 @@
+#!/bin/bash
+
+# Keep track of the overall failure status
+code=0
+function record_exit() {
+  { new_code=$?; set +x; } &>/dev/null
+  if [ "$new_code" != "0" ]; then
+    code=$new_code
+  fi
+}
+
+set -x
+bundle exec rubocop --display-style-guide || record_exit $?
+bundle exec rspec                         || record_exit $?
+{ set +x; } &>/dev/null
+
+for dir in notification-*; do
+  pushd $dir &>/dev/null
+  echo '════════════════════════════════════════════════════════════════════════════════════════════════════'
+  echo "⟫ Running $dir tests ..."
+  set -x
+  bundle exec rspec --exclude-pattern 'spec/without_rails/**/*_spec.rb' || record_exit $?
+  bundle exec rspec         --pattern 'spec/without_rails/**/*_spec.rb' || record_exit $?
+  { set +x; popd; } &>/dev/null
+done
+
+echo "Exiting with $code"
+exit $code

@@ -1,0 +1,1 @@
+../../../../notification-pusher/spec/test_app/lib/notification_pusher/some_pusher.rb

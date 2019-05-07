@@ -11,35 +11,36 @@ module NotificationPusher
       attr_accessor :pusher
       attr_accessor :pusher_options
 
-      after_create_commit :initialize_pusher
+      after_create_commit :push_using_pusher_from_attributes
 
       include NotificationPusher::NotificationLibrary::InstanceMethods
     end
 
     module InstanceMethods
-      def push(name, options = {})
-        self.pusher = name
-        self.pusher_options = options
-        initialize_pusher
+      def push(pushers, pusher_options = {})
+        unless pushers
+          raise ArgumentError, 'Expected a pusher or array of pushers but got nil'
+        end
+        if pushers.is_a?(Array)
+          pushers.each do |pusher|
+            push(pusher, pusher_options[pusher.to_sym] || {})
+          end
+        else
+          push!(pushers, pusher_options)
+        end
+      end
+
+      def push!(class_name, options = {})
+        pusher = NotificationPusher::Pusher.find_by_name!(class_name)
+        pusher.call(self, options)
       end
 
       private
 
-      def initialize_pusher
+      # If pusher attribute was specified when object was built/created, push using that pusher
+      def push_using_pusher_from_attributes
         return if pusher.nil?
-
-        if pusher.is_a?(Array)
-          pusher.each do |class_name|
-            initiate_push(class_name, pusher_options[class_name.to_sym])
-          end
-        else
-          initiate_push(pusher, pusher_options)
-        end
-      end
-
-      def initiate_push(class_name, options = {})
-        pusher = NotificationPusher::Pusher.find_by_name(class_name).first
-        pusher.call(self, options)
+        push(pusher, pusher_options || {})
       end
     end
   end

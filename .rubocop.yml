@@ -1,16 +1,24 @@
-require: rubocop-rspec
+require:
+  - rubocop-rspec
 
 AllCops:
   Exclude:
     - vendor/**/*
+    - '**/db/schema.rb'
   TargetRubyVersion: 2.5
 
 Gemspec/RequiredRubyVersion:
   Enabled: false
 
+
 Metrics/BlockLength:
   Exclude:
-    - spec/**/*_spec.rb
+    - '**/spec/**/*_spec.rb'
+    - '**/*.gemspec'
+
+Metrics/LineLength:
+  Max: 100
+
 
 Naming/FileName:
   Exclude:
@@ -22,3 +30,45 @@ Style/Documentation:
 
 Style/PerlBackrefs:
   Enabled: false
+
+Style/IfUnlessModifier:
+  Enabled: false
+
+Style/LambdaCall:
+  Enabled: false
+
+Style/SymbolArray:
+  MinSize: 3
+
+
+Naming/FileName:
+  Enabled: false
+
+
+Layout/SpaceInsideParens:
+  Enabled: false
+
+Layout/EmptyLineAfterGuardClause:
+  Enabled: false
+
+
+RSpec/DescribeMethod:
+  Enabled: false
+
+RSpec/ContextWording:
+  Enabled: false
+
+RSpec/FilePath:
+  Enabled: false
+
+RSpec/ExampleLength:
+  Enabled: false
+
+RSpec/NestedGroups:
+  Enabled: false
+
+RSpec/MultipleExpectations:
+  Enabled: false
+
+RSpec/MessageSpies:
+  EnforcedStyle: receive

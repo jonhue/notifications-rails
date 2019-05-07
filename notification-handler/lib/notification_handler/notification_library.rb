@@ -47,7 +47,7 @@ module NotificationHandler
 
         target_scope = NotificationHandler::Group.find_by_name(group)
                                                  .last.target_scope
-        target_scope&.each do |target|
+        target_scope.()&.each do |target|
           notification = dup
           notification.target = target
           notification.group = nil

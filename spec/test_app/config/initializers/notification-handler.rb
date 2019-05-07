@@ -1,0 +1,1 @@
+../../../../notification-handler/spec/test_app/config/initializers/notification-handler.rb

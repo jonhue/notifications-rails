@@ -160,7 +160,7 @@ You define groups in your `NotificationHandler` configuration:
 
 ```ruby
 NotificationHandler.configure do |config|
-  config.define_group :subscribers, User.where(subscriber: true)
+  config.define_group :subscribers, -> { User.where(subscriber: true) }
 end
 ```
 
@@ -168,9 +168,11 @@ When creating a notification for the group `:subscribers`, one notification will
 
 ```ruby
 NotificationHandler.configure do |config|
-  config.define_group :subscribers, User.where(subscriber: true) + Admin.all
+  config.define_group :subscribers, -> { User.where(subscriber: true) + Admin.all }
 end
 ```
+
+The only requirement is that the result of evaluating the proc be Enumerable.
 
 #### Using a group
 
