@@ -18,6 +18,15 @@ Naming/FileName:
     - lib/notifications-rails.rb
     - notification-*/**/lib/notification-*.rb
 
+RSpec/ExampleLength:
+  Enabled: false
+
+RSpec/MessageSpies:
+  EnforcedStyle: receive
+
+RSpec/MultipleExpectations:
+  Enabled: false
+
 Style/Documentation:
   Enabled: false
 

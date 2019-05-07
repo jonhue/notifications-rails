@@ -117,10 +117,6 @@ s.settings[:ActionMailer] = false                         # Prevent pushing via 
 s.category_settings[:category] = { ActionMailer: false }  # Prevent pushing via :ActionMailer pusher for :category
 ```
 
-#### Updating settings
-
-...
-
 ### Subscriptions
 
 Subscriptions are a way to better handle settings for notifications from different objects to one notification target.

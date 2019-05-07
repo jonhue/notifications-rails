@@ -72,7 +72,7 @@ module NotificationSettings
       end
 
       def pushers_allowed?(pushers)
-        pushers.all? do |pusher|
+        pushers.any? do |pusher|
           pusher_allowed?(pusher)
         end
       end
