@@ -4,7 +4,6 @@ AllCops:
   Exclude:
     - vendor/**/*
     - '**/spec/support/rails_app/db/schema.rb'
-    - /**/spec/**/*_spec.rb
   TargetRubyVersion: 2.5
 
 Gemspec/RequiredRubyVersion:
