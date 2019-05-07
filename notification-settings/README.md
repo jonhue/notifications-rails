@@ -49,6 +49,7 @@ gem 'notification-settings', github: 'jonhue/notifications-rails'
 
 Now run the generator:
 
+    $ rails g notification_handler:install
     $ rails g notification_settings:install
 
 To wrap things up, migrate the changes to your database:
