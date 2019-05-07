@@ -186,6 +186,7 @@ DEPENDENCIES
   pry
   rails
   rspec-rails
+  rubocop
   rubocop-rspec
   sqlite3
 

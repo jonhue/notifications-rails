@@ -11,7 +11,7 @@ module NotificationPusher
       attr_accessor :pusher
       attr_accessor :pusher_options
 
-      after_create_commit :push_using_pusher_from_attributes
+      after_create_commit :push_after_create_commit
 
       include NotificationPusher::NotificationLibrary::InstanceMethods
     end
@@ -35,7 +35,7 @@ module NotificationPusher
 
       # If pusher attribute was specified when object was built/created,
       # push using that pusher
-      def push_using_pusher_from_attributes
+      def push_after_create_commit
         return if pusher.nil?
 
         push(pusher, pusher_options || {})
