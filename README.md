@@ -72,7 +72,7 @@ Tests are written with RSpec.
 
 4. Run tests
 
-    `$ bundle exec rspec`
+    `$ bundle exec rspec spec **/spec`
 
 5. Run RuboCop
 
