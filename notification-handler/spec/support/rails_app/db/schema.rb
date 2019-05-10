@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_05_07_174115) do
+ActiveRecord::Schema.define(version: 2019_05_08_120359) do
 
   create_table "notifications", force: :cascade do |t|
     t.string "target_type"
@@ -24,6 +24,15 @@ ActiveRecord::Schema.define(version: 2019_05_07_174115) do
     t.index ["object_type", "object_id"], name: "index_notifications_on_object_type_and_object_id"
     t.index ["read"], name: "index_notifications_on_read"
     t.index ["target_type", "target_id"], name: "index_notifications_on_target_type_and_target_id"
+  end
+
+  create_table "recipes", force: :cascade do |t|
+    t.string "name"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "name"
+    t.boolean "subscriber", default: false, null: false
   end
 
 end

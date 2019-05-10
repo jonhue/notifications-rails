@@ -6,8 +6,11 @@ module NotificationSettings
   end
 
   def self.configure
-    self.configuration ||= Configuration.new
     yield configuration
+  end
+
+  def self.configuration
+    @@configuration ||= Configuration.new
   end
 
   class Configuration
@@ -19,8 +22,8 @@ module NotificationSettings
     attr_accessor :do_not_push_statuses
 
     def initialize
-      @default_category = 'notification'
-      @last_seen = 'last_seen'
+      @default_category = :notification
+      @last_seen = :last_seen
       @idle_after = 10.minutes
       @offline_after = 3.hours
       @do_not_notify_statuses = []

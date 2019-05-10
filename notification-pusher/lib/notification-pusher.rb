@@ -5,5 +5,5 @@ module NotificationPusher
 
   autoload :Pusher, 'notification_pusher/pusher'
 
-  autoload :NotificationLibrary, 'notification_pusher/notification_library'
+  autoload :NotificationLib, 'notification_pusher/notification_lib'
 end

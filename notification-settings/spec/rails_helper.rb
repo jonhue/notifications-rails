@@ -1,10 +1,25 @@
 # frozen_string_literal: true
 
-require 'bundler'
-Bundler.require :default, :development
+require 'rails/all'
 
-# Why doesn't the Bundler.require automatically require this?
-require 'notification-handler'
+require 'factory_bot'
+require 'rspec/rails'
 
-require 'spec_helper'
-require_relative '../../spec/rails_helper.rb'
+ENV['RAILS_ENV'] = 'test'
+require_relative 'support/rails_app/config/environment'
+
+ActiveRecord::Migration.maintain_test_schema!
+ActiveRecord::Schema.verbose = false
+require_relative 'support/rails_app/db/schema.rb'
+
+require_relative '../../spec/spec_helper'
+
+RSpec.configure do |config|
+  config.include FactoryBot::Syntax::Methods
+
+  config.before :suite do
+    require_relative 'factories/notifications'
+    require_relative 'factories/recipes'
+    require_relative 'factories/users'
+  end
+end

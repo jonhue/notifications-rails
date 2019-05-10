@@ -9,6 +9,6 @@ module NotificationHandler
 
   autoload :Target, 'notification_handler/target'
   autoload :Object, 'notification_handler/object'
-  autoload :NotificationLibrary, 'notification_handler/notification_library'
+  autoload :NotificationLib, 'notification_handler/notification_lib'
   autoload :NotificationScopes, 'notification_handler/notification_scopes'
 end

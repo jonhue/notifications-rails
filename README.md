@@ -62,7 +62,7 @@ gem 'notifications-rails', github: 'jonhue/notifications-rails'
 
 ## Testing
 
-Tests are written with RSpec.
+Tests are written with RSpec. Integration tests are located in `/spec`, unit tests can be found in `<module>/spec`.
 
 1. Fork this repository
 2. Clone your forked git locally

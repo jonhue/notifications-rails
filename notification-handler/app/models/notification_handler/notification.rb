@@ -2,7 +2,7 @@
 
 module NotificationHandler
   class Notification < ApplicationRecord
-    include NotificationHandler::NotificationLibrary
+    include NotificationHandler::NotificationLib
     include NotificationHandler::NotificationScopes
   end
 end

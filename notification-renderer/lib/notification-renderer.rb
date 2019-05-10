@@ -5,6 +5,6 @@ module NotificationRenderer
 
   require_relative 'notification_renderer/engine'
 
-  autoload :NotificationLibrary, 'notification_renderer/notification_library'
+  autoload :NotificationLib, 'notification_renderer/notification_lib'
   autoload :NotificationScopes, 'notification_renderer/notification_scopes'
 end

@@ -8,7 +8,7 @@ module NotificationSettings
   autoload :Target, 'notification_settings/target'
   autoload :Subscriber, 'notification_settings/subscriber'
   autoload :Subscribable, 'notification_settings/subscribable'
-  autoload :SettingLibrary, 'notification_settings/setting_library'
-  autoload :NotificationLibrary, 'notification_settings/notification_library'
+  autoload :SettingLib, 'notification_settings/setting_lib'
+  autoload :NotificationLib, 'notification_settings/notification_lib'
   autoload :NotificationScopes, 'notification_settings/notification_scopes'
 end
