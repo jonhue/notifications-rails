@@ -2,7 +2,7 @@
 
 [![Gem Version](https://badge.fury.io/rb/notifications-pusher.svg)](https://badge.fury.io/rb/notifications-pusher) ![Travis](https://travis-ci.org/jonhue/notifications-rails.svg?branch=master)
 
-Push your notifications to various services. Including Email, ActionCable, OneSignal (cross-platform notifications).
+Push your notifications to various services. Including Email & OneSignal (cross-platform notifications).
 
 ---
 
@@ -120,7 +120,7 @@ notification = Notification.create(target: User.first, object: Recipe.first)
 notification.push(:CustomPusher, option_one: 'value_two')
 ```
 
-For further reference take a look at the default [ActionMailer](notification-pusher-actionmailer), [ActionCable](notification-pusher-actioncable) and [OneSignal](notification-pusher-onesignal) pusher.
+For further reference take a look at the default [ActionMailer](notification-pusher-actionmailer) and [OneSignal](notification-pusher-onesignal) pushers.
 
 ---
 

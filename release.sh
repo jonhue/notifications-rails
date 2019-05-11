@@ -6,10 +6,6 @@ cd ../notification-pusher
 gem build notification-pusher.gemspec
 gem push notification-pusher-$1.gem
 
-cd notification-pusher-actioncable
-gem build notification-pusher-actioncable.gemspec
-gem push notification-pusher-actioncable-$1.gem
-
 cd ../notification-pusher-actionmailer
 gem build notification-pusher-actionmailer.gemspec
 gem push notification-pusher-actionmailer-$1.gem
