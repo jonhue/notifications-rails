@@ -11,7 +11,7 @@ Gemspec/RequiredRubyVersion:
 
 Metrics/BlockLength:
   Exclude:
-    - '**/**/*_spec.rb'
+    - '**/*_spec.rb'
 
 Naming/FileName:
   Exclude:

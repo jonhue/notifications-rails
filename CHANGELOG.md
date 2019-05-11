@@ -10,6 +10,8 @@ Notifications Rails follows Semantic Versioning 2.0 as defined at http://semver.
   pushers, you need to add a `call` method to it and *move* any code out of `initialize` (except
   code that is just doing initialization) and into the `call` method. [#49] (#55)
 
+* Groups should now be defined using callables like `-> { where(subscriber: true) }`. [#44] (#84)
+
 ### Deprecated
 
 * None

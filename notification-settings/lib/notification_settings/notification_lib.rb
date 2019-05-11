@@ -45,7 +45,8 @@ module NotificationSettings
       def push_allowed?(pusher)
         return true unless target.notification_setting.present?
 
-        status_allows_push? &&
+        creation_allowed? &&
+          status_allows_push? &&
           pushers_allowed?(Array(pusher))
       end
 
