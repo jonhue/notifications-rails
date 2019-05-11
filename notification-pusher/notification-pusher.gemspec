@@ -8,7 +8,7 @@ Gem::Specification.new do |gem|
   gem.platform              = Gem::Platform::RUBY
   gem.summary               = 'Push your notifications to various services'
   gem.description           = 'Push your notifications to various services. '\
-                              'Including Email, ActionCable, OneSignal '\
+                              'Including Email & OneSignal '\
                               '(cross-platform notifications).'
   gem.authors               = 'Jonas Hübotter'
   gem.email                 = 'me@jonhue.me'

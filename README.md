@@ -28,7 +28,7 @@ Notifications Rails has been built with modularity in mind. It currently consist
 
 **[NotificationRenderer](notification-renderer):** Render your notifications on multiple platforms by specifying notification types.
 
-**[NotificationPusher](notification-pusher):** Push your notifications to various services. Including [Email](notification-pusher/notification-pusher-actionmailer), [ActionCable](notification-pusher/notification-pusher-actioncable), [OneSignal](notification-pusher/notification-pusher-onesignal).
+**[NotificationPusher](notification-pusher):** Push your notifications to various services. Including [Email](notification-pusher/notification-pusher-actionmailer) & [OneSignal](notification-pusher/notification-pusher-onesignal).
 
 **[NotificationSettings](notification-settings):** Integrates with your authentication solution to craft a personalized user notification platform.
 
