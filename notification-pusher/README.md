@@ -1,6 +1,6 @@
 # NotificationPusher
 
-[![Gem Version](https://badge.fury.io/rb/notifications-pusher.svg)](https://badge.fury.io/rb/notifications-pusher) ![Travis](https://travis-ci.org/jonhue/notifications-rails.svg?branch=master)
+[![Gem Version](https://badge.fury.io/rb/notification-pusher.svg)](https://badge.fury.io/rb/notification-pusher) ![Travis](https://travis-ci.org/jonhue/notifications-rails.svg?branch=master)
 
 Push your notifications to various services. Including Email & OneSignal (cross-platform notifications).
 

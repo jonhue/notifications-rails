@@ -1,6 +1,6 @@
 # NotificationPusher for OneSignal
 
-[![Gem Version](https://badge.fury.io/rb/notifications-pusher-onesignal.svg)](https://badge.fury.io/rb/notifications-pusher-onesignal) ![Travis](https://travis-ci.org/jonhue/notifications-rails.svg?branch=master)
+[![Gem Version](https://badge.fury.io/rb/notification-pusher-onesignal.svg)](https://badge.fury.io/rb/notification-pusher-onesignal) ![Travis](https://travis-ci.org/jonhue/notifications-rails.svg?branch=master)
 
 A pusher to send cross-platform notifications with OneSignal.
 
