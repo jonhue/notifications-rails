@@ -62,7 +62,7 @@ gem 'notifications-rails', github: 'jonhue/notifications-rails'
 
 ## Testing
 
-Tests are written with RSpec.
+Tests are written with RSpec. Integration tests are located in `/spec`, unit tests can be found in `<module>/spec`.
 
 1. Fork this repository
 2. Clone your forked git locally
@@ -72,7 +72,7 @@ Tests are written with RSpec.
 
 4. Run tests
 
-    `$ bundle exec rspec`
+    `$ bundle exec rspec spec **/spec`
 
 5. Run RuboCop
 
@@ -82,10 +82,14 @@ Tests are written with RSpec.
 
 ## Release
 
-1. Change the gem version [here](VERSION)
-2. Publish to https://rubygems.org
+1. Review breaking changes and deprecations in CHANGELOG.md
+2. Change the gem version [here](VERSION)
+3. Publish to https://rubygems.org
 
     `$ sh release.sh <version>`
+
+4. Create a new release and include breaking changes and deprecations from CHANGELOG.md
+5. Reset CHANGELOG.md
 
 ---
 

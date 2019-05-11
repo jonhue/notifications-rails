@@ -4,7 +4,7 @@ module NotificationSettings
   class Setting < ActiveRecord::Base
     self.table_name = 'notification_settings_settings'
 
-    include NotificationSettings::SettingLibrary
+    include NotificationSettings::SettingLib
 
     serialize :settings, Hash
     serialize :category_settings, Hash

@@ -6,7 +6,9 @@ class NotificationSettingsMigration < ActiveRecord::Migration<%= migration_versi
     add_column :notifications, :category, :string, index: true
 
     create_table :notification_settings_settings do |t|
-      t.references :object, polymorphic: true, index: { name: 'idx_settings_object_type_object_id' }
+      t.references :object,
+                   polymorphic: true,
+                   index: { name: 'idx_settings_object_type_object_id' }
       t.references :subscription, index: true
 
       t.string :status
@@ -18,8 +20,16 @@ class NotificationSettingsMigration < ActiveRecord::Migration<%= migration_versi
     end
 
     create_table :notification_settings_subscriptions do |t|
-      t.references :subscriber, polymorphic: true, index: { name: 'idx_subscriptions_subscriber_type_subscriber_id' }
-      t.references :subscribable, polymorphic: true, index: { name: 'idx_subscriptions_subscribable_type_subscribable_id' }
+      t.references :subscriber,
+                   polymorphic: true,
+                   index: {
+                     name: 'idx_subscriptions_subscriber_type_subscriber_id'
+                   }
+      t.references :subscribable,
+                   polymorphic: true,
+                   index: {
+                     name: 'idx_subscriptions_subscribable_type_subscribable_id'
+                   }
 
       t.timestamps
     end

@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require 'one_signal'
-
 module NotificationPusher
   class OneSignal
     def initialize(notification, options = {})

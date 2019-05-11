@@ -25,7 +25,11 @@ Gem::Specification.new do |gem|
   gem.add_dependency 'notification-pusher', version
   gem.add_dependency 'one_signal', '~> 1.2'
 
-  gem.add_development_dependency 'rspec'
+  gem.add_development_dependency 'factory_bot'
+  gem.add_development_dependency 'pry'
+  gem.add_development_dependency 'rails'
+  gem.add_development_dependency 'rspec-rails'
   gem.add_development_dependency 'rubocop'
   gem.add_development_dependency 'rubocop-rspec'
+  gem.add_development_dependency 'sqlite3'
 end

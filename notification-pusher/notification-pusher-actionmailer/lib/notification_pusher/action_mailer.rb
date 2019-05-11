@@ -4,7 +4,7 @@ require 'notification-renderer'
 
 module NotificationPusher
   class ActionMailer
-    require 'notification_pusher/action_mailer/engine'
+    require_relative 'action_mailer/engine'
 
     def initialize(notification, options = {})
       @notification = notification

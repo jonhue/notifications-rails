@@ -3,6 +3,7 @@ require: rubocop-rspec
 AllCops:
   Exclude:
     - vendor/**/*
+    - '**/spec/support/rails_app/db/schema.rb'
   TargetRubyVersion: 2.5
 
 Gemspec/RequiredRubyVersion:
@@ -10,15 +11,30 @@ Gemspec/RequiredRubyVersion:
 
 Metrics/BlockLength:
   Exclude:
-    - spec/**/*_spec.rb
+    - '**/*_spec.rb'
 
 Naming/FileName:
   Exclude:
     - lib/notifications-rails.rb
     - notification-*/**/lib/notification-*.rb
 
+RSpec/ExampleLength:
+  Enabled: false
+
+RSpec/MessageSpies:
+  EnforcedStyle: receive
+
+RSpec/MultipleExpectations:
+  Enabled: false
+
 Style/Documentation:
   Enabled: false
 
 Style/PerlBackrefs:
   Enabled: false
+
+Style/SymbolArray:
+  EnforcedStyle: brackets
+
+Style/WordArray:
+  EnforcedStyle: brackets

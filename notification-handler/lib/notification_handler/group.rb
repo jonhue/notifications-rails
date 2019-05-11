@@ -11,9 +11,16 @@ module NotificationHandler
     end
 
     def self.find_by_name(name)
-      NotificationHandler.configuration.groups.select do |group|
+      NotificationHandler.configuration.groups.find do |group|
         group.name == name.to_sym
       end
+    end
+
+    def self.find_by_name!(name)
+      find_by_name(name) ||
+        raise(ArgumentError,
+              "Could not find a registered group for #{name}. " \
+              "Make sure you register it with config.define_group :#{name}")
     end
   end
 end
