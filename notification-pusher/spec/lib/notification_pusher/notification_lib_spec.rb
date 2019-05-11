@@ -22,36 +22,47 @@ RSpec.describe NotificationPusher::NotificationLib do
     end
 
     it 'gives a useful error when given an invalid name' do
-      expect{ notification.push(:Unknown) }
-        .to raise_error(ArgumentError,
-                        'Could not find a registered pusher for Unknown. ' \
-                        'Make sure you register it with config.define_pusher :Unknown')
+      expect { notification.push(:Unknown) }
+        .to raise_error(
+          ArgumentError,
+          'Could not find a registered pusher for Unknown. ' \
+          'Make sure you register it with config.define_pusher :Unknown'
+        )
     end
 
     it 'when no options passed' do
-      expect(NotificationPusher::Pusher).to receive(:find_by_name!).with(:SomePusher).and_return(some_pusher)
-      expect(some_pusher).to                receive(:call).with(notification, {})
+      expect(NotificationPusher::Pusher)
+        .to receive(:find_by_name!).with(:SomePusher).and_return(some_pusher)
+      expect(some_pusher).to receive(:call).with(notification, {})
 
       notification.push(:SomePusher)
     end
 
     it 'when options passed' do
-      expect(NotificationPusher::Pusher).to receive(:find_by_name!).with(:SomePusher).and_return(some_pusher)
-      expect(some_pusher).to                receive(:call).with(notification, some: 1)
+      expect(NotificationPusher::Pusher)
+        .to receive(:find_by_name!).with(:SomePusher).and_return(some_pusher)
+      expect(some_pusher).to receive(:call).with(notification, some: 1)
 
       notification.push(:SomePusher, some: 1)
     end
 
     it 'when multiple pushers with distinct options are specified' do
-      expect(NotificationPusher::Pusher).to receive(:find_by_name!).with(:SomePusher).and_return(some_pusher)
-      expect(NotificationPusher::Pusher).to receive(:find_by_name!).with(:OtherPusher).and_return(other_pusher)
-      expect(some_pusher).to                receive(:call).with(notification, some: 1)
-      expect(other_pusher).to               receive(:call).with(notification, other: 1)
+      expect(NotificationPusher::Pusher)
+        .to receive(:find_by_name!).with(:SomePusher).and_return(some_pusher)
+      expect(NotificationPusher::Pusher)
+        .to receive(:find_by_name!).with(:OtherPusher).and_return(other_pusher)
+      expect(some_pusher).to  receive(:call).with(notification, some: 1)
+      expect(other_pusher).to receive(:call).with(notification, other: 1)
 
-      notification.push([:SomePusher, :OtherPusher], SomePusher: { some: 1 }, OtherPusher: { other: 1 })
+      notification.push(
+        [:SomePusher, :OtherPusher],
+        SomePusher: { some: 1 },
+        OtherPusher: { other: 1 }
+      )
     end
 
-    it 'does not cause duplicate push from after_create_commit when called inside a transaction' do
+    it 'does not cause duplicate push from after_create_commit ' \
+       'when called inside a transaction' do
       expect(NotificationPusher::Null).to receive(:new).once.and_call_original
 
       User.transaction do
@@ -65,15 +76,17 @@ RSpec.describe NotificationPusher::NotificationLib do
     let(:notification) { build :notification }
 
     it 'when no options passed' do
-      expect(NotificationPusher::Pusher).to receive(:find_by_name!).with(:SomePusher).and_return(some_pusher)
-      expect(some_pusher).to                receive(:call).with(notification, {})
+      expect(NotificationPusher::Pusher)
+        .to receive(:find_by_name!).with(:SomePusher).and_return(some_pusher)
+      expect(some_pusher).to receive(:call).with(notification, {})
 
       notification.update!(pusher: :SomePusher)
     end
 
     it 'when options passed' do
-      expect(NotificationPusher::Pusher).to receive(:find_by_name!).with(:SomePusher).and_return(some_pusher)
-      expect(some_pusher).to                receive(:call).with(notification, some: 1)
+      expect(NotificationPusher::Pusher)
+        .to receive(:find_by_name!).with(:SomePusher).and_return(some_pusher)
+      expect(some_pusher).to receive(:call).with(notification, some: 1)
 
       notification.update!(
         pusher: :SomePusher,
@@ -82,14 +95,19 @@ RSpec.describe NotificationPusher::NotificationLib do
     end
 
     it 'when multiple pushers with distinct options are specified' do
-      expect(NotificationPusher::Pusher).to receive(:find_by_name!).with(:SomePusher).and_return(some_pusher)
-      expect(NotificationPusher::Pusher).to receive(:find_by_name!).with(:OtherPusher).and_return(other_pusher)
-      expect(some_pusher).to                receive(:call).with(notification, some: 1)
-      expect(other_pusher).to               receive(:call).with(notification, other: 1)
+      expect(NotificationPusher::Pusher)
+        .to receive(:find_by_name!).with(:SomePusher).and_return(some_pusher)
+      expect(NotificationPusher::Pusher)
+        .to receive(:find_by_name!).with(:OtherPusher).and_return(other_pusher)
+      expect(some_pusher).to  receive(:call).with(notification, some: 1)
+      expect(other_pusher).to receive(:call).with(notification, other: 1)
 
       notification.update!(
-        pusher:         [:SomePusher, :OtherPusher],
-        pusher_options: { SomePusher: { some: 1 }, OtherPusher: { other: 1 } }
+        pusher: [:SomePusher, :OtherPusher],
+        pusher_options: {
+          SomePusher: { some: 1 },
+          OtherPusher: { other: 1 }
+        }
       )
     end
   end
@@ -98,29 +116,40 @@ RSpec.describe NotificationPusher::NotificationLib do
     let(:user) { build_stubbed :user }
 
     it 'when no options passed' do
-      expect(NotificationPusher::Pusher).to receive(:find_by_name!).with(:SomePusher).and_return(some_pusher)
-      expect(some_pusher).to                receive(:call).with(instance_of(Notification), {})
+      expect(NotificationPusher::Pusher)
+        .to receive(:find_by_name!).with(:SomePusher).and_return(some_pusher)
+      expect(some_pusher)
+        .to receive(:call).with(instance_of(Notification), {})
 
       user.notify(pusher: :SomePusher)
     end
 
     it 'when options passed' do
-      expect(NotificationPusher::Pusher).to receive(:find_by_name!).with(:SomePusher).and_return(some_pusher)
-      expect(some_pusher).to                receive(:call).with(instance_of(Notification), some: 1)
+      expect(NotificationPusher::Pusher)
+        .to receive(:find_by_name!).with(:SomePusher).and_return(some_pusher)
+      expect(some_pusher)
+        .to receive(:call).with(instance_of(Notification), some: 1)
 
       user.notify(pusher: :SomePusher,
                   pusher_options: { some: 1 })
     end
 
     it 'when multiple pushers with distinct options are specified' do
-      expect(NotificationPusher::Pusher).to receive(:find_by_name!).with(:SomePusher).and_return(some_pusher)
-      expect(NotificationPusher::Pusher).to receive(:find_by_name!).with(:OtherPusher).and_return(other_pusher)
-      expect(some_pusher).to                receive(:call).with(instance_of(Notification), some: 1)
-      expect(other_pusher).to               receive(:call).with(instance_of(Notification), other: 1)
+      expect(NotificationPusher::Pusher)
+        .to receive(:find_by_name!).with(:SomePusher).and_return(some_pusher)
+      expect(NotificationPusher::Pusher)
+        .to receive(:find_by_name!).with(:OtherPusher).and_return(other_pusher)
+      expect(some_pusher)
+        .to receive(:call).with(instance_of(Notification), some: 1)
+      expect(other_pusher)
+        .to receive(:call).with(instance_of(Notification), other: 1)
 
       user.notify(
-        pusher:         [:SomePusher, :OtherPusher],
-        pusher_options: { SomePusher: { some: 1 }, OtherPusher: { other: 1 } }
+        pusher: [:SomePusher, :OtherPusher],
+        pusher_options: {
+          SomePusher: { some: 1 },
+          OtherPusher: { other: 1 }
+        }
       )
     end
   end

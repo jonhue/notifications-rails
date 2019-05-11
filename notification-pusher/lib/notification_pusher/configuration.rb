@@ -4,15 +4,15 @@ require_relative 'pusher'
 
 module NotificationPusher
   class << self
-    attr_accessor :configuration
+    attr_writer :configuration
+
+    def configuration
+      @configuration ||= Configuration.new
+    end
   end
 
   def self.configure
     yield configuration
-  end
-
-  def self.configuration
-    @@configuration ||= Configuration.new
   end
 
   class Configuration

@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require 'spec_helper'
+require_relative '../../../../spec/spec_helper'
 require_relative '../../../lib/notification_settings/configuration'
 
 RSpec.describe NotificationSettings::Configuration do
-  let(:config) { NotificationSettings.configuration }
+  let(:configuration) { NotificationSettings.configuration }
 
   it 'allows configuring the gem' do
     NotificationSettings.configure do |config|
@@ -16,11 +16,12 @@ RSpec.describe NotificationSettings::Configuration do
       config.do_not_push_statuses   = ['do not disturb', 'focus']
     end
 
-    expect(config.default_category).to       eq :my_category
-    expect(config.last_seen).to              eq :last_activity
-    expect(config.idle_after).to             eq 30.minutes
-    expect(config.offline_after).to          eq 6.hours
-    expect(config.do_not_notify_statuses).to eq ['do not disturb']
-    expect(config.do_not_push_statuses).to   eq ['do not disturb', 'focus']
+    expect(configuration.default_category).to       eq :my_category
+    expect(configuration.last_seen).to              eq :last_activity
+    expect(configuration.idle_after).to             eq 30.minutes
+    expect(configuration.offline_after).to          eq 6.hours
+    expect(configuration.do_not_notify_statuses).to eq ['do not disturb']
+    expect(configuration.do_not_push_statuses)
+      .to eq ['do not disturb', 'focus']
   end
 end

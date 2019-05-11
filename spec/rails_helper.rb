@@ -6,13 +6,13 @@ require 'factory_bot'
 require 'rspec/rails'
 
 ENV['RAILS_ENV'] = 'test'
-require 'support/rails_app/config/environment'
+require_relative 'support/rails_app/config/environment'
 
 ActiveRecord::Migration.maintain_test_schema!
 ActiveRecord::Schema.verbose = false
-load 'support/rails_app/db/schema.rb'
+require_relative 'support/rails_app/db/schema.rb'
 
-require 'spec_helper'
+require_relative 'spec_helper'
 
 RSpec.configure do |config|
   config.include FactoryBot::Syntax::Methods

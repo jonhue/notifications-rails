@@ -45,9 +45,10 @@ module NotificationHandler
       def create_for_group
         return if group.nil?
 
-        target_scope = NotificationHandler::Group.find_by_name!(group).target_scope
+        target_scope = NotificationHandler::Group.find_by_name!(group)
+                                                 .target_scope
         target_scope.call&.each_with_index do |target, index|
-          notification = index == 0 ? self : dup
+          notification = index.zero? ? self : dup
           notification.target = target
           notification.group = nil
           notification.save!

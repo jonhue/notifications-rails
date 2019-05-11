@@ -13,11 +13,12 @@ RSpec.describe NotificationHandler::NotificationLib do
   end
 
   it 'can store metadata' do
-    notification = create :notification, target: user,
-                                         metadata: {
-                                           title: 'My first notification',
-                                           content: "It looks great, doesn't it?"
-                                         }
+    notification = create :notification,
+                          target: user,
+                          metadata: {
+                            title: 'My first notification',
+                            content: "It looks great, doesn't it?"
+                          }
 
     expect(notification.metadata).to eq(
       title: 'My first notification',
@@ -43,11 +44,13 @@ RSpec.describe NotificationHandler::NotificationLib do
   describe 'sending to group' do
     let!(:user)            { create :user }
     let!(:subscribed_user) { create :user, subscriber: true }
-    let!(:notification)    { create :notification, group: :subscribers }
+
+    before { create :notification, group: :subscribers }
 
     it do
       expect(Notification.where(target: user).last.present?).to eq false
-      expect(Notification.where(target: subscribed_user).last.present?).to eq true
+      expect(Notification.where(target: subscribed_user).last.present?)
+        .to eq true
       expect(Notification.where(target: nil).last.present?).to eq false
     end
   end
