@@ -64,7 +64,7 @@ You define pushers in your `NotificationPusher` configuration (`config/initializ
 
 ```ruby
 NotificationPusher.configure do |config|
-  config.define_pusher name, options
+  config.register_delivery_method name, options
 end
 ```
 
@@ -100,9 +100,9 @@ notification.push([name_one, name_two], name_one: custom_options, name_two: cust
 Writing custom pushers is fairly simple. Just add a new subclass to `NotificationPusher`:
 
 ```ruby
-class NotificationPusher::CustomPusher
-  def initialize(notification, options = {})
-    # ...
+class NotificationPusher::DeliveryMethod::CustomPusher < NotificationPusher::DeliveryMethod::Base
+  def call
+    # use `:notification` and `:options` to deliver the notification
   end
 end
 ```
@@ -111,7 +111,7 @@ This is how to define and use your pusher:
 
 ```ruby
 NotificationPusher.configure do |config|
-  config.define_pusher :CustomPusher, option_one: 'value_one'
+  config.register_delivery_method :CustomPusher, option_one: 'value_one'
 end
 ```
 

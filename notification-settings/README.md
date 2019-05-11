@@ -112,7 +112,7 @@ s.category_settings[:category] = { enabled: false }
 He can have global or category-specific pusher settings:
 
 ```ruby
-s.settings[:pusher_enabled] = false                       # Prevent pushing via *any* pusher
+s.settings[:delivery_method_enabled] = false                       # Prevent pushing via *any* pusher
 s.settings[:ActionMailer] = false                         # Prevent pushing via :ActionMailer pusher
 s.category_settings[:category] = { ActionMailer: false }  # Prevent pushing via :ActionMailer pusher for :category
 ```
@@ -188,7 +188,7 @@ You can define statuses that prevent creating new notifications for a target and
 ```ruby
 NotificationSettings.configure do |config|
   config.do_not_notify_statuses = ['do not notify']
-  config.do_not_push_statuses = ['do not disturb']
+  config.do_not_deliver_statuses = ['do not disturb']
 end
 ```
 
@@ -216,7 +216,7 @@ end
 
 **`do_not_notify_statuses`** Array of possible statuses that will prevent creating notifications for a target. Takes an array of strings. Defaults to `[]`.
 
-**`do_not_push_statuses`** Array of possible statuses that will prevent pushing notifications of a target. Takes an array of strings. Defaults to `['do not disturb']`
+**`do_not_deliver_statuses`** Array of possible statuses that will prevent pushing notifications of a target. Takes an array of strings. Defaults to `['do not disturb']`
 
 ---
 

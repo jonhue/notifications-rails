@@ -47,7 +47,7 @@ Define this pusher in your `NotificationPusher` configuration:
 
 ```ruby
 NotificationPusher.configure do |config|
-  config.define_pusher :ActionMailer
+  config.register_delivery_method :ActionMailer
 end
 ```
 
@@ -55,7 +55,7 @@ You can pass a `from` parameter, which will override the default email address s
 
 ```ruby
 NotificationPusher.configure do |config|
-  config.define_pusher :ActionMailer, from: 'my@email.com'
+  config.register_delivery_method :ActionMailer, from: 'my@email.com'
 end
 ```
 

@@ -26,7 +26,7 @@ RSpec.describe NotificationPusher::NotificationLib do
         .to raise_error(
           ArgumentError,
           'Could not find a registered pusher for Unknown. ' \
-          'Make sure you register it with config.define_pusher :Unknown'
+          'Make sure you register it with config.register_delivery_method :Unknown'
         )
     end
 

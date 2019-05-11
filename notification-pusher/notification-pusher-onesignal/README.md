@@ -47,7 +47,7 @@ Define this pusher in your `NotificationPusher` configuration:
 
 ```ruby
 NotificationPusher.configure do |config|
-  config.define_pusher :OneSignal, app_id: 'f158a844-9f3c-4207-b246-e93603b0a970', auth_key: 'kODc3N2ItOTNC00NGzOGYtMzI5OWQ3ZmQ'
+  config.register_delivery_method :OneSignal, app_id: 'f158a844-9f3c-4207-b246-e93603b0a970', auth_key: 'kODc3N2ItOTNC00NGzOGYtMzI5OWQ3ZmQ'
 end
 ```
 
