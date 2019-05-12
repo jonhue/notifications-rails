@@ -1,6 +1,6 @@
 # NotificationHandler
 
-[![Gem Version](https://badge.fury.io/rb/notifications-handler.svg)](https://badge.fury.io/rb/notifications-handler) ![Travis](https://travis-ci.org/jonhue/notifications-rails.svg?branch=master)
+[![Gem Version](https://badge.fury.io/rb/notification-handler.svg)](https://badge.fury.io/rb/notification-handler) ![Travis](https://travis-ci.org/jonhue/notifications-rails.svg?branch=master)
 
 Create and modify your notifications through a simple API.
 
@@ -39,12 +39,6 @@ And then execute:
 Or install it yourself as:
 
     $ gem install notification-handler
-
-If you always want to be up to date fetch the latest from GitHub in your `Gemfile`:
-
-```ruby
-gem 'notification-handler', github: 'jonhue/notifications-rails'
-```
 
 Now run the generator:
 

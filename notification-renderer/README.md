@@ -1,6 +1,6 @@
 # NotificationRenderer
 
-[![Gem Version](https://badge.fury.io/rb/notifications-renderer.svg)](https://badge.fury.io/rb/notifications-renderer) ![Travis](https://travis-ci.org/jonhue/notifications-rails.svg?branch=master)
+[![Gem Version](https://badge.fury.io/rb/notification-renderer.svg)](https://badge.fury.io/rb/notification-renderer) ![Travis](https://travis-ci.org/jonhue/notifications-rails.svg?branch=master)
 
 Render your notifications on multiple platforms by specifying notification types.
 
@@ -42,12 +42,6 @@ And then execute:
 Or install it yourself as:
 
     $ gem install notification-renderer
-
-If you always want to be up to date fetch the latest from GitHub in your `Gemfile`:
-
-```ruby
-gem 'notification-renderer', github: 'jonhue/notifications-rails'
-```
 
 Now run the generator:
 
