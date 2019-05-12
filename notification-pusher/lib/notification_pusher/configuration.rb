@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative 'pusher'
+require_relative 'delivery_method_configuration'
 
 module NotificationPusher
   class << self
@@ -16,14 +16,15 @@ module NotificationPusher
   end
 
   class Configuration
-    attr_accessor :pushers
+    attr_accessor :delivery_methods
 
     def initialize
-      @pushers = []
+      @delivery_methods = []
     end
 
-    def define_pusher(name, options = {})
-      pushers << ::NotificationPusher::Pusher.new(name, options)
+    def register_delivery_method(name, options = {})
+      delivery_methods << ::NotificationPusher::DeliveryMethodConfiguration
+                          .new(name, options)
     end
   end
 end

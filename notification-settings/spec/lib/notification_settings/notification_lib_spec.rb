@@ -38,25 +38,26 @@ RSpec.describe NotificationSettings::NotificationLib do
     end
   end
 
-  describe 'global (:pusher_enabled) settings' do
+  describe 'global (:delivery_method_enabled) settings' do
     it 'is considered enabled by default' do
-      expect(setting[:pusher_enabled]).to eq nil
+      expect(setting[:delivery_method_enabled]).to eq nil
 
-      expect(notification.push_allowed?(:Null)).to eq true
+      expect(notification.delivery_allowed?(:Null)).to eq true
     end
 
     it 'when disabled' do
-      setting.settings[:pusher_enabled] = false
+      setting.settings[:delivery_method_enabled] = false
 
-      expect(notification.push_allowed?(:Null)).to eq false
+      expect(notification.delivery_allowed?(:Null)).to eq false
     end
 
     it 'category_setting disabled' do
       setting.category_settings[:my_category] = {}
-      setting.category_settings[:my_category][:pusher_enabled] = false
+      setting.category_settings[:my_category][:delivery_method_enabled] = false
 
-      expect(notification.category_setting).to eq(pusher_enabled: false)
-      expect(notification.push_allowed?(:Null)).to eq false
+      expect(notification.category_setting)
+        .to eq(delivery_method_enabled: false)
+      expect(notification.delivery_allowed?(:Null)).to eq false
     end
   end
 
@@ -64,21 +65,21 @@ RSpec.describe NotificationSettings::NotificationLib do
     it 'is considered enabled by default' do
       expect(setting[:Null]).to eq nil
 
-      expect(notification.push_allowed?(:Null)).to eq true
+      expect(notification.delivery_allowed?(:Null)).to eq true
       expect(user.notify.persisted?).to eq true
     end
 
     it 'when disabled' do
       setting.settings[:Null] = false
 
-      expect(notification.push_allowed?(:Null)).to eq false
+      expect(notification.delivery_allowed?(:Null)).to eq false
     end
 
     it 'category_setting disabled' do
       setting.category_settings[:my_category] = {}
       setting.category_settings[:my_category][:Null] = false
 
-      expect(notification.push_allowed?(:Null)).to eq false
+      expect(notification.delivery_allowed?(:Null)).to eq false
     end
 
     it 'the enabled one still pushes with one pusher enabled ' \
@@ -87,9 +88,9 @@ RSpec.describe NotificationSettings::NotificationLib do
       setting.category_settings[:my_category][:Null] = false
       setting.category_settings[:my_category][:SomePusher] = true
 
-      expect(notification.push_allowed?(:Null)).to                eq false
-      expect(notification.push_allowed?(:SomePusher)).to          eq true
-      expect(notification.push_allowed?([:Null, :SomePusher])).to eq true
+      expect(notification.delivery_allowed?(:Null)).to                eq false
+      expect(notification.delivery_allowed?(:SomePusher)).to          eq true
+      expect(notification.delivery_allowed?([:Null, :SomePusher])).to eq true
     end
   end
 
@@ -113,7 +114,7 @@ RSpec.describe NotificationSettings::NotificationLib do
         it 'does not push'
       end
 
-      describe 'in do_not_push_statuses' do
+      describe 'in do_not_deliver_statuses' do
         it 'does not push'
       end
       # rubocop:enable RSpec/NestedGroups

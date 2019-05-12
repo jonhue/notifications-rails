@@ -8,37 +8,41 @@ module NotificationPusher
     extend ActiveSupport::Concern
 
     included do
-      attr_accessor :pusher
-      attr_accessor :pusher_options
+      attr_accessor :delivery_method
+      attr_accessor :delivery_options
 
-      after_create_commit :push_after_create_commit
+      after_create_commit :deliver_after_create_commit
 
       include NotificationPusher::NotificationLib::InstanceMethods
     end
 
     module InstanceMethods
-      def push(pushers, pusher_options = {})
-        return false unless pushers
-        return push!(pushers, pusher_options) unless pushers.is_a?(Array)
+      def deliver(delivery_methods, delivery_options = {})
+        return false unless delivery_methods
+        unless delivery_methods.is_a?(Array)
+          return deliver!(delivery_methods, delivery_options)
+        end
 
-        pushers.each do |pusher|
-          push(pusher, pusher_options[pusher.to_sym] || {})
+        delivery_methods.each do |delivery_method|
+          deliver(delivery_method,
+                  delivery_options[delivery_method.to_sym] || {})
         end
       end
 
-      def push!(class_name, options = {})
-        pusher = NotificationPusher::Pusher.find_by_name!(class_name)
-        pusher.call(self, options)
+      def deliver!(class_name, options = {})
+        delivery_method = NotificationPusher::DeliveryMethodConfiguration
+                          .find_by_name!(class_name)
+        delivery_method.call(self, options)
       end
 
       private
 
-      # If pusher attribute was specified when object was built/created,
-      # push using that pusher
-      def push_after_create_commit
-        return if pusher.nil?
+      # If delivery_method attribute was specified
+      # when object was built/created, deliver using that delivery method
+      def deliver_after_create_commit
+        return if delivery_method.nil?
 
-        push(pusher, pusher_options || {})
+        deliver(delivery_method, delivery_options || {})
       end
     end
   end

@@ -41,12 +41,6 @@ Or install it yourself as:
 
     $ gem install notification-settings
 
-If you always want to be up to date fetch the latest from GitHub in your `Gemfile`:
-
-```ruby
-gem 'notification-settings', github: 'jonhue/notifications-rails'
-```
-
 Now run the generator:
 
     $ rails g notification_handler:install
@@ -107,14 +101,14 @@ A user can also have category-specific settings:
 s.category_settings[:category] = { enabled: false }
 ```
 
-#### Pusher-specific settings
+#### Delivery-method-specific settings
 
-He can have global or category-specific pusher settings:
+He can have global or category-specific delivery method settings:
 
 ```ruby
-s.settings[:pusher_enabled] = false                       # Prevent pushing via *any* pusher
-s.settings[:ActionMailer] = false                         # Prevent pushing via :ActionMailer pusher
-s.category_settings[:category] = { ActionMailer: false }  # Prevent pushing via :ActionMailer pusher for :category
+s.settings[:delivery_method_enabled] = false              # Prevent delivering via *any* delivery method
+s.settings[:ActionMailer] = false                         # Prevent delivering via :ActionMailer delivery method
+s.category_settings[:category] = { ActionMailer: false }  # Prevent delivering via :ActionMailer delivery method for :category
 ```
 
 ### Subscriptions
@@ -131,7 +125,7 @@ User.first.unsubscribe(Recipe.first)
 Now you can easily notify all subscribers from the subscribable object:
 
 ```ruby
-Recipe.first.notify_subscribers(push: :ActionMailer)
+Recipe.first.notify_subscribers(delivery_method: :ActionMailer)
 ```
 
 Let's assume that we have a group which has multiple chats. When sending notifications to subscribers of a given chat, we only want them to get notified. But when sending notifications about the group, we want to have everyone notified, that is either subscribed to the group or subscribed to one of its chats. To do that you have to add the `private` method `notification_dependents` to your model (in this case `Group`) and return an array of ActiveRecord objects whose subscribers should receive notifications for objects of this class.
@@ -199,12 +193,12 @@ User.first.notification_setting.save
 
 If you have set `status` to a custom value, you can get back to using the defaults by setting it back to `nil`.
 
-You can define statuses that prevent creating new notifications for a target and statuses that just prevent pushing them:
+You can define statuses that prevent creating new notifications for a target and statuses that just prevent delivering them:
 
 ```ruby
 NotificationSettings.configure do |config|
-  config.do_not_notify_statuses = ['do not notify']
-  config.do_not_push_statuses = ['do not disturb']
+  config.do_not_notify_statuses  = ['do not notify']
+  config.do_not_deliver_statuses = ['do not disturb']
 end
 ```
 
@@ -232,7 +226,7 @@ end
 
 **`do_not_notify_statuses`** Array of possible statuses that will prevent creating notifications for a target. Takes an array of strings. Defaults to `[]`.
 
-**`do_not_push_statuses`** Array of possible statuses that will prevent pushing notifications of a target. Takes an array of strings. Defaults to `['do not disturb']`
+**`do_not_deliver_statuses`** Array of possible statuses that will prevent delivering notifications of a target. Takes an array of strings. Defaults to `['do not disturb']`
 
 ---
 

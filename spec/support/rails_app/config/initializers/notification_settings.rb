@@ -24,5 +24,5 @@ NotificationSettings.configure do |config|
 
   # Array of possible statuses that will prevent pushing notifications of a
   # target. Takes an array of strings.
-  # config.do_not_push_statuses = ['do not disturb']
+  # config.do_not_deliver_statuses = ['do not disturb']
 end
