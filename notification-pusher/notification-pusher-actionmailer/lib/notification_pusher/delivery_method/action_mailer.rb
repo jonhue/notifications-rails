@@ -10,7 +10,7 @@ module NotificationPusher
       def call
         ::NotificationPusher::ActionMailer::NotificationMailer.push(
           notification, options
-        )
+        ).deliver
       end
     end
   end
