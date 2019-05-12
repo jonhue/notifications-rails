@@ -7,12 +7,10 @@ module NotificationSettings
     extend ActiveSupport::Concern
 
     included do
-      has_many :notification_subscriptions,
+      has_many :notification_subscribers,
                as: :subscribable,
                class_name: 'NotificationSettings::Subscription',
                dependent: :destroy
-      has_many :notification_subscribers,
-               through: :notification_subscriptions, source: :subscriber
 
       include NotificationSettings::Subscribable::InstanceMethods
     end
@@ -20,24 +18,24 @@ module NotificationSettings
     module InstanceMethods
       def notify_subscribers(options = {})
         options[:object] = self
-        subscribers = notify_dependents(options.delete(:dependents))
-        notification_subscribers&.each do |subscriber|
-          subscribers << subscriber
+        subscriptions = notify_dependents(options.delete(:dependents))
+        notification_subscribers&.each do |subscription|
+          subscriptions << subscription
         end
-        subscribers.to_a.uniq&.each do |subscriber|
-          subscriber.notify(options)
+        subscriptions.to_a.uniq&.each do |subscription|
+          subscription.subscriber.notify(options)
         end
       end
 
       def notify_dependents(dependents)
-        subscribers = []
+        subscriptions = []
         dependents ||= notification_dependents
         dependents&.each do |dependent|
-          dependent.notification_subscribers&.each do |subscriber|
-            subscribers << subscriber
+          dependent.notification_subscribers&.each do |subscription|
+            subscriptions << subscription
           end
         end
-        subscribers
+        subscriptions
       end
 
       private

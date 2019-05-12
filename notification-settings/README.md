@@ -160,6 +160,22 @@ s.settings[:enabled] = false
 
 [Learn more](#settings)
 
+You can add associations to your subscriber/subscribable classes if you need easy access to all their subscriptions:
+
+```ruby
+# For subscribers:
+# List all subscriptions of a subscriber
+subscriber.notification_subscribables
+# List all subscribables of a specific type a subscriber subscribed to
+has_many :subscribed_products, through: :notification_subscribables, source: :subscribable, source_type: 'Product'
+
+# For subscribables:
+# List all subscriptions of a subscriber
+subscribable.notification_subscribers
+# List all subscribers of a specific type that subscribed to a subscribable
+has_many :subscribed_users, through: :notification_subscribers, source: :subscriber, source_type: 'User'
+```
+
 ### Status
 
 NotificationSettings comes with a handy feature called Status. The status of a record can temporarily disable the ability to create notifications for or to push notifications of a target.

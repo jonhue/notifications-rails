@@ -9,6 +9,10 @@ AllCops:
 Gemspec/RequiredRubyVersion:
   Enabled: false
 
+Layout/MultilineMethodCallIndentation:
+  Exclude:
+    - '**/*_spec.rb'
+
 Metrics/BlockLength:
   Exclude:
     - '**/*_spec.rb'
