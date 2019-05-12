@@ -3,8 +3,12 @@
 require_relative '../../rails_helper'
 
 RSpec.describe NotificationPusher::NotificationLib do
-  let(:some_pusher)  { instance_double('Pusher') }
-  let(:other_pusher) { instance_double('Pusher') }
+  let(:some_pusher) do
+    instance_double(NotificationPusher::DeliveryMethodConfiguration)
+  end
+  let(:other_pusher) do
+    instance_double(NotificationPusher::DeliveryMethodConfiguration)
+  end
 
   describe '#deliver' do
     let(:notification) { build_stubbed :notification }
