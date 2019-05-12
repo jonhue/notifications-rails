@@ -100,11 +100,13 @@ module NotificationSettings
       end
 
       def local_delivery_method_setting(delivery_method, default = nil)
-        target.notification_setting.settings.fetch(delivery_method.to_sym, default)
+        target.notification_setting.settings
+              .fetch(delivery_method.to_sym, default)
       end
 
       def global_settings_allow_delivery?
-        target.notification_setting.settings.fetch(:delivery_method_enabled, true)
+        target.notification_setting.settings
+              .fetch(:delivery_method_enabled, true)
       end
 
       def category_settings_allow_delivery?(delivery_method)

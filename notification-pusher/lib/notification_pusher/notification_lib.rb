@@ -19,22 +19,26 @@ module NotificationPusher
     module InstanceMethods
       def deliver(delivery_methods, delivery_options = {})
         return false unless delivery_methods
-        return deliver!(delivery_methods, delivery_options) unless delivery_methods.is_a?(Array)
+        unless delivery_methods.is_a?(Array)
+          return deliver!(delivery_methods, delivery_options)
+        end
 
         delivery_methods.each do |delivery_method|
-          deliver(delivery_method, delivery_options[delivery_method.to_sym] || {})
+          deliver(delivery_method,
+                  delivery_options[delivery_method.to_sym] || {})
         end
       end
 
       def deliver!(class_name, options = {})
-        delivery_method = NotificationPusher::DeliveryMethodConfiguration.find_by_name!(class_name)
+        delivery_method = NotificationPusher::DeliveryMethodConfiguration
+                          .find_by_name!(class_name)
         delivery_method.call(self, options)
       end
 
       private
 
-      # If delivery_method attribute was specified when object was built/created,
-      # deliver using that delivery method
+      # If delivery_method attribute was specified
+      # when object was built/created, deliver using that delivery method
       def deliver_after_create_commit
         return if delivery_method.nil?
 

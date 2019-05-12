@@ -23,7 +23,8 @@ module NotificationPusher
     end
 
     def register_delivery_method(name, options = {})
-      delivery_methods << ::NotificationPusher::DeliveryMethodConfiguration.new(name, options)
+      delivery_methods << ::NotificationPusher::DeliveryMethodConfiguration
+                          .new(name, options)
     end
   end
 end

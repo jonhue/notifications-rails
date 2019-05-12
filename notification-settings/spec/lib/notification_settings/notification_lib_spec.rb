@@ -55,7 +55,8 @@ RSpec.describe NotificationSettings::NotificationLib do
       setting.category_settings[:my_category] = {}
       setting.category_settings[:my_category][:delivery_method_enabled] = false
 
-      expect(notification.category_setting).to eq(delivery_method_enabled: false)
+      expect(notification.category_setting)
+        .to eq(delivery_method_enabled: false)
       expect(notification.delivery_allowed?(:Null)).to eq false
     end
   end

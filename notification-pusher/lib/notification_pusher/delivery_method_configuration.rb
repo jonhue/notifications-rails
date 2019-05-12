@@ -13,13 +13,15 @@ module NotificationPusher
     def call(notification, options = {})
       options = @options.merge!(options)
 
-      instance = NotificationPusher::DeliveryMethod.const_get(@name).new(notification, options)
+      instance = NotificationPusher::DeliveryMethod.const_get(@name)
+                                                   .new(notification, options)
       instance.call
       @instances << instance
     end
 
     def self.find_by_name(name)
-      NotificationPusher.configuration.delivery_methods.find do |delivery_method|
+      NotificationPusher.configuration.delivery_methods
+                        .find do |delivery_method|
         delivery_method.name == name
       end
     end
@@ -27,8 +29,9 @@ module NotificationPusher
     def self.find_by_name!(name)
       find_by_name(name) ||
         raise(ArgumentError,
-              "Could not find a registered delivery_method for #{name}. " \
-              "Make sure you register it with config.register_delivery_method :#{name}")
+              "Could not find a registered delivery method for #{name}. " \
+              'Make sure you register it with ' \
+              "config.register_delivery_method :#{name}")
     end
   end
 end

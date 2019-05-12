@@ -27,7 +27,8 @@ RSpec.describe NotificationSettings do
 
       it 'does not call the pusher when disabled for category' do
         setting.category_settings[:my_category] = {}
-        setting.category_settings[:my_category][:delivery_method_enabled] = false
+        setting
+          .category_settings[:my_category][:delivery_method_enabled] = false
 
         expect(NotificationPusher::DeliveryMethod::Null).not_to receive(:new)
 

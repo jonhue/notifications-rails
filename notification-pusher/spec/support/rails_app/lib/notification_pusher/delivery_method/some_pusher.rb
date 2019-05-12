@@ -2,7 +2,7 @@
 
 module NotificationPusher
   module DeliveryMethod
-    class SomePusher
+    class SomePusher < NotificationPusher::DeliveryMethod::Base
       def call; end
     end
   end

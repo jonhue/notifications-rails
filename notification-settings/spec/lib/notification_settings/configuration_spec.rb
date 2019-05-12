@@ -8,12 +8,12 @@ RSpec.describe NotificationSettings::Configuration do
 
   it 'allows configuring the gem' do
     NotificationSettings.configure do |config|
-      config.default_category       = :my_category
-      config.last_seen              = :last_activity
-      config.idle_after             = 30.minutes
-      config.offline_after          = 6.hours
-      config.do_not_notify_statuses = ['do not disturb']
-      config.do_not_deliver_statuses   = ['do not disturb', 'focus']
+      config.default_category        = :my_category
+      config.last_seen               = :last_activity
+      config.idle_after              = 30.minutes
+      config.offline_after           = 6.hours
+      config.do_not_notify_statuses  = ['do not disturb']
+      config.do_not_deliver_statuses = ['do not disturb', 'focus']
     end
 
     expect(configuration.default_category).to       eq :my_category

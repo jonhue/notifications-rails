@@ -11,7 +11,8 @@ module NotificationPusher
       end
 
       def call
-        raise NotImplementedError, 'Implement a `call` method that delivers the notification.'
+        raise NotImplementedError,
+              'Implement a `call` method that delivers the notification.'
       end
     end
   end
