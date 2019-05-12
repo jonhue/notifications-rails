@@ -1,6 +1,6 @@
 # NotificationPusher for ActionMailer
 
-[![Gem Version](https://badge.fury.io/rb/notifications-pusher-actionmailer.svg)](https://badge.fury.io/rb/notifications-pusher-actionmailer) ![Travis](https://travis-ci.org/jonhue/notifications-rails.svg?branch=master)
+[![Gem Version](https://badge.fury.io/rb/notification-pusher-actionmailer.svg)](https://badge.fury.io/rb/notification-pusher-actionmailer) ![Travis](https://travis-ci.org/jonhue/notifications-rails.svg?branch=master)
 
 A pusher to send your notifications via email utilizing ActionMailer.
 
@@ -33,21 +33,15 @@ Or install it yourself as:
 
     $ gem install notification-pusher-actionmailer
 
-If you always want to be up to date fetch the latest from GitHub in your `Gemfile`:
-
-```ruby
-gem 'notification-pusher-actionmailer', github: 'jonhue/notifications-rails'
-```
-
 ---
 
 ## Usage
 
-Define this pusher in your `NotificationPusher` configuration:
+Register this pusher in your `NotificationPusher` configuration:
 
 ```ruby
 NotificationPusher.configure do |config|
-  config.define_pusher :ActionMailer
+  config.register_delivery_method :ActionMailer
 end
 ```
 
@@ -55,20 +49,20 @@ You can pass a `from` parameter, which will override the default email address s
 
 ```ruby
 NotificationPusher.configure do |config|
-  config.define_pusher :ActionMailer, from: 'my@email.com'
+  config.register_delivery_method :ActionMailer, from: 'my@email.com'
 end
 ```
 
 Then add a renderer called `_actionmailer.html.erb` to every notification type you aim to support. Learn more [here](https://github.com/jonhue/notifications-rails/tree/master/notification-renderer).
 
-Now you can push your notifications:
+Now you can deliver your notifications:
 
 ```ruby
 notification = Notification.create(target: User.first, object: Recipe.first)
-notification.push(:ActionMailer, to: 'another@email.com')
+notification.deliver(:ActionMailer, to: 'another@email.com')
 ```
 
-**Note:** If the email address, you want to push to, is the same as `notification.target.email` you can omit the `to` parameter.
+**Note:** If the email address, you want to deliver to, is the same as `notification.target.email` you can omit the `to` parameter.
 
 It is also possible to override the email address sending this notification, by passing a `from` parameter.
 
