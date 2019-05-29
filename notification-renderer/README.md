@@ -1,6 +1,6 @@
 # NotificationRenderer
 
-[![Gem Version](https://badge.fury.io/rb/notification-renderer.svg)](https://badge.fury.io/rb/notification-renderer) ![Travis](https://travis-ci.org/jonhue/notifications-rails.svg?branch=master)
+[![Gem Version](https://badge.fury.io/rb/notification-renderer.svg)](https://badge.fury.io/rb/notification-renderer) ![Travis](https://travis-ci.com/jonhue/notifications-rails.svg?branch=master)
 
 Render your notifications on multiple platforms by specifying notification types.
 

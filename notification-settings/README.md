@@ -1,6 +1,6 @@
 # NotificationSettings
 
-[![Gem Version](https://badge.fury.io/rb/notification-settings.svg)](https://badge.fury.io/rb/notification-settings) ![Travis](https://travis-ci.org/jonhue/notifications-rails.svg?branch=master)
+[![Gem Version](https://badge.fury.io/rb/notification-settings.svg)](https://badge.fury.io/rb/notification-settings) ![Travis](https://travis-ci.com/jonhue/notifications-rails.svg?branch=master)
 
 Integrates with your authentication solution to craft a personalized user notification platform.
 
