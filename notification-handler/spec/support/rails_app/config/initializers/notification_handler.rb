@@ -9,4 +9,7 @@ NotificationHandler.configure do |config|
   # that don't necessarily have a common class.
   # Learn more: https://github.com/jonhue/notifications-rails/tree/master/notification-handler#groups
   config.define_group :subscribers, -> { User.where(subscriber: true) }
+  config.define_group :subscribed,  lambda { |subscribed|
+    User.where(subscriber: subscribed)
+  }
 end

@@ -13,8 +13,8 @@ RSpec.describe NotificationHandler::Configuration do
       config.cache = true
     end
 
-    expect(configuration.groups)
-      .to include NotificationHandler::Group.find_by_name!(:my_group)
+    expect(configuration.groups[:my_group])
+      .to eq NotificationHandler::Group.find_by_name!(:my_group)
     expect(configuration.cache).to eq true
   end
 end

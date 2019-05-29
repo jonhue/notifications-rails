@@ -2,8 +2,6 @@
 
 module NotificationPusher
   class DeliveryMethodConfiguration
-    attr_reader :name
-
     def initialize(class_name, options = {})
       @klass = NotificationPusher::DeliveryMethod.const_get(class_name)
       @options = options
