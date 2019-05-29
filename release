@@ -1,3 +1,4 @@
+#!/bin/bash
 cd notification-handler
 gem build notification-handler.gemspec
 gem push notification-handler-$1.gem

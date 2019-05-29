@@ -1,6 +1,6 @@
 # Notifications Rails
 
-[![Gem Version](https://badge.fury.io/rb/notifications-rails.svg)](https://badge.fury.io/rb/notifications-rails) ![Travis](https://travis-ci.org/jonhue/notifications-rails.svg?branch=master)
+[![Gem Version](https://badge.fury.io/rb/notifications-rails.svg)](https://badge.fury.io/rb/notifications-rails) ![Travis](https://travis-ci.com/jonhue/notifications-rails.svg?branch=master)
 
 The most powerful notification solution for Rails. Notifications Rails simplifies the handling, rendering, user-integration and cross-platform pushing of notifications through its simple API.
 
@@ -84,7 +84,7 @@ Tests are written with RSpec. Integration tests are located in `/spec`, unit tes
 2. Change the gem version [here](VERSION)
 3. Publish to https://rubygems.org
 
-    `$ sh release.sh <version>`
+    `$ release <version>`
 
 4. Create a new release and include breaking changes and deprecations from CHANGELOG.md
 5. Reset CHANGELOG.md
