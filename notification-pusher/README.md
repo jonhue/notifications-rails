@@ -58,7 +58,7 @@ You register delivery methods in your `NotificationPusher` configuration (`confi
 
 ```ruby
 NotificationPusher.configure do |config|
-  config.register_delivery_method name, options
+  config.register_delivery_method name, class_name, options
 end
 ```
 
@@ -109,13 +109,13 @@ This is how to register and use your delivery method:
 
 ```ruby
 NotificationPusher.configure do |config|
-  config.register_delivery_method :CustomPusher, option_one: 'value_one'
+  config.register_delivery_method :custom, :CustomPusher, option_one: 'value_one'
 end
 ```
 
 ```ruby
 notification = Notification.create(target: User.first, object: Recipe.first)
-notification.deliver(:CustomPusher, option_one: 'value_two')
+notification.deliver(:custom, option_one: 'value_two')
 ```
 
 For further reference take a look at the default [ActionMailer](notification-pusher-actionmailer) and [OneSignal](notification-pusher-onesignal) delivery methods.

@@ -14,7 +14,7 @@ RSpec.describe NotificationSettings do
           .to receive(:new).with(notification, some_option: :value)
                            .and_call_original
 
-        notification.deliver(:Null)
+        notification.deliver(:null)
       end
 
       it 'does not call the pusher when disabled globally' do
@@ -22,7 +22,7 @@ RSpec.describe NotificationSettings do
 
         expect(NotificationPusher::DeliveryMethod::Null).not_to receive(:new)
 
-        notification.deliver(:Null)
+        notification.deliver(:null)
       end
 
       it 'does not call the pusher when disabled for category' do
@@ -32,47 +32,47 @@ RSpec.describe NotificationSettings do
 
         expect(NotificationPusher::DeliveryMethod::Null).not_to receive(:new)
 
-        notification.deliver(:Null)
+        notification.deliver(:null)
       end
     end
 
     describe 'pusher-specific settings' do
       it 'is enabled by default' do
-        expect(setting[:Null]).to eq nil
+        expect(setting[:null]).to eq nil
         expect(NotificationPusher::DeliveryMethod::Null)
           .to receive(:new).with(notification, some_option: :value)
                            .and_call_original
 
-        notification.deliver(:Null)
+        notification.deliver(:null)
       end
 
       it 'does not call the pusher when disabled globally' do
-        setting.settings[:Null] = false
+        setting.settings[:null] = false
 
         expect(NotificationPusher::DeliveryMethod::Null).not_to receive(:new)
 
-        notification.deliver(:Null)
+        notification.deliver(:null)
       end
 
       it 'does not call the pusher when disabled for category' do
         setting.category_settings[:my_category] = {}
-        setting.category_settings[:my_category][:Null] = false
+        setting.category_settings[:my_category][:null] = false
 
         expect(NotificationPusher::DeliveryMethod::Null).not_to receive(:new)
 
-        notification.deliver(:Null)
+        notification.deliver(:null)
       end
 
       it 'only pushes enabled when one enabled and one disabled is passed' do
         setting.category_settings[:my_category] = {}
-        setting.category_settings[:my_category][:Null] = false
-        setting.category_settings[:my_category][:SomePusher] = true
+        setting.category_settings[:my_category][:null] = false
+        setting.category_settings[:my_category][:some_pusher] = true
 
         expect(NotificationPusher::DeliveryMethod::Null).not_to receive(:new)
         expect(NotificationPusher::DeliveryMethod::SomePusher)
           .to receive(:new).and_call_original
 
-        notification.deliver([:Null, :SomePusher])
+        notification.deliver([:null, :some_pusher])
       end
     end
   end

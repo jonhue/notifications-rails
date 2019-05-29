@@ -18,7 +18,7 @@ RSpec.describe NotificationPusher::NotificationLib do
         .to receive(:new).with(notification, some_option: :value)
                          .and_call_original
 
-      notification.deliver(:Null)
+      notification.deliver(:null)
     end
 
     it 'returns false when given nil' do
@@ -26,43 +26,43 @@ RSpec.describe NotificationPusher::NotificationLib do
     end
 
     it 'gives a useful error when given an invalid name' do
-      expect { notification.deliver(:Unknown) }
+      expect { notification.deliver(:unknown) }
         .to raise_error(
           ArgumentError,
-          'Could not find a registered delivery method for Unknown. ' \
+          'Could not find a registered delivery method for :unknown. ' \
           'Make sure you register it with ' \
-          'config.register_delivery_method :Unknown'
+          'config.register_delivery_method :unknown, :CustomDeliveryMethod'
         )
     end
 
     it 'when no options passed' do
       expect(NotificationPusher::DeliveryMethodConfiguration)
-        .to receive(:find_by_name!).with(:SomePusher).and_return(some_pusher)
+        .to receive(:find_by_name!).with(:some_pusher).and_return(some_pusher)
       expect(some_pusher).to receive(:call).with(notification, {})
 
-      notification.deliver(:SomePusher)
+      notification.deliver(:some_pusher)
     end
 
     it 'when options passed' do
       expect(NotificationPusher::DeliveryMethodConfiguration)
-        .to receive(:find_by_name!).with(:SomePusher).and_return(some_pusher)
+        .to receive(:find_by_name!).with(:some_pusher).and_return(some_pusher)
       expect(some_pusher).to receive(:call).with(notification, some: 1)
 
-      notification.deliver(:SomePusher, some: 1)
+      notification.deliver(:some_pusher, some: 1)
     end
 
     it 'when multiple pushers with distinct options are specified' do
       expect(NotificationPusher::DeliveryMethodConfiguration)
-        .to receive(:find_by_name!).with(:SomePusher).and_return(some_pusher)
+        .to receive(:find_by_name!).with(:some_pusher).and_return(some_pusher)
       expect(NotificationPusher::DeliveryMethodConfiguration)
-        .to receive(:find_by_name!).with(:OtherPusher).and_return(other_pusher)
+        .to receive(:find_by_name!).with(:other_pusher).and_return(other_pusher)
       expect(some_pusher).to  receive(:call).with(notification, some: 1)
       expect(other_pusher).to receive(:call).with(notification, other: 1)
 
       notification.deliver(
-        [:SomePusher, :OtherPusher],
-        SomePusher: { some: 1 },
-        OtherPusher: { other: 1 }
+        [:some_pusher, :other_pusher],
+        some_pusher: { some: 1 },
+        other_pusher: { other: 1 }
       )
     end
 
@@ -73,7 +73,7 @@ RSpec.describe NotificationPusher::NotificationLib do
 
       User.transaction do
         notification = create :notification
-        notification.deliver(:Null)
+        notification.deliver(:null)
       end
     end
   end
@@ -83,36 +83,36 @@ RSpec.describe NotificationPusher::NotificationLib do
 
     it 'when no options passed' do
       expect(NotificationPusher::DeliveryMethodConfiguration)
-        .to receive(:find_by_name!).with(:SomePusher).and_return(some_pusher)
+        .to receive(:find_by_name!).with(:some_pusher).and_return(some_pusher)
       expect(some_pusher).to receive(:call).with(notification, {})
 
-      notification.update!(delivery_method: :SomePusher)
+      notification.update!(delivery_method: :some_pusher)
     end
 
     it 'when options passed' do
       expect(NotificationPusher::DeliveryMethodConfiguration)
-        .to receive(:find_by_name!).with(:SomePusher).and_return(some_pusher)
+        .to receive(:find_by_name!).with(:some_pusher).and_return(some_pusher)
       expect(some_pusher).to receive(:call).with(notification, some: 1)
 
       notification.update!(
-        delivery_method: :SomePusher,
+        delivery_method: :some_pusher,
         delivery_options: { some: 1 }
       )
     end
 
     it 'when multiple delivery methods with distinct options are specified' do
       expect(NotificationPusher::DeliveryMethodConfiguration)
-        .to receive(:find_by_name!).with(:SomePusher).and_return(some_pusher)
+        .to receive(:find_by_name!).with(:some_pusher).and_return(some_pusher)
       expect(NotificationPusher::DeliveryMethodConfiguration)
-        .to receive(:find_by_name!).with(:OtherPusher).and_return(other_pusher)
+        .to receive(:find_by_name!).with(:other_pusher).and_return(other_pusher)
       expect(some_pusher).to  receive(:call).with(notification, some: 1)
       expect(other_pusher).to receive(:call).with(notification, other: 1)
 
       notification.update!(
-        delivery_method: [:SomePusher, :OtherPusher],
+        delivery_method: [:some_pusher, :other_pusher],
         delivery_options: {
-          SomePusher: { some: 1 },
-          OtherPusher: { other: 1 }
+          some_pusher: { some: 1 },
+          other_pusher: { other: 1 }
         }
       )
     end
@@ -123,38 +123,38 @@ RSpec.describe NotificationPusher::NotificationLib do
 
     it 'when no options passed' do
       expect(NotificationPusher::DeliveryMethodConfiguration)
-        .to receive(:find_by_name!).with(:SomePusher).and_return(some_pusher)
+        .to receive(:find_by_name!).with(:some_pusher).and_return(some_pusher)
       expect(some_pusher)
         .to receive(:call).with(instance_of(Notification), {})
 
-      user.notify(delivery_method: :SomePusher)
+      user.notify(delivery_method: :some_pusher)
     end
 
     it 'when options passed' do
       expect(NotificationPusher::DeliveryMethodConfiguration)
-        .to receive(:find_by_name!).with(:SomePusher).and_return(some_pusher)
+        .to receive(:find_by_name!).with(:some_pusher).and_return(some_pusher)
       expect(some_pusher)
         .to receive(:call).with(instance_of(Notification), some: 1)
 
-      user.notify(delivery_method: :SomePusher,
+      user.notify(delivery_method: :some_pusher,
                   delivery_options: { some: 1 })
     end
 
     it 'when multiple pushers with distinct options are specified' do
       expect(NotificationPusher::DeliveryMethodConfiguration)
-        .to receive(:find_by_name!).with(:SomePusher).and_return(some_pusher)
+        .to receive(:find_by_name!).with(:some_pusher).and_return(some_pusher)
       expect(NotificationPusher::DeliveryMethodConfiguration)
-        .to receive(:find_by_name!).with(:OtherPusher).and_return(other_pusher)
+        .to receive(:find_by_name!).with(:other_pusher).and_return(other_pusher)
       expect(some_pusher)
         .to receive(:call).with(instance_of(Notification), some: 1)
       expect(other_pusher)
         .to receive(:call).with(instance_of(Notification), other: 1)
 
       user.notify(
-        delivery_method: [:SomePusher, :OtherPusher],
+        delivery_method: [:some_pusher, :other_pusher],
         delivery_options: {
-          SomePusher: { some: 1 },
-          OtherPusher: { other: 1 }
+          some_pusher: { some: 1 },
+          other_pusher: { other: 1 }
         }
       )
     end

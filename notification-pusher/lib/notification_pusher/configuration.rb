@@ -19,12 +19,12 @@ module NotificationPusher
     attr_accessor :delivery_methods
 
     def initialize
-      @delivery_methods = []
+      @delivery_methods = {}
     end
 
-    def register_delivery_method(name, options = {})
-      delivery_methods << ::NotificationPusher::DeliveryMethodConfiguration
-                          .new(name, options)
+    def register_delivery_method(name, class_name, options = {})
+      delivery_methods[name] = ::NotificationPusher::DeliveryMethodConfiguration
+                               .new(class_name, options)
     end
   end
 end

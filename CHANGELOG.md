@@ -22,6 +22,14 @@ Notifications Rails follows Semantic Versioning 2.0 as defined at http://semver.
 
 * Renamed the `push` method to `deliver` and the pusher/delivery method attributes from `:pusher` to `:delivery_method` and from `:pusher_options` to `:delivery_options`. [#58] (#88)
 
+* `register_delivery_method` (formerly `define_pusher`) now takes a `name:symbol`, the class name of the delivery method `class_name:symbol` and an options hash (optional). [#51] (#89)
+
+    ```ruby
+    NotificationPusher.configure do |config|
+      config.register_delivery_method :email, :ActionMailer, from: 'my@email.com'
+    end
+    ```
+
 ### Deprecated
 
 * None

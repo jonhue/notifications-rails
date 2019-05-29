@@ -41,7 +41,7 @@ Register this pusher in your `NotificationPusher` configuration:
 
 ```ruby
 NotificationPusher.configure do |config|
-  config.register_delivery_method :ActionMailer
+  config.register_delivery_method :email, :ActionMailer
 end
 ```
 
@@ -49,7 +49,7 @@ You can pass a `from` parameter, which will override the default email address s
 
 ```ruby
 NotificationPusher.configure do |config|
-  config.register_delivery_method :ActionMailer, from: 'my@email.com'
+  config.register_delivery_method :email, :ActionMailer, from: 'my@email.com'
 end
 ```
 
@@ -59,7 +59,7 @@ Now you can deliver your notifications:
 
 ```ruby
 notification = Notification.create(target: User.first, object: Recipe.first)
-notification.deliver(:ActionMailer, to: 'another@email.com')
+notification.deliver(:email, to: 'another@email.com')
 ```
 
 **Note:** If the email address, you want to deliver to, is the same as `notification.target.email` you can omit the `to` parameter.

@@ -41,7 +41,7 @@ Register this delivery method in your `NotificationPusher` configuration:
 
 ```ruby
 NotificationPusher.configure do |config|
-  config.register_delivery_method :OneSignal, app_id: 'f158a844-9f3c-4207-b246-e93603b0a970', auth_key: 'kODc3N2ItOTNC00NGzOGYtMzI5OWQ3ZmQ'
+  config.register_delivery_method :one_signal, :OneSignal, app_id: 'f158a844-9f3c-4207-b246-e93603b0a970', auth_key: 'kODc3N2ItOTNC00NGzOGYtMzI5OWQ3ZmQ'
 end
 ```
 
@@ -49,7 +49,7 @@ Now you can deliver your notifications through OneSignal:
 
 ```ruby
 notification = Notification.create(target: User.first, object: Recipe.first)
-notification.deliver(:OneSignal, player_ids: ['f158a844-9f3c-4207-b246-e93603b0a970'], url: Rails.application.routes.url_helpers.root_url, contents: {
+notification.deliver(:one_signal, player_ids: ['f158a844-9f3c-4207-b246-e93603b0a970'], url: Rails.application.routes.url_helpers.root_url, contents: {
   en: notification.object.title
 })
 ```
@@ -57,7 +57,7 @@ notification.deliver(:OneSignal, player_ids: ['f158a844-9f3c-4207-b246-e93603b0a
 To get player id's you could use the [OnSignal](https://github.com/jonhue/onsignal-rails) gem. This is how that would look:
 
 ```ruby
-notification.deliver(:OneSignal, player_ids: notification.target.onesignal_player_ids)
+notification.deliver(:one_signal, player_ids: notification.target.onesignal_player_ids)
 ```
 
 You can also store OneSignal information in your notification opposed to specifying it when pushing:
@@ -68,7 +68,7 @@ notification.metadata[:onesignal_contents] = { en: 'My notification content' }
 notification.metadata[:onesignal_headings] = { en: 'My notification header' }
 notification.metadata[:onesignal_subtitle] = { en: 'My notification subtitle' }
 notification.save!
-notification.deliver(:OneSignal, player_ids: notification.target.onesignal_player_ids)
+notification.deliver(:one_signal, player_ids: notification.target.onesignal_player_ids)
 ```
 
 

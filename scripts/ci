@@ -1,0 +1,3 @@
+bundle exec rubocop
+
+scripts/test
