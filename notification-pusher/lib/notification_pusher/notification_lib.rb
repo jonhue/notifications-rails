@@ -29,9 +29,9 @@ module NotificationPusher
         end
       end
 
-      def deliver!(class_name, options = {})
+      def deliver!(name, options = {})
         delivery_method = NotificationPusher::DeliveryMethodConfiguration
-                          .find_by_name!(class_name)
+                          .find_by_name!(name)
         delivery_method.call(self, options)
       end
 

@@ -42,13 +42,13 @@ RSpec.describe NotificationSettings::NotificationLib do
     it 'is considered enabled by default' do
       expect(setting[:delivery_method_enabled]).to eq nil
 
-      expect(notification.delivery_allowed?(:Null)).to eq true
+      expect(notification.delivery_allowed?(:null)).to eq true
     end
 
     it 'when disabled' do
       setting.settings[:delivery_method_enabled] = false
 
-      expect(notification.delivery_allowed?(:Null)).to eq false
+      expect(notification.delivery_allowed?(:null)).to eq false
     end
 
     it 'category_setting disabled' do
@@ -57,40 +57,40 @@ RSpec.describe NotificationSettings::NotificationLib do
 
       expect(notification.category_setting)
         .to eq(delivery_method_enabled: false)
-      expect(notification.delivery_allowed?(:Null)).to eq false
+      expect(notification.delivery_allowed?(:null)).to eq false
     end
   end
 
   describe 'pusher-specific settings' do
     it 'is considered enabled by default' do
-      expect(setting[:Null]).to eq nil
+      expect(setting[:null]).to eq nil
 
-      expect(notification.delivery_allowed?(:Null)).to eq true
+      expect(notification.delivery_allowed?(:null)).to eq true
       expect(user.notify.persisted?).to eq true
     end
 
     it 'when disabled' do
-      setting.settings[:Null] = false
+      setting.settings[:null] = false
 
-      expect(notification.delivery_allowed?(:Null)).to eq false
+      expect(notification.delivery_allowed?(:null)).to eq false
     end
 
     it 'category_setting disabled' do
       setting.category_settings[:my_category] = {}
-      setting.category_settings[:my_category][:Null] = false
+      setting.category_settings[:my_category][:null] = false
 
-      expect(notification.delivery_allowed?(:Null)).to eq false
+      expect(notification.delivery_allowed?(:null)).to eq false
     end
 
     it 'the enabled one still pushes with one pusher enabled ' \
        'and one disabled' do
       setting.category_settings[:my_category] = {}
-      setting.category_settings[:my_category][:Null] = false
-      setting.category_settings[:my_category][:SomePusher] = true
+      setting.category_settings[:my_category][:null] = false
+      setting.category_settings[:my_category][:some_pusher] = true
 
-      expect(notification.delivery_allowed?(:Null)).to                eq false
-      expect(notification.delivery_allowed?(:SomePusher)).to          eq true
-      expect(notification.delivery_allowed?([:Null, :SomePusher])).to eq true
+      expect(notification.delivery_allowed?(:null)).to                 eq false
+      expect(notification.delivery_allowed?(:some_pusher)).to          eq true
+      expect(notification.delivery_allowed?([:null, :some_pusher])).to eq true
     end
   end
 

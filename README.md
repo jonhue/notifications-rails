@@ -70,7 +70,7 @@ Tests are written with RSpec. Integration tests are located in `/spec`, unit tes
 
 4. Run tests
 
-    `$ bundle exec rspec spec **/spec`
+    `$ scripts/test`
 
 5. Run RuboCop
 

@@ -1,5 +1,3 @@
-bundle exec rubocop
-
 bundle exec rspec
 bundle exec rspec notification-handler
 bundle exec rspec notification-pusher
