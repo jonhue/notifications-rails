@@ -1,6 +1,6 @@
 # NotificationHandler
 
-[![Gem Version](https://badge.fury.io/rb/notification-handler.svg)](https://badge.fury.io/rb/notification-handler) ![Travis](https://travis-ci.org/jonhue/notifications-rails.svg?branch=master)
+[![Gem Version](https://badge.fury.io/rb/notification-handler.svg)](https://badge.fury.io/rb/notification-handler) ![Travis](https://travis-ci.com/jonhue/notifications-rails.svg?branch=master)
 
 Create and modify your notifications through a simple API.
 
@@ -162,7 +162,10 @@ When creating a notification for the group `:subscribers`, one notification will
 
 ```ruby
 NotificationHandler.configure do |config|
-  config.define_group :subscribers, -> { User.where(subscriber: true) + Admin.all }
+  config.define_group :subscribers,     -> { User.where(subscriber: true) + Admin.all }
+  config.define_group :company_members, lambda { |company_id|
+    User.with_role(:member, Company.find(company_id)
+  }
 end
 ```
 
@@ -174,6 +177,7 @@ Bulk-creation of notifications for a certain group is fairly simple:
 
 ```ruby
 notification = Notification.create(object: Recipe.first, group: :subscribers)
+notification = Notification.create(object: Recipe.first, group: :company_members, group_args: 4)
 ```
 
 **Note:** You are not able to set the `target` attribute when a `group` has been specified.

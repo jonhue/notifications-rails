@@ -45,13 +45,26 @@ RSpec.describe NotificationHandler::NotificationLib do
     let!(:user)            { create :user }
     let!(:subscribed_user) { create :user, subscriber: true }
 
-    before { create :notification, group: :subscribers }
+    context 'without args' do
+      before { create :notification, group: :subscribers }
 
-    it do
-      expect(Notification.where(target: user).last.present?).to eq false
-      expect(Notification.where(target: subscribed_user).last.present?)
-        .to eq true
-      expect(Notification.where(target: nil).last.present?).to eq false
+      it do
+        expect(Notification.where(target: user).last.present?).to eq false
+        expect(Notification.where(target: subscribed_user).last.present?)
+          .to eq true
+        expect(Notification.where(target: nil).last.present?).to eq false
+      end
+    end
+
+    context 'with args' do
+      before { create :notification, group: :subscribed, group_args: false }
+
+      it do
+        expect(Notification.where(target: user).last.present?).to eq true
+        expect(Notification.where(target: subscribed_user).last.present?)
+          .to eq false
+        expect(Notification.where(target: nil).last.present?).to eq false
+      end
     end
   end
 end

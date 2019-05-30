@@ -14,6 +14,7 @@ module NotificationHandler
 
       serialize :metadata, Hash
       attr_accessor :group
+      attr_accessor :group_args
 
       belongs_to :target, polymorphic: true
       belongs_to :object, polymorphic: true, optional: true
@@ -47,7 +48,7 @@ module NotificationHandler
 
         target_scope = NotificationHandler::Group.find_by_name!(group)
                                                  .target_scope
-        target_scope.call&.each_with_index do |target, index|
+        target_scope.call(*group_args)&.each_with_index do |target, index|
           notification = index.zero? ? self : dup
           notification.target = target
           notification.group = nil

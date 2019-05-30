@@ -20,12 +20,12 @@ module NotificationHandler
     attr_accessor :cache
 
     def initialize
-      @groups = []
+      @groups = {}
       @cache = false
     end
 
     def define_group(name, target_scope)
-      groups << ::NotificationHandler::Group.new(name.to_sym, target_scope)
+      groups[name.to_sym] = ::NotificationHandler::Group.new(target_scope)
     end
   end
 end

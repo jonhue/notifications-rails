@@ -1,6 +1,6 @@
 # NotificationPusher for ActionMailer
 
-[![Gem Version](https://badge.fury.io/rb/notification-pusher-actionmailer.svg)](https://badge.fury.io/rb/notification-pusher-actionmailer) ![Travis](https://travis-ci.org/jonhue/notifications-rails.svg?branch=master)
+[![Gem Version](https://badge.fury.io/rb/notification-pusher-actionmailer.svg)](https://badge.fury.io/rb/notification-pusher-actionmailer) ![Travis](https://travis-ci.com/jonhue/notifications-rails.svg?branch=master)
 
 A pusher to send your notifications via email utilizing ActionMailer.
 

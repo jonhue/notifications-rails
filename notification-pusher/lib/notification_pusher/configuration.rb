@@ -23,8 +23,9 @@ module NotificationPusher
     end
 
     def register_delivery_method(name, class_name, options = {})
-      delivery_methods[name] = ::NotificationPusher::DeliveryMethodConfiguration
-                               .new(class_name, options)
+      delivery_methods[name.to_sym] =
+        ::NotificationPusher::DeliveryMethodConfiguration
+        .new(class_name, options)
     end
   end
 end
