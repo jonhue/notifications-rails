@@ -9,7 +9,10 @@ module NotificationSettings
 
     included do
       before_create :validate_create
-      validates :target, presence: true
+
+      validates :category, inclusion: {
+        in: NotificationSettings.configuration.categories + [nil]
+      }
 
       belongs_to :subscription,
                  class_name: 'NotificationSettings::Subscription',
@@ -18,13 +21,10 @@ module NotificationSettings
       include NotificationSettings::NotificationLib::InstanceMethods
     end
 
+    # rubocop:disable Metrics/ModuleLength
     module InstanceMethods
       def category
         self[:category] || NotificationSettings.configuration.default_category
-      end
-
-      def category_setting
-        target.notification_setting.category_settings.fetch(category.to_sym, {})
       end
 
       def deliver(delivery_methods, delivery_options = {})
@@ -34,8 +34,6 @@ module NotificationSettings
       end
 
       def creation_allowed?
-        return true unless target.notification_setting.present?
-
         status_allows_creation? &&
           settings_allow_creation? &&
           category_settings_allow_creation?
@@ -43,8 +41,6 @@ module NotificationSettings
 
       # delivery_methods may be an array or a single value
       def delivery_allowed?(delivery_methods)
-        return true unless target.notification_setting.present?
-
         creation_allowed? &&
           status_allows_delivery? &&
           delivery_methods_allowed?(Array(delivery_methods))
@@ -57,15 +53,18 @@ module NotificationSettings
       end
 
       def status_allows_creation?
-        !do_not_notify_statuses.include?(target.notification_setting.status)
+        !do_not_notify_statuses.include?(target.status)
       end
 
       def settings_allow_creation?
-        target.notification_setting.settings.fetch(:enabled, true)
+        target.settings.fetch(:enabled, true) &&
+          (subscription.nil? || subscription.settings.fetch(:enabled, true))
       end
 
       def category_settings_allow_creation?
-        category_setting.fetch(:enabled, true)
+        category_settings(target, category).fetch(:enabled, true) &&
+          (subscription.nil? ||
+            category_settings(subscription, category).fetch(:enabled, true))
       end
 
       def delivery_methods_allowed?(delivery_methods)
@@ -80,7 +79,7 @@ module NotificationSettings
       end
 
       def status_allows_delivery?
-        !do_not_deliver_statuses.include?(target.notification_setting.status)
+        !do_not_deliver_statuses.include?(target.status)
       end
 
       def settings_allow_delivery?(delivery_method)
@@ -100,13 +99,15 @@ module NotificationSettings
       end
 
       def local_delivery_method_setting(delivery_method, default = nil)
-        target.notification_setting.settings
-              .fetch(delivery_method.to_sym, default)
+        delivery_method_setting(target, delivery_method, default) &&
+          (subscription.nil? ||
+            delivery_method_setting(subscription, delivery_method, default))
       end
 
       def global_settings_allow_delivery?
-        target.notification_setting.settings
-              .fetch(:delivery_method_enabled, true)
+        delivery_method_setting(target, :enabled, true) &&
+          (subscription.nil? ||
+            delivery_method_setting(subscription, :enabled, true))
       end
 
       def category_settings_allow_delivery?(delivery_method)
@@ -126,11 +127,32 @@ module NotificationSettings
       end
 
       def local_delivery_method_category_setting(delivery_method, default = nil)
-        category_setting.fetch(delivery_method.to_sym, default)
+        category_delivery_method_setting(target, category, delivery_method,
+                                         default) &&
+          (subscription.nil? ||
+            category_delivery_method_setting(subscription, category,
+                                             delivery_method, default))
       end
 
       def global_category_settings_allow_delivery?
-        category_setting.fetch(:delivery_method_enabled, true)
+        category_delivery_method_setting(target, category, :enabled, true) &&
+          (subscription.nil? ||
+            category_delivery_method_setting(subscription, category, :enabled,
+                                             true))
+      end
+
+      def delivery_method_setting(object, delivery_method, default)
+        object.settings.delivery_methods_.fetch(delivery_method.to_s, default)
+      end
+
+      def category_settings(object, category)
+        object.settings.categories_.send("#{category}_")
+      end
+
+      def category_delivery_method_setting(object, category, delivery_method,
+                                           default)
+        category_settings(object, category).delivery_methods_
+                                           .fetch(delivery_method.to_s, default)
       end
 
       def do_not_notify_statuses
@@ -141,5 +163,6 @@ module NotificationSettings
         NotificationSettings.configuration.do_not_deliver_statuses
       end
     end
+    # rubocop:enable Metrics/ModuleLength
   end
 end

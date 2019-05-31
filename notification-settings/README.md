@@ -54,10 +54,22 @@ To wrap things up, migrate the changes to your database:
 
 ## Usage
 
-NotificationSettings will create a `NotificationSettings::Setting` record for every newly created `notification_target`-object. It is accessible by calling:
+First, you have to add some attributes to every model that acts as a `notification_target`:
 
 ```ruby
-User.first.notification_setting
+class User
+  # ...
+
+  notification_target
+end
+```
+
+```ruby
+# A Hashie::Mash object that stores all the settings of a notification target.
+add_column :users, :settings, :text
+
+# A string that describes a notification-relevant state of a notification target.
+add_column :users, :status, :string
 ```
 
 ### Categories
@@ -65,7 +77,7 @@ User.first.notification_setting
 NotificationSettings uses categories to allow your notification targets to define specific preferences. This is how you are able to specify the `category` of a `Notification` record:
 
 ```ruby
-notification = Notification.create(target: User.first, object: Recipe.first, category: 'notification')
+notification = Notification.create(target: User.first, object: Recipe.first, category: :notification)
 ```
 
 **Note:** The `category` attribute of any new `Notification` record will default to the [`default_category` configuration](#configuration).
@@ -82,11 +94,12 @@ Notification.follow_category
 
 ### Settings
 
-You can disable notifications for a given notification target:
+You can completely disable notifications for a given notification target:
 
 ```ruby
-s = User.first.notification_setting
-s.settings[:enabled] = false
+settings = User.first.settings
+
+settings.enabled = false
 ```
 
 This will prevent you from creating any new notifications with this user as target.
@@ -98,7 +111,7 @@ The default is `true` (enabled) for this setting and the other settings.
 A user can also have category-specific settings:
 
 ```ruby
-s.category_settings[:category] = { enabled: false }
+settings.categories!.send("#{category}!").enabled = false
 ```
 
 #### Delivery-method-specific settings
@@ -106,9 +119,56 @@ s.category_settings[:category] = { enabled: false }
 He can have global or category-specific delivery method settings:
 
 ```ruby
-s.settings[:delivery_method_enabled] = false              # Prevent delivering via *any* delivery method
-s.settings[:ActionMailer] = false                         # Prevent delivering via :ActionMailer delivery method
-s.category_settings[:category] = { ActionMailer: false }  # Prevent delivering via :ActionMailer delivery method for :category
+settings.delivery_methods!.enabled = false                              # Prevent delivering via *any* delivery method
+settings.delivery_methods!.email!.enabled = false                       # Prevent delivering via the :email delivery method
+settings.categories!.category!.delivery_methods!.email!.enabled = false # Prevent delivering via the :email delivery method for :category
+```
+
+#### Form objects
+
+NotificationSettings comes with three form objects that simplify building forms for updating settings.
+
+##### PreferencesForm
+
+The preferences form has just one attribute: `enabled`. It can be used to update the global notification setting.
+
+```ruby
+user = User.first
+
+form = NotificationSettings::PreferencesForm.new(enabled: user.settings.enabled)
+form.valid?
+
+user.settings.enabled = form.enabled
+```
+
+##### CategoryPreferencesForm
+
+The category preferences form has one attribute per category. It can be used to update category-specific settings.
+
+```ruby
+user = User.first
+
+form = NotificationSettings::CategoryPreferencesForm.new(user.settings.categories_.to_h)
+form.valid?
+
+form.changed_attributes.each do |category|
+  user.settings.categories!.send(category, form.send(category))
+end
+```
+
+##### DeliveryMethodPreferencesForm
+
+The delivery method preferences form has one attribute per category and a general `enabled` attribute. It can be used to update delivery-method-specific settings or to disable all delivery methods.
+
+```ruby
+user = User.first
+
+form = NotificationSettings::DeliveryMethodPreferencesForm.new(user.settings.delivery_methods_.to_h)
+form.valid?
+
+form.changed_attributes.each do |delivery_method|
+  user.settings.delivery_methods!.send(delivery_method, form.send(delivery_method))
+end
 ```
 
 ### Subscriptions
@@ -151,11 +211,15 @@ Group.first.notify_subscribers(dependents: nil)
 Group.first.notify_subscribers(dependents: Group.first.chats + Group.first.talks)
 ```
 
-You can customize settings for a single subscription just as you would for a notification target:
+You can customize settings & status for a single subscription just as you would for a notification target:
 
 ```ruby
-s = User.first.notification_subscriptions.first.notification_setting
-s.settings[:enabled] = false
+user = User.first
+subscription = user.notification_subscriptions.first
+
+subscription.settings.enabled = false
+subscription.status = 'online'
+subscription.save
 ```
 
 [Learn more](#settings)
@@ -183,8 +247,7 @@ NotificationSettings comes with a handy feature called Status. The status of a r
 This is how to define a status:
 
 ```ruby
-User.first.notification_setting.status = 'do not disturb'
-User.first.notification_setting.save
+User.first.update(status: 'do not disturb')
 ```
 
 **Note:** You can set `status` to any string you like.
@@ -210,11 +273,13 @@ You can configure NotificationSettings by passing a block to `configure`. This c
 
 ```ruby
 NotificationSettings.configure do |config|
-  config.default_category = 'notification'
+  config.categories = [:notification]
 end
 ```
 
-**`default_category`** Choose your default notification category. Takes a string. Defaults to `'notification'`.
+**`categories`** Choose your default notification category. Takes an array of symbols. Defaults to `[:notification]`.
+
+**`default_category`** Choose your default notification category. Takes a symbol. Defaults to `:notification`.
 
 ### Status
 
@@ -222,9 +287,11 @@ end
 
 **`offline_after`** Time duration without activity after which the status defaults to `'offline'`. Takes a time. Defaults to `3.hours`.
 
-**`last_seen`** Stringified datetime attribute name of `object` that defines the time of the last activity. Takes a string. Defaults to `'last_seen'`.
+**`last_seen`** Stringified datetime attribute name of `object` that defines the time of the last activity. Takes a symbol. Defaults to `:last_seen`.
 
-**`do_not_notify_statuses`** Array of possible statuses that will prevent creating notifications for a target. Takes an array of strings. Defaults to `[]`.
+**`statuses`** Array of all possible statuses. Takes an array of strings. Defaults to `['online', 'idle', 'offline', 'do not notify', 'do not disturb']`.
+
+**`do_not_notify_statuses`** Array of possible statuses that will prevent creating notifications for a target. Takes an array of strings. Defaults to `['do not notify']`.
 
 **`do_not_deliver_statuses`** Array of possible statuses that will prevent delivering notifications of a target. Takes an array of strings. Defaults to `['do not disturb']`
 

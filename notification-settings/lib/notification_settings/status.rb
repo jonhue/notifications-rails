@@ -3,26 +3,32 @@
 require 'active_support'
 
 module NotificationSettings
-  module SettingLib
+  module Status
     extend ActiveSupport::Concern
 
     included do
-      include NotificationSettings::SettingLib::InstanceMethods
+      validates :status,
+                inclusion: { in: NotificationSettings.configuration.statuses }
+
+      include NotificationSettings::Status::InstanceMethods
     end
 
     module InstanceMethods
       def status
-        if idle? && !offline?
-          default = 'idle'
-        elsif offline?
-          default = 'offline'
-        else
-          'online'
-        end
-        self[:status] || default
+        self[:status] || default_status
       end
 
       private
+
+      def default_status
+        if idle? && !offline?
+          'idle'
+        elsif offline?
+          'offline'
+        else
+          'online'
+        end
+      end
 
       def idle?
         return unless time_since_last_seen_round
@@ -41,11 +47,9 @@ module NotificationSettings
       end
 
       def time_since_last_seen
-        return unless object.respond_to?(
-          NotificationSettings.configuration.last_seen
-        )
+        return unless respond_to?(NotificationSettings.configuration.last_seen)
 
-        Time.now - object.send(NotificationSettings.configuration.last_seen)
+        Time.now - send(NotificationSettings.configuration.last_seen)
       end
 
       def idle_after

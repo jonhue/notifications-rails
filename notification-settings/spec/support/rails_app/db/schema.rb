@@ -12,24 +12,12 @@
 
 ActiveRecord::Schema.define(version: 2019_05_09_202305) do
 
-  create_table "notification_settings_settings", force: :cascade do |t|
-    t.string "object_type"
-    t.integer "object_id"
-    t.integer "subscription_id"
-    t.string "status"
-    t.text "settings"
-    t.text "category_settings"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["object_type", "object_id"], name: "idx_settings_object_type_object_id"
-    t.index ["subscription_id"], name: "index_notification_settings_settings_on_subscription_id"
-  end
-
   create_table "notification_settings_subscriptions", force: :cascade do |t|
     t.string "subscriber_type"
     t.integer "subscriber_id"
     t.string "subscribable_type"
     t.integer "subscribable_id"
+    t.text "settings"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["subscribable_type", "subscribable_id"], name: "idx_subscriptions_subscribable_type_subscribable_id"
@@ -58,6 +46,8 @@ ActiveRecord::Schema.define(version: 2019_05_09_202305) do
 
   create_table "users", force: :cascade do |t|
     t.string "name"
+    t.string "status"
+    t.string "settings"
   end
 
 end

@@ -30,6 +30,12 @@ Notifications Rails follows Semantic Versioning 2.0 as defined at http://semver.
     end
     ```
 
+* Removed the `NotificationSettings::Settings` class (& database table) that held settings & status of a target/subscription. This information is now stored directly in the target/subscription records. The new `settings` field uses [`Hashi::Mash`](https://github.com/intridea/hashie#how-does-the-wrapping-of-mash-sub-hashes-work). Therefore, its [API changed dramatically](https://github.com/jonhue/notifications-rails/tree/master/notification-settings#settings). [#38] (#95)
+
+* Added [form objects](https://github.com/jonhue/notifications-rails/tree/master/notification-settings#form-objects) that significantly reduce the work required to build a settings form. [#38] (#95)
+
+* All used statuses & notification categories must now be configured in the NotificationSettings initializer. [#38] (#95)
+
 ### Deprecated
 
 * None
