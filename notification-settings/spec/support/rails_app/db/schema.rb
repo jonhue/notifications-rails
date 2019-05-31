@@ -17,7 +17,6 @@ ActiveRecord::Schema.define(version: 2019_05_09_202305) do
     t.integer "subscriber_id"
     t.string "subscribable_type"
     t.integer "subscribable_id"
-    t.string "status"
     t.text "settings"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
