@@ -7,6 +7,17 @@ RSpec.describe NotificationSettings::NotificationLib do
   let(:user)         { notification.target }
   let(:settings)     { user.settings }
 
+  context 'with persisted user' do
+    let(:user) { create :user }
+
+    it 'persists settings' do
+      user.settings.enabled = true
+      user.save
+
+      expect(user.reload.settings.enabled?).to eq true
+    end
+  end
+
   it 'requires a target' do
     notification = Notification.new
     expect(notification.valid?).to eq false
