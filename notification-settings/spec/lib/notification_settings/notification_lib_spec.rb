@@ -43,10 +43,6 @@ RSpec.describe NotificationSettings::NotificationLib do
       expect(notification.creation_allowed?).to eq false
       expect(user.notify.persisted?).to eq false
     end
-
-    describe 'category_settings' do
-      pending
-    end
   end
 
   describe 'global pusher settings' do
@@ -64,6 +60,10 @@ RSpec.describe NotificationSettings::NotificationLib do
   end
 
   describe 'category-specific settings' do
+    it 'is enabled by default'
+
+    it 'can be disabled'
+
     it 'can disable all delivery methods' do
       settings.categories!.my_category!.delivery_methods!.enabled = false
 
