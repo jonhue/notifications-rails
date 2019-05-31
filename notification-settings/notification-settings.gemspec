@@ -25,8 +25,10 @@ Gem::Specification.new do |gem|
 
   gem.required_ruby_version = '>= 2.2.2'
 
+  gem.add_dependency 'activemodel', '>= 5.0'
   gem.add_dependency 'activerecord', '>= 5.0'
   gem.add_dependency 'activesupport', '>= 5.0'
+  gem.add_dependency 'hashie', '~> 3.6'
   gem.add_dependency 'notification-handler', version
   gem.add_dependency 'railties', '>= 5.0'
 

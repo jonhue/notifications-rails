@@ -8,7 +8,13 @@ module NotificationSettings
   autoload :Target, 'notification_settings/target'
   autoload :Subscriber, 'notification_settings/subscriber'
   autoload :Subscribable, 'notification_settings/subscribable'
-  autoload :SettingLib, 'notification_settings/setting_lib'
+  autoload :Settings, 'notification_settings/settings'
+  autoload :Status, 'notification_settings/status'
   autoload :NotificationLib, 'notification_settings/notification_lib'
   autoload :NotificationScopes, 'notification_settings/notification_scopes'
+  autoload :CategoryPreferencesForm,
+           'notification_settings/category_preferences_form'
+  autoload :DeliveryMethodPreferencesForm,
+           'notification_settings/delivery_method_preferences_form'
+  autoload :PreferencesForm, 'notification_settings/preferences_form'
 end
