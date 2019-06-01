@@ -26,7 +26,6 @@ Gem::Specification.new do |gem|
 
   gem.add_dependency 'actionmailer', '>= 5.0'
   gem.add_dependency 'notification-pusher', version
-  gem.add_dependency 'notification-renderer', version
   gem.add_dependency 'railties', '>= 5.0'
 
   gem.add_development_dependency 'factory_bot'
