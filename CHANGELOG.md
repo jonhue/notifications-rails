@@ -36,6 +36,8 @@ Notifications Rails follows Semantic Versioning 2.0 as defined at http://semver.
 
 * All used statuses & notification categories must now be configured in the NotificationSettings initializer. [#38] (#95)
 
+* When using the ActionMailer delivery method with NotificationRenderer, `'notification-renderer'` must be required explicitly. Otherwise the delivery method expects `:mailer` and `:action` options that specify a custom mailer. [#53] (#101)
+
 ### Deprecated
 
 * None
