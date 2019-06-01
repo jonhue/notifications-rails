@@ -4,11 +4,16 @@ module NotificationPusher
   class ActionMailer
     class NotificationMailer < ApplicationMailer
       def push(notification,
-               from:, to: nil, renderer: 'actionmailer', layout: nil)
+               from:, to: nil, renderer: 'actionmailer', layout: nil, mail_options: {})
         render(layout: layout) unless layout.nil?
+
         @notification = notification
         @renderer = renderer
-        mail(to: to || notification.target.email, from: from)
+
+        mail({
+          to: to || notification.target.email,
+          from: from
+        }.merge(mail_options))
       end
     end
   end

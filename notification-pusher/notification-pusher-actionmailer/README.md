@@ -45,7 +45,7 @@ NotificationPusher.configure do |config|
 end
 ```
 
-You can pass a `from` parameter, which will override the default email address specified in `ApplicationMailer`:
+You can pass a `from` parameter, which will be used if you don't provide a `from` address when delivering:
 
 ```ruby
 NotificationPusher.configure do |config|
@@ -58,6 +58,8 @@ Then add a renderer called `_actionmailer.html.erb` to every notification type y
 Now you can deliver your notifications:
 
 ```ruby
+require 'notification-renderer'
+
 notification = Notification.create(target: User.first, object: Recipe.first)
 notification.deliver(:email, to: 'another@email.com')
 ```
@@ -66,15 +68,32 @@ notification.deliver(:email, to: 'another@email.com')
 
 It is also possible to override the email address sending this notification, by passing a `from` parameter.
 
+If you don't want to use [NotificationRenderer](https://github.com/jonhue/notifications-rails/tree/master/notification-renderer):
+
+```ruby
+notification = Notification.create(target: User.first, object: Recipe.first)
+notification.deliver(:email, to: 'another@email.com', mailer: MyCustomMailer, action: :deliver_notification)
+```
+
+`MyCustomMailer.deliver_notification` is then called with a `notification` as first argument and an options hash as second argument.
+
 ### Options
 
 **`to`** Receiver email address. Takes a string.
 
-**`from`** Sender email address. Takes a string. Defaults to email specified in `ApplicationMailer`.
+**`from`** Sender email address. Takes a string.
 
 **`renderer`** Specify a renderer. Takes a string. Defaults to `'actionmailer'`.
 
 **`layout`** Layout used for template rendering. Takes a string. Defaults to layout specified in `ApplicationMailer`.
+
+**`mail_options`** A hash that is passed to `mail` (e.g. including `:subject`). Takes a hash. Defaults to `{}`.
+
+**`mailer`** ActionMailer class. Takes a constant. Defaults to `NotificationPusher::ActionMailer::NotificationMailer`.
+
+**`action`** ActionMailer action. Takes a symbol. Defaults to `:push`.
+
+**`deliver_method`** ActionMailer deliver_method (e.g. `:deliver_later`). Takes a symbol. Defaults to `:deliver`.
 
 ---
 
