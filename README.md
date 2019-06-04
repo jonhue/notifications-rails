@@ -84,7 +84,7 @@ Tests are written with RSpec. Integration tests are located in `/spec`, unit tes
 2. Change the gem version [here](VERSION)
 3. Publish to https://rubygems.org
 
-    `$ release <version>`
+    `$ scripts/release <version>`
 
 4. Create a new release and include breaking changes and deprecations from CHANGELOG.md
 5. Reset CHANGELOG.md
