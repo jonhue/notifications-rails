@@ -124,8 +124,6 @@ You can create a notification from a `target`:
 User.first.notify(object: Recipe.first)
 ```
 
-...
-
 ### `notification_object`
 
 When using records of an ActiveRecord class as notification objects, add this to your class:
@@ -141,8 +139,6 @@ Now associated notifications are easy to access:
 ```ruby
 notifications = Recipe.first.belonging_notifications
 ```
-
-...
 
 ### Groups
 

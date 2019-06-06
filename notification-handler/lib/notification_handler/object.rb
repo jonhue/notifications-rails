@@ -1,25 +1,22 @@
 # frozen_string_literal: true
 
+require 'active_support'
+
 module NotificationHandler
   module Object
-    def self.included(base)
-      base.extend(ClassMethods)
-    end
+    extend ActiveSupport::Concern
 
-    module ClassMethods
-      def notification_object
+    included do
+      def self.notification_object
         has_many :belonging_notifications,
                  as: :object, class_name: 'Notification', dependent: :destroy
-        include NotificationHandler::Object::InstanceMethods
 
-        return unless defined?(NotificationSettings)
-
-        include NotificationSettings::Subscribable
+        # rubocop:disable Style/GuardClause
+        if defined?(NotificationSettings)
+          include NotificationSettings::Subscribable
+        end
+        # rubocop:enable Style/GuardClause
       end
-    end
-
-    module InstanceMethods
-      # ...
     end
   end
 end
