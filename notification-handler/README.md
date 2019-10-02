@@ -99,7 +99,7 @@ Notification.read
 Notification.unread
 
 # Number of unread notifications
-Notification.unread.count
+Notification.unread.size
 ```
 
 ### `notification_target`
@@ -172,9 +172,11 @@ The only requirement is that the result of evaluating the proc be Enumerable.
 Bulk-creation of notifications for a certain group is fairly simple:
 
 ```ruby
-notification = Notification.create(object: Recipe.first, group: :subscribers)
-notification = Notification.create(object: Recipe.first, group: :company_members, group_args: 4)
+notifications = Notification.for_group(:subscribers, attrs: { object: Recipe.first })
+notifications = Notification.for_group(:company_members, args: [4], attrs: { object: Recipe.first })
 ```
+
+`Notification.for_group` returns an array of `Notification` objects.
 
 **Note:** You are not able to set the `target` attribute when a `group` has been specified.
 

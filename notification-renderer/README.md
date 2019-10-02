@@ -198,7 +198,7 @@ This will render the last notification for every group and pass the attributes v
 <!-- Renderer -->
 
 <% if notification_grouped? %>
-  <%= notification.target.name %> and <%= (notifications.count - 1).to_s %> others commented on <%= attributes['object.article'].title %>.
+  <%= notification.target.name %> and <%= (notifications.size - 1).to_s %> others commented on <%= attributes['object.article'].title %>.
 <% else %>
   <%= notification.target.name %> commented on <%= notification.object.article.title %>.
 <% end %>
