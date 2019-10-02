@@ -9,12 +9,9 @@ module NotificationHandler
     included do
       self.inheritance_column = :_type_disabled
 
-      before_validation :create_for_group
       after_commit :cache
 
       serialize :metadata, Hash
-      attr_accessor :group
-      attr_accessor :group_args
 
       belongs_to :target, polymorphic: true
       belongs_to :object, polymorphic: true, optional: true
@@ -32,6 +29,18 @@ module NotificationHandler
       end
     end
 
+    module ClassMethods
+      def for_group(group, args: [], attrs: {})
+        return if group.nil?
+
+        target_scope = NotificationHandler::Group.find_by_name!(group)
+                                                 .target_scope
+        target_scope.call(*args)&.map do |target|
+          Notification.create(attrs.merge(target: target))
+        end
+      end
+    end
+
     module InstanceMethods
       def read?
         read
@@ -43,24 +52,11 @@ module NotificationHandler
 
       private
 
-      def create_for_group
-        return if group.nil?
-
-        target_scope = NotificationHandler::Group.find_by_name!(group)
-                                                 .target_scope
-        target_scope.call(*group_args)&.each_with_index do |target, index|
-          notification = index.zero? ? self : dup
-          notification.target = target
-          notification.group = nil
-          notification.save!
-        end
-      end
-
       def cache
         return unless read_changed?
 
-        target.read_notification_count = target.notifications.read.count
-        target.unread_notification_count = target.notifications.unread.count
+        target.read_notification_count = target.notifications.read.size
+        target.unread_notification_count = target.notifications.unread.size
         target.save!
       end
     end

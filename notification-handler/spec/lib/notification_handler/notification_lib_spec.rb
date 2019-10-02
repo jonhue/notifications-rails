@@ -46,24 +46,29 @@ RSpec.describe NotificationHandler::NotificationLib do
     let!(:subscribed_user) { create :user, subscriber: true }
 
     context 'without args' do
-      before { create :notification, group: :subscribers }
-
       it do
-        expect(Notification.where(target: user).last.present?).to eq false
-        expect(Notification.where(target: subscribed_user).last.present?)
-          .to eq true
-        expect(Notification.where(target: nil).last.present?).to eq false
+        expect { Notification.for_group(:subscribers) }
+          .to  change { subscribed_user.notifications.reload.size }.by(1)
+          .and change { user.notifications.reload.size }.by(0)
       end
     end
 
-    context 'with args' do
-      before { create :notification, group: :subscribed, group_args: false }
+    context 'with one arg' do
+      it do
+        expect { Notification.for_group(:subscribed, args: [false]) }
+          .to  change { user.notifications.reload.size }.by(1)
+          .and change { subscribed_user.notifications.reload.size }.by(0)
+      end
+    end
+
+    context 'with multiple args' do
+      let!(:foo) { create :user, name: 'Foo' }
 
       it do
-        expect(Notification.where(target: user).last.present?).to eq true
-        expect(Notification.where(target: subscribed_user).last.present?)
-          .to eq false
-        expect(Notification.where(target: nil).last.present?).to eq false
+        expect do
+          Notification.for_group(:subscribed_and_starts_with,
+                                 args: [false, 'F'])
+        end.to change { foo.notifications.reload.size }.by(1)
       end
     end
   end
