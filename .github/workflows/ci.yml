@@ -18,9 +18,9 @@ jobs:
         ruby-version: ${{ matrix.ruby }}
     - name: Install dependencies
       run: |
-        apt-get install libsqlite3-dev
-        gem update --system
-        bundle install
+        sudo apt-get install libsqlite3-dev
+        gem install bundler
+        bundle install --jobs 4 --retry 3
     - name: Run RuboCop
       run: bundle exec rubocop
     - name: Run notification-handler specs
