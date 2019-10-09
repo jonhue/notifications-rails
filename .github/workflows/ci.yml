@@ -30,7 +30,7 @@ jobs:
         sudo apt-get install libsqlite3-dev
         gem install bundler
         bundle install --jobs 4 --retry 3
-        bundle install rails -v "${{ matrix.rails }}"
+        gem install rails -v "${{ matrix.rails }}"
     - name: Run RuboCop
       run: bundle exec rubocop
     - name: Run notification-handler specs
