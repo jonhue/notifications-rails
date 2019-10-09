@@ -22,8 +22,6 @@ jobs:
         bundle install
     - name: Run RuboCop
       run: bundle exec rubocop
-    - name: Run integration tests
-      run: bundle exec rspec
     - name: Run notification-handler specs
       run: bundle exec rspec notification-handler
     - name: Run notification-pusher specs
@@ -36,3 +34,5 @@ jobs:
       run: bundle exec rspec notification-renderer
     - name: Run notification-settings specs
       run: bundle exec rspec notification-settings
+    - name: Run integration tests
+      run: bundle exec rspec
