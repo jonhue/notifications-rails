@@ -18,8 +18,8 @@ jobs:
         ruby-version: ${{ matrix.ruby }}
     - name: Install dependencies
       run: |
+        apt-get install libsqlite3-dev
         gem update --system
-        gem install sqlite3 -v '1.4.1' --source 'https://rubygems.org/'
         bundle install
     - name: Run RuboCop
       run: bundle exec rubocop
