@@ -13,13 +13,8 @@ jobs:
           - '2.4.x'
           - '2.5.x'
           - '2.6.x'
-        rails:
-          - '~> 5.0'
-          - '~> 5.1'
-          - '~> 5.2'
-          - '~> 6.0'
 
-    name: Ruby ${{ matrix.ruby }}, Rails ${{ matrix.rails }}
+    name: Ruby ${{ matrix.ruby }}
     steps:
     - uses: actions/checkout@master
     - uses: actions/setup-ruby@v1
@@ -30,7 +25,6 @@ jobs:
         sudo apt-get install libsqlite3-dev
         gem install bundler
         bundle install --jobs 4 --retry 3
-        gem install rails -v "${{ matrix.rails }}"
     - name: Run RuboCop
       run: bundle exec rubocop
     - name: Run notification-handler specs
