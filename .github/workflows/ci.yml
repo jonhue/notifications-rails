@@ -1,0 +1,36 @@
+name: CI
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        ruby: [ '2.3', '2.4', '2.5', '2.6', '2.7' ]
+
+    name: Ruby ${{ matrix.ruby }}
+    steps:
+    - uses: actions/checkout@master
+    - uses: actions/setup-ruby@v1
+      with:
+        ruby-version: ${{ matrix.ruby }}
+    - name: Install dependencies
+      run: bundle install
+    - name: Run RuboCop
+      run: bundle exec rubocop
+    - name: Run integration tests
+      run: bundle exec rspec
+    - name: Run notification-handler specs
+      run: bundle exec rspec notification-handler
+    - name: Run notification-pusher specs
+      run: bundle exec rspec notification-pusher
+    - name: Run notification-pusher-actionmailer specs
+      run: bundle exec rspec notification-pusher/notification-pusher-actionmailer
+    - name: Run notification-pusher-onesignal specs
+      run: bundle exec rspec notification-pusher/notification-pusher-onesignal
+    - name: Run notification-renderer specs
+      run: bundle exec rspec notification-renderer
+    - name: Run notification-settings specs
+      run: bundle exec rspec notification-settings
