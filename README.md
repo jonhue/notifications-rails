@@ -70,7 +70,7 @@ Tests are written with RSpec. Integration tests are located in `/spec`, unit tes
 
 4. Run tests
 
-    `$ scripts/rspec`
+    `$ ./rspec`
 
 5. Run RuboCop
 
@@ -82,12 +82,10 @@ Tests are written with RSpec. Integration tests are located in `/spec`, unit tes
 
 1. Review breaking changes and deprecations in CHANGELOG.md
 2. Change the gem version [here](VERSION)
-3. Publish to https://rubygems.org
-
-    `$ scripts/release <version>`
-
-4. Create a new release and include breaking changes and deprecations from CHANGELOG.md
-5. Reset CHANGELOG.md
+3. Reset CHANGELOG.md
+4. Create a pull request to merge the changes into `master`
+5. After the pull request was merged, create a new release listing the breaking changes and commits on `master` since the last release.
+6. The release workflow will publish the gems to RubyGems and the GitHub Package Registry
 
 ---
 
