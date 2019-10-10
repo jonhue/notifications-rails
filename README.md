@@ -1,7 +1,5 @@
 # Notifications Rails
 
-[![Gem Version](https://badge.fury.io/rb/notifications-rails.svg)](https://badge.fury.io/rb/notifications-rails) ![Travis](https://travis-ci.com/jonhue/notifications-rails.svg?branch=master)
-
 The most powerful notification solution for Rails. Notifications Rails simplifies the handling, rendering, user-integration and cross-platform pushing of notifications through its simple API.
 
 ---
