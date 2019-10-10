@@ -20,6 +20,9 @@ Gem::Specification.new do |gem|
   gem.files                 = Dir['README.md', 'LICENSE', 'lib/**/*',
                                   'app/**/*']
   gem.require_paths         = ['lib']
+  gem.metadata              = {
+    'github_repo' => 'ssh://github.com/jonhue/notifications-rails'
+  }
 
   gem.required_ruby_version = '>= 2.2.2'
 
