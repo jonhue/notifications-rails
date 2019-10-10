@@ -1,0 +1,43 @@
+name: CI
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        ruby:
+          - '2.3.x'
+          - '2.4.x'
+          - '2.5.x'
+          - '2.6.x'
+
+    name: Ruby ${{ matrix.ruby }}
+    steps:
+    - uses: actions/checkout@master
+    - uses: actions/setup-ruby@v1
+      with:
+        ruby-version: ${{ matrix.ruby }}
+    - name: Install dependencies
+      run: |
+        sudo apt-get install libsqlite3-dev
+        gem install bundler
+        bundle install --jobs 4 --retry 3
+    - name: Run RuboCop
+      run: bundle exec rubocop
+    - name: Run notification-handler specs
+      run: bundle exec rspec notification-handler
+    - name: Run notification-pusher specs
+      run: bundle exec rspec notification-pusher
+    - name: Run notification-pusher-actionmailer specs
+      run: bundle exec rspec notification-pusher/notification-pusher-actionmailer
+    - name: Run notification-pusher-onesignal specs
+      run: bundle exec rspec notification-pusher/notification-pusher-onesignal
+    - name: Run notification-renderer specs
+      run: bundle exec rspec notification-renderer
+    - name: Run notification-settings specs
+      run: bundle exec rspec notification-settings
+    - name: Run integration tests
+      run: bundle exec rspec
