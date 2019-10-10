@@ -6,18 +6,18 @@ on:
 
 jobs:
   build:
-    
+
     runs-on: ubuntu-latest
     strategy:
       matrix:
         package:
-        - 'notification-handler/notification-handler'
-        - 'notification-pusher/notification-pusher'
-        - 'notification-pusher/notification-pusher-actionmailer/notification-pusher-actionmailer'
-        - 'notification-pusher/notification-pusher-onesignal/notification-pusher-onesignal'
-        - 'notification-renderer/notification-renderer'
-        - 'notification-settings/notification-settings'
-        - 'notifications-rails'
+        - 'notification-handler/*'
+        - 'notification-pusher/*'
+        - 'notification-pusher/notification-pusher-actionmailer/*'
+        - 'notification-pusher/notification-pusher-onesignal/*'
+        - 'notification-renderer/*'
+        - 'notification-settings/*'
+        - '*'
 
     steps:
     - uses: actions/checkout@master
