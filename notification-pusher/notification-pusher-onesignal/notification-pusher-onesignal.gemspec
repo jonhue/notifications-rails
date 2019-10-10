@@ -2,6 +2,7 @@
 
 version = File.read(File.expand_path('../../VERSION', __dir__)).strip
 
+# rubocop:disable Metrics/BlockLength
 Gem::Specification.new do |gem|
   gem.name                  = 'notification-pusher-onesignal'
   gem.version               = version
@@ -19,6 +20,9 @@ Gem::Specification.new do |gem|
 
   gem.files                 = Dir['README.md', 'LICENSE', 'lib/**/*']
   gem.require_paths         = ['lib']
+  gem.metadata              = {
+    'github_repo' => 'ssh://github.com/jonhue/notifications-rails'
+  }
 
   gem.required_ruby_version = '>= 2.2.2'
 
@@ -33,3 +37,4 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency 'rubocop-rspec'
   gem.add_development_dependency 'sqlite3'
 end
+# rubocop:enable Metrics/BlockLength
