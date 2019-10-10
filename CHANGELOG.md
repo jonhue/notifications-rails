@@ -6,7 +6,7 @@ Notifications Rails follows Semantic Versioning 2.0 as defined at http://semver.
 
 ### Breaking Changes
 
-* Creating notifications for groups is now done through `Notification.for_group` instead of passing `group` as an argument to `Notification.create`. [#108] (#110)
+* None
 
 ### Deprecated
 
