@@ -13,6 +13,15 @@ Layout/MultilineMethodCallIndentation:
   Exclude:
     - '**/*_spec.rb'
 
+Layout/SpaceAroundMethodCallOperator:
+  Enabled: true
+
+Lint/RaiseException:
+  Enabled: true
+
+Lint/StructNewOverride:
+  Enabled: true
+
 Metrics/BlockLength:
   Exclude:
     - '**/*_spec.rb'
@@ -33,6 +42,18 @@ RSpec/MultipleExpectations:
 
 Style/Documentation:
   Enabled: false
+
+Style/ExponentialNotation:
+  Enabled: true
+
+Style/HashEachMethods:
+  Enabled: true
+
+Style/HashTransformKeys:
+  Enabled: true
+
+Style/HashTransformValues:
+  Enabled: true
 
 Style/PerlBackrefs:
   Enabled: false
