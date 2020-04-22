@@ -19,7 +19,7 @@ module NotificationRendererHelper
   def render_notifications(notifications, renderer: default_renderer)
     content_tag :div, class: 'notification-renderer notifications' do
       notifications&.map do |notification|
-        render_notification(notification, renderer: renderer)
+        concat render_notification(notification, renderer: renderer)
       end
     end
   end
