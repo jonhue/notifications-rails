@@ -1,1 +1,5 @@
-<div><%= notification.metadata[:title] %>: <%= notification.metadata[:content] %></div>
+<div>
+<%= notification.metadata[:title] %>: <%= notification.metadata[:content] %>
+<% if !local_assigns[:attributes].nil? %>attributes: <%= local_assigns[:attributes] %><% end %>
+<% if !local_assigns[:notifications].nil? %>notifications count: <%= local_assigns[:notifications].length %><% end %>
+</div>
