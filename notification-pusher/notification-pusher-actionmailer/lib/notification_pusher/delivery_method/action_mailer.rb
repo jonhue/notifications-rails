@@ -17,9 +17,7 @@ module NotificationPusher
 
       def mailer_class
         return options[:mailer] if options.key?(:mailer)
-        if defined?(NotificationRenderer)
-          return ::NotificationPusher::ActionMailer::NotificationMailer
-        end
+        return ::NotificationPusher::ActionMailer::NotificationMailer if defined?(NotificationRenderer)
 
         raise(ArgumentError,
               'You have to pass the :mailer option explicitly or require ' \

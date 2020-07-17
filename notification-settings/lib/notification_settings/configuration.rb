@@ -14,14 +14,8 @@ module NotificationSettings
   end
 
   class Configuration
-    attr_accessor :categories
-    attr_accessor :default_category
-    attr_accessor :last_seen
-    attr_accessor :idle_after
-    attr_accessor :offline_after
-    attr_accessor :statuses
-    attr_accessor :do_not_notify_statuses
-    attr_accessor :do_not_deliver_statuses
+    attr_accessor :categories, :default_category, :do_not_deliver_statuses, :do_not_notify_statuses, :idle_after,
+                  :last_seen, :offline_after, :statuses
 
     def initialize
       @categories = [:notification]

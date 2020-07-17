@@ -16,8 +16,7 @@ module NotificationHandler
   end
 
   class Configuration
-    attr_accessor :groups
-    attr_accessor :cache
+    attr_accessor :cache, :groups
 
     def initialize
       @groups = {}

@@ -10,7 +10,7 @@ require_relative 'support/rails_app/config/environment'
 
 ActiveRecord::Migration.maintain_test_schema!
 ActiveRecord::Schema.verbose = false
-require_relative 'support/rails_app/db/schema.rb'
+require_relative 'support/rails_app/db/schema'
 
 require_relative 'spec_helper'
 

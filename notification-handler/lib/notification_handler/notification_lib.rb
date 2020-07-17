@@ -18,15 +18,9 @@ module NotificationHandler
 
       include NotificationHandler::NotificationLib::InstanceMethods
 
-      if defined?(NotificationRenderer)
-        include NotificationRenderer::NotificationLib
-      end
-      if defined?(NotificationPusher)
-        include NotificationPusher::NotificationLib
-      end
-      if defined?(NotificationSettings)
-        include NotificationSettings::NotificationLib
-      end
+      include NotificationRenderer::NotificationLib if defined?(NotificationRenderer)
+      include NotificationPusher::NotificationLib if defined?(NotificationPusher)
+      include NotificationSettings::NotificationLib if defined?(NotificationSettings)
     end
 
     module ClassMethods
