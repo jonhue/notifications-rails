@@ -14,9 +14,7 @@ module NotificationRenderer
   end
 
   class Configuration
-    attr_accessor :default_type
-    attr_accessor :default_renderer
-    attr_accessor :auto_read
+    attr_accessor :auto_read, :default_renderer, :default_type
 
     def initialize
       @default_type = 'notification'

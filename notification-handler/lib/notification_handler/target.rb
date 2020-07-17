@@ -12,11 +12,7 @@ module NotificationHandler
         include NotificationHandler::Target::InstanceMethods
 
         include NotificationSettings::Target if defined?(NotificationSettings)
-        # rubocop:disable Style/GuardClause
-        if defined?(NotificationSettings)
-          include NotificationSettings::Subscriber
-        end
-        # rubocop:enable Style/GuardClause
+        include NotificationSettings::Subscriber if defined?(NotificationSettings)
       end
     end
 

@@ -29,9 +29,7 @@ module NotificationRendererHelper
                                    group_by_date: false,
                                    group_by_type: false)
     group_by.unshift(:type) if group_by_type
-    if group_by_date
-      group_by.unshift("created_at.beginning_of_#{group_by_date}")
-    end
+    group_by.unshift("created_at.beginning_of_#{group_by_date}") if group_by_date
 
     content_tag :div, class: 'notification-renderer notifications' do
       recursive_notification_grouping(

@@ -19,9 +19,7 @@ module NotificationPusher
     module InstanceMethods
       def deliver(delivery_methods, delivery_options = {})
         return false unless delivery_methods
-        unless delivery_methods.is_a?(Array)
-          return deliver!(delivery_methods, delivery_options)
-        end
+        return deliver!(delivery_methods, delivery_options) unless delivery_methods.is_a?(Array)
 
         delivery_methods.each do |delivery_method|
           deliver(delivery_method,

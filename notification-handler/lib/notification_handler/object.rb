@@ -11,11 +11,7 @@ module NotificationHandler
         has_many :belonging_notifications,
                  as: :object, class_name: 'Notification', dependent: :destroy
 
-        # rubocop:disable Style/GuardClause
-        if defined?(NotificationSettings)
-          include NotificationSettings::Subscribable
-        end
-        # rubocop:enable Style/GuardClause
+        include NotificationSettings::Subscribable if defined?(NotificationSettings)
       end
     end
   end
