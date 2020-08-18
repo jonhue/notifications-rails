@@ -26,6 +26,7 @@ RSpec.describe NotificationSettings::Subscribable do
                                     metadata: { some: 1 })
     end
 
+    # rubocop:disable RSpec/EmptyExampleGroup
     context 'when notification_dependents is present' do
       # rubocop:disable RSpec/NestedGroups
       context 'when overriding dependents: nil' do
@@ -33,5 +34,6 @@ RSpec.describe NotificationSettings::Subscribable do
       end
       # rubocop:enable RSpec/NestedGroups
     end
+    # rubocop:enable RSpec/EmptyExampleGroup
   end
 end
