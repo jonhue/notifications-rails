@@ -16,11 +16,9 @@ module NotificationSettings
         end
       end
 
-      # rubocop:disable Style/OptionalBooleanParameter
       def respond_to_missing?(method, include_private = false)
         super || method.to_s[/(.+)_category/]
       end
-      # rubocop:enable Style/OptionalBooleanParameter
     end
   end
 end
