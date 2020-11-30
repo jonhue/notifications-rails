@@ -36,7 +36,7 @@ RSpec.describe NotificationPusher::NotificationLib do
     end
 
     it 'when no options passed' do
-      expect(NotificationPusher::DeliveryMethodConfiguration)
+      allow(NotificationPusher::DeliveryMethodConfiguration)
         .to receive(:find_by_name!).with(:some_pusher).and_return(some_pusher)
       expect(some_pusher).to receive(:call).with(notification, {})
 
@@ -44,7 +44,7 @@ RSpec.describe NotificationPusher::NotificationLib do
     end
 
     it 'when options passed' do
-      expect(NotificationPusher::DeliveryMethodConfiguration)
+      allow(NotificationPusher::DeliveryMethodConfiguration)
         .to receive(:find_by_name!).with(:some_pusher).and_return(some_pusher)
       expect(some_pusher).to receive(:call).with(notification, some: 1)
 
@@ -52,9 +52,9 @@ RSpec.describe NotificationPusher::NotificationLib do
     end
 
     it 'when multiple pushers with distinct options are specified' do
-      expect(NotificationPusher::DeliveryMethodConfiguration)
+      allow(NotificationPusher::DeliveryMethodConfiguration)
         .to receive(:find_by_name!).with(:some_pusher).and_return(some_pusher)
-      expect(NotificationPusher::DeliveryMethodConfiguration)
+      allow(NotificationPusher::DeliveryMethodConfiguration)
         .to receive(:find_by_name!).with(:other_pusher).and_return(other_pusher)
       expect(some_pusher).to  receive(:call).with(notification, some: 1)
       expect(other_pusher).to receive(:call).with(notification, other: 1)
@@ -68,7 +68,7 @@ RSpec.describe NotificationPusher::NotificationLib do
 
     it 'does not cause duplicate delivery from after_create_commit ' \
        'when called inside a transaction' do
-      expect(NotificationPusher::DeliveryMethod::Null)
+      allow(NotificationPusher::DeliveryMethod::Null)
         .to receive(:new).once.and_call_original
 
       User.transaction do
@@ -82,7 +82,7 @@ RSpec.describe NotificationPusher::NotificationLib do
     let(:notification) { build :notification }
 
     it 'when no options passed' do
-      expect(NotificationPusher::DeliveryMethodConfiguration)
+      allow(NotificationPusher::DeliveryMethodConfiguration)
         .to receive(:find_by_name!).with(:some_pusher).and_return(some_pusher)
       expect(some_pusher).to receive(:call).with(notification, {})
 
@@ -90,7 +90,7 @@ RSpec.describe NotificationPusher::NotificationLib do
     end
 
     it 'when options passed' do
-      expect(NotificationPusher::DeliveryMethodConfiguration)
+      allow(NotificationPusher::DeliveryMethodConfiguration)
         .to receive(:find_by_name!).with(:some_pusher).and_return(some_pusher)
       expect(some_pusher).to receive(:call).with(notification, some: 1)
 
@@ -101,9 +101,9 @@ RSpec.describe NotificationPusher::NotificationLib do
     end
 
     it 'when multiple delivery methods with distinct options are specified' do
-      expect(NotificationPusher::DeliveryMethodConfiguration)
+      allow(NotificationPusher::DeliveryMethodConfiguration)
         .to receive(:find_by_name!).with(:some_pusher).and_return(some_pusher)
-      expect(NotificationPusher::DeliveryMethodConfiguration)
+      allow(NotificationPusher::DeliveryMethodConfiguration)
         .to receive(:find_by_name!).with(:other_pusher).and_return(other_pusher)
       expect(some_pusher).to  receive(:call).with(notification, some: 1)
       expect(other_pusher).to receive(:call).with(notification, other: 1)
@@ -122,7 +122,7 @@ RSpec.describe NotificationPusher::NotificationLib do
     let(:user) { build_stubbed :user }
 
     it 'when no options passed' do
-      expect(NotificationPusher::DeliveryMethodConfiguration)
+      allow(NotificationPusher::DeliveryMethodConfiguration)
         .to receive(:find_by_name!).with(:some_pusher).and_return(some_pusher)
       expect(some_pusher)
         .to receive(:call).with(instance_of(Notification), {})
@@ -131,7 +131,7 @@ RSpec.describe NotificationPusher::NotificationLib do
     end
 
     it 'when options passed' do
-      expect(NotificationPusher::DeliveryMethodConfiguration)
+      allow(NotificationPusher::DeliveryMethodConfiguration)
         .to receive(:find_by_name!).with(:some_pusher).and_return(some_pusher)
       expect(some_pusher)
         .to receive(:call).with(instance_of(Notification), some: 1)
@@ -141,9 +141,9 @@ RSpec.describe NotificationPusher::NotificationLib do
     end
 
     it 'when multiple pushers with distinct options are specified' do
-      expect(NotificationPusher::DeliveryMethodConfiguration)
+      allow(NotificationPusher::DeliveryMethodConfiguration)
         .to receive(:find_by_name!).with(:some_pusher).and_return(some_pusher)
-      expect(NotificationPusher::DeliveryMethodConfiguration)
+      allow(NotificationPusher::DeliveryMethodConfiguration)
         .to receive(:find_by_name!).with(:other_pusher).and_return(other_pusher)
       expect(some_pusher)
         .to receive(:call).with(instance_of(Notification), some: 1)
