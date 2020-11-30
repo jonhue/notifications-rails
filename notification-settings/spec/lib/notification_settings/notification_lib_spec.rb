@@ -96,7 +96,6 @@ RSpec.describe NotificationSettings::NotificationLib do
     end
   end
 
-  # rubocop:disable RSpec/EmptyExampleGroup
   describe 'status' do
     describe 'online' do
       pending
@@ -123,5 +122,4 @@ RSpec.describe NotificationSettings::NotificationLib do
       # rubocop:enable RSpec/NestedGroups
     end
   end
-  # rubocop:enable RSpec/EmptyExampleGroup
 end
