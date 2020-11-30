@@ -23,7 +23,7 @@ jobs:
     - uses: actions/checkout@master
     - uses: actions/setup-ruby@v1.1.2
       with:
-        version: 2.6.x
+        version: 2.7.x
 
     - name: Publish ${{ matrix.package }} to GPR
       run: |
