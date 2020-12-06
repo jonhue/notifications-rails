@@ -7,12 +7,10 @@ Gem::Specification.new do |gem|
   gem.name                  = 'notification-pusher'
   gem.version               = version
   gem.platform              = Gem::Platform::RUBY
-  gem.summary               = 'Push your notifications to various services'
-  gem.description           = 'Push your notifications to various services. '\
-                              'Including Email & OneSignal '\
-                              '(cross-platform notifications).'
+  gem.summary               = 'Deliver your notifications to various services'
+  gem.description           = 'Deliver your notifications to various services.'
   gem.authors               = 'Jonas Hübotter'
-  gem.email                 = 'me@jonhue.me'
+  gem.email                 = 'jonas.huebotter@gmail.com'
   gem.homepage              = 'https://github.com/jonhue/notifications-rails'\
                               '/tree/master/notification-pusher'
   gem.license               = 'MIT'

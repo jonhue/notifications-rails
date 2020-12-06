@@ -1,43 +1,18 @@
-# NotificationRenderer
+# notification-renderer
 
-[![Gem Version](https://badge.fury.io/rb/notification-renderer.svg)](https://badge.fury.io/rb/notification-renderer) ![Travis](https://travis-ci.com/jonhue/notifications-rails.svg?branch=master)
-
-Render your notifications on multiple platforms by specifying notification types.
-
----
-
-## Table of Contents
-
-* [Installation](#installation)
-* [Usage](#usage)
-  * [Types](#types)
-    * [Generating a new type](#generating-a-new-type)
-    * [Using a type](#using-a-type)
-  * [Renderers](#renderers)
-  * [View helpers](#view-helpers)
-    * [`render_notification`](#render_notification)
-    * [`render_notifications`](#render_notifications)
-  * [Grouping](#grouping)
-    * [Grouping by notification types](#grouping-by-notification-types)
-    * [Grouping by notification dates](#grouping-by-notification-dates)
-* [Configuration](#configuration)
-* [To Do](#to-do)
-* [Contributing](#contributing)
-  * [Semantic versioning](#semantic-versioning)
-
----
+Render your notifications in various contexts.
 
 ## Installation
 
-NotificationRenderer works with Rails 5 onwards. You can add it to your `Gemfile` with:
+You can add notification-renderer to your `Gemfile` with:
 
 ```ruby
 gem 'notification-renderer'
 ```
 
-And then execute:
+And then run:
 
-    $ bundle
+    $ bundle install
 
 Or install it yourself as:
 
@@ -51,13 +26,11 @@ To wrap things up, migrate the changes to your database:
 
     $ rails db:migrate
 
----
-
 ## Usage
 
 ### Types
 
-NotificationRenderer uses templates to render your notifications.
+notification-renderer uses templates to render your notifications.
 
 The `type` of a notification determines which template gets utilized for rendering. Each notification type has multiple templates each of which responsible for rendering a notification in another scenario. The default template for a given type is `index`.
 
@@ -116,7 +89,7 @@ In your renderers you can access the `Notification` record through the `notifica
 
 ### View helpers
 
-NotificationRenderer introduces some view helpers to assist you in embedding notifications.
+notification-renderer introduces some view helpers to assist you in embedding notifications.
 
 #### `render_notification`
 
@@ -251,11 +224,9 @@ Accepted values are:
 
 **Note:** If used together with `group_by_type`, notifications will be grouped first by creation date and then by `:type`.
 
----
-
 ## Configuration
 
-You can configure NotificationRenderer by passing a block to `configure`. This can be done in `config/initializers/notification-renderer.rb`:
+You can configure notification-renderer by passing a block to `configure`. This can be done in `config/initializers/notification-renderer.rb`:
 
 ```ruby
 NotificationRenderer.configure do |config|
@@ -268,23 +239,3 @@ end
 **`default_renderer`** Choose your default renderer. Takes a string. Defaults to `'index'`.
 
 **`auto_read`** Automatically mark rendered notifications as read. Takes a boolean. Defaults to `true`.
-
----
-
-## To Do
-
-We use [GitHub projects](https://github.com/jonhue/notifications-rails/projects/7) to coordinate the work on this project.
-
-To propose your ideas, initiate the discussion by adding a [new issue](https://github.com/jonhue/notifications-rails/issues/new).
-
----
-
-## Contributing
-
-We hope that you will consider contributing to NotificationRenderer. Please read this short overview for some information about how to get started:
-
-[Learn more about contributing to this repository](https://github.com/jonhue/notifications-rails/blob/master/CONTRIBUTING.md), [Code of Conduct](https://github.com/jonhue/notifications-rails/blob/master/CODE_OF_CONDUCT.md)
-
-### Semantic Versioning
-
-NotificationRenderer follows Semantic Versioning 2.0 as defined at http://semver.org.
