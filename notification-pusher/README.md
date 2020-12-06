@@ -1,36 +1,18 @@
-# NotificationPusher
+# notification-pusher
 
-[![Gem Version](https://badge.fury.io/rb/notification-pusher.svg)](https://badge.fury.io/rb/notification-pusher) ![Travis](https://travis-ci.com/jonhue/notifications-rails.svg?branch=master)
-
-Deliver your notifications through various services. Including Email delivery & OneSignal (cross-platform notification delivery).
-
----
-
-## Table of Contents
-
-* [Installation](#installation)
-* [Usage](#usage)
-  * [Delivery methods](#delivery-methods)
-    * [Defining a delivery method](#defining-a-delivery-method)
-    * [Using a delivery method](#using-a-delivery-method)
-  * [Writing a custom delivery method](#writing-a-custom-delivery-method)
-* [To Do](#to-do)
-* [Contributing](#contributing)
-  * [Semantic versioning](#semantic-versioning)
-
----
+Deliver your notifications to various services, including [Email](notification-pusher-actionmailer) and [OneSignal](notification-pusher-onesignal).
 
 ## Installation
 
-NotificationPusher works with Rails 5 onwards. You can add it to your `Gemfile` with:
+You can add notification-pusher to your `Gemfile` with:
 
 ```ruby
 gem 'notification-pusher'
 ```
 
-And then execute:
+And then run:
 
-    $ bundle
+    $ bundle install
 
 Or install it yourself as:
 
@@ -43,8 +25,6 @@ Now run the generator:
 To wrap things up, migrate the changes to your database:
 
     $ rails db:migrate
-
----
 
 ## Usage
 
@@ -119,23 +99,3 @@ notification.deliver(:custom, option_one: 'value_two')
 ```
 
 For further reference take a look at the default [ActionMailer](notification-pusher-actionmailer) and [OneSignal](notification-pusher-onesignal) delivery methods.
-
----
-
-## To Do
-
-We use [GitHub projects](https://github.com/jonhue/notifications-rails/projects/3) to coordinate the work on this project.
-
-To propose your ideas, initiate the discussion by adding a [new issue](https://github.com/jonhue/notifications-rails/issues/new).
-
----
-
-## Contributing
-
-We hope that you will consider contributing to NotificationPusher. Please read this short overview for some information about how to get started:
-
-[Learn more about contributing to this repository](https://github.com/jonhue/notifications-rails/blob/master/CONTRIBUTING.md), [Code of Conduct](https://github.com/jonhue/notifications-rails/blob/master/CODE_OF_CONDUCT.md)
-
-### Semantic Versioning
-
-NotificationPusher follows Semantic Versioning 2.0 as defined at http://semver.org.

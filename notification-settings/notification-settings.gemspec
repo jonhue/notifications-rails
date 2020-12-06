@@ -14,7 +14,7 @@ Gem::Specification.new do |gem|
                               'to craft a personalized user notification '\
                               'platform.'
   gem.authors               = 'Jonas Hübotter'
-  gem.email                 = 'me@jonhue.me'
+  gem.email                 = 'jonas.huebotter@gmail.com'
   gem.homepage              = 'https://github.com/jonhue/notifications-rails'\
                               '/tree/master/notification-settings'
   gem.license               = 'MIT'

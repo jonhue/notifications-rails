@@ -1,50 +1,32 @@
-# Notifications Rails
+# notifications-rails
 
-The most powerful notification solution for Rails. Notifications Rails simplifies the handling, rendering, user-integration and cross-platform pushing of notifications through its simple API.
-
----
-
-## Table of Contents
-
-- [Notifications Rails](#notifications-rails)
-  - [Table of Contents](#table-of-contents)
-  - [Philosophy](#philosophy)
-  - [Installation](#installation)
-  - [Testing](#testing)
-  - [Release](#release)
-  - [To do](#to-do)
-  - [Contributing](#contributing)
-    - [Semantic Versioning](#semantic-versioning)
-
----
+notifications-rails is the most powerful notification library for Rails. It offers not only simple APIs to create and render notifications but also supports user-integration and cross-platform delivery of notifications.
 
 ## Philosophy
 
-Notifications Rails has been built with modularity in mind. It currently consists of four components each of which bringing one essential functionality to the notification-integration in your Rails app.
+notifications-rails has been built with modularity in mind. It currently consists of four components each of which bringing one essential functionality to the integration of notifications in your Rails app.
 
-**[NotificationHandler](notification-handler):** Create and modify your notifications through a simple API.
+**[notification-handler](notification-handler):** Create and modify your notifications through a simple API.
 
-**[NotificationRenderer](notification-renderer):** Render your notifications on multiple platforms by specifying notification types.
+**[notification-renderer](notification-renderer):** Render your notifications in various contexts.
 
-**[NotificationPusher](notification-pusher):** Push your notifications to various services. Including [Email](notification-pusher/notification-pusher-actionmailer) & [OneSignal](notification-pusher/notification-pusher-onesignal).
+**[notification-pusher](notification-pusher):** Deliver your notifications to various services, including [Email](notification-pusher/notification-pusher-actionmailer) and [OneSignal](notification-pusher/notification-pusher-onesignal).
 
-**[NotificationSettings](notification-settings):** Integrates with your authentication solution to craft a personalized user notification platform.
+**[notification-settings](notification-settings):** Integrates with your authentication solution to craft a personalized user notification platform.
 
-You may just add the components you actually need, or instead use this gem to bundle everything for a complete notification solution.
-
----
+You may just use the components you actually need, or instead use this gem to bundle everything for a complete notification solution.
 
 ## Installation
 
-Notifications Rails works with Rails 5 onwards. You can add it to your `Gemfile` with:
+You can add notifications-rails to your `Gemfile` with:
 
 ```ruby
 gem 'notifications-rails'
 ```
 
-And then execute:
+And then run:
 
-    $ bundle
+    $ bundle install
 
 Or install it yourself as:
 
@@ -56,53 +38,47 @@ If you always want to be up to date fetch the latest from GitHub in your `Gemfil
 gem 'notifications-rails', github: 'jonhue/notifications-rails'
 ```
 
----
+## Usage
 
-## Testing
+Details on usage are provided in the [documentation](#philosophy) of the specific modules.
+
+## Development
+
+To start development you first have to fork this repository and locally clone your fork.
+
+Install the projects dependencies by running:
+
+    $ bundle install
+
+### Testing
 
 Tests are written with RSpec. Integration tests are located in `/spec`, unit tests can be found in `<module>/spec`.
 
-1. Fork this repository
-2. Clone your forked git locally
-3. Install dependencies
+To run all tests:
 
-    `$ bundle install`
+    $ ./rspec
 
-4. Run tests
+To run RuboCop:
 
-    `$ ./rspec`
+    $ bundle exec rubocop
 
-5. Run RuboCop
-
-    `$ bundle exec rubocop`
-
----
-
-## Release
-
-1. Review breaking changes and deprecations in CHANGELOG.md
-2. Change the gem version [here](VERSION)
-3. Reset CHANGELOG.md
-4. Create a pull request to merge the changes into `master`
-5. After the pull request was merged, create a new release listing the breaking changes and commits on `master` since the last release.
-6. The release workflow will publish the gems to RubyGems
-
----
-
-## To do
-
-We use [GitHub projects](https://github.com/jonhue/notifications-rails/projects/9) to coordinate the work on this project.
-
-To propose your ideas, initiate the discussion by adding a [new issue](https://github.com/jonhue/notifications-rails/issues/new).
-
----
+You can find all commands run by the CI workflow in `.github/workflows/ci.yml`.
 
 ## Contributing
 
-We hope that you will consider contributing to Notifications Rails. Please read this short overview for some information about how to get started:
+We warmly welcome everyone who is intersted in contributing. Please reference our [contributing guidelines](CONTRIBUTING.md) and our [Code of Conduct](CODE_OF_CONDUCT.md).
 
-[Learn more about contributing to this repository](CONTRIBUTING.md), [Code of Conduct](CODE_OF_CONDUCT.md)
+## Releases
 
-### Semantic Versioning
+[Here](https://github.com/jonhue/notifications-rails/releases) you can find details on all past releases. Unreleased breaking changes that are on the current master can be found [here](CHANGELOG.md).
 
-Notifications Rails follows Semantic Versioning 2.0 as defined at http://semver.org.
+notifications-rails follows Semantic Versioning 2.0 as defined at http://semver.org. Reference our [security policy](SECURITY.md).
+
+### Publishing
+
+1. Review breaking changes and deprecations in `CHANGELOG.md`.
+1. Change the gem version in `VERSION`.
+1. Reset `CHANGELOG.md`.
+1. Create a pull request to merge the changes into `master`.
+1. After the pull request was merged, create a new release listing the breaking changes and commits on `master` since the last release.
+1. The release workflow will publish the gems to RubyGems.
