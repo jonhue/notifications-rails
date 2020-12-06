@@ -70,7 +70,7 @@ We warmly welcome everyone who is intersted in contributing. Please reference ou
 
 ## Releases
 
-[Here]() you can find details on all past releases. Unreleased breaking changes that are on the current master can be found [here](CHANGELOG.md).
+[Here](https://github.com/jonhue/notifications-rails/releases) you can find details on all past releases. Unreleased breaking changes that are on the current master can be found [here](CHANGELOG.md).
 
 notifications-rails follows Semantic Versioning 2.0 as defined at http://semver.org. Reference our [security policy](SECURITY.md).
 
