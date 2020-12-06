@@ -1,41 +1,18 @@
-# NotificationSettings
-
-[![Gem Version](https://badge.fury.io/rb/notification-settings.svg)](https://badge.fury.io/rb/notification-settings) ![Travis](https://travis-ci.com/jonhue/notifications-rails.svg?branch=master)
+# notification-settings
 
 Integrates with your authentication solution to craft a personalized user notification platform.
 
----
-
-## Table of Contents
-
-* [Installation](#installation)
-* [Usage](#usage)
-  * [Categories](#categories)
-  * [Settings](#settings)
-    * [Category-specific settings](#category-specific-settings)
-    * [Pusher-specific settings](#pusher-specific-settings)
-    * [Updating settings](#updating-settings)
-  * [Subscriptions](#subscriptions)
-  * [Status](#status)
-* [Configuration](#configuration)
-  * [Status](#status)
-* [To Do](#to-do)
-* [Contributing](#contributing)
-  * [Semantic versioning](#semantic-versioning)
-
----
-
 ## Installation
 
-NotificationSettings works with Rails 5 onwards. You can add it to your `Gemfile` with:
+You can add notification-settings to your `Gemfile` with:
 
 ```ruby
 gem 'notification-settings'
 ```
 
-And then execute:
+And then run:
 
-    $ bundle
+    $ bundle install
 
 Or install it yourself as:
 
@@ -49,8 +26,6 @@ Now run the generator:
 To wrap things up, migrate the changes to your database:
 
     $ rails db:migrate
-
----
 
 ## Usage
 
@@ -74,7 +49,7 @@ add_column :users, :status, :string
 
 ### Categories
 
-NotificationSettings uses categories to allow your notification targets to define specific preferences. This is how you are able to specify the `category` of a `Notification` record:
+notification-settings uses categories to allow your notification targets to define specific preferences. This is how you are able to specify the `category` of a `Notification` record:
 
 ```ruby
 notification = Notification.create(target: User.first, object: Recipe.first, category: :notification)
@@ -126,7 +101,7 @@ settings.categories!.category!.delivery_methods!.email!.enabled = false # Preven
 
 #### Form objects
 
-NotificationSettings comes with three form objects that simplify building forms for updating settings.
+notification-settings comes with three form objects that simplify building forms for updating settings.
 
 ##### PreferencesForm
 
@@ -242,7 +217,7 @@ has_many :subscribed_users, through: :notification_subscribers, source: :subscri
 
 ### Status
 
-NotificationSettings comes with a handy feature called Status. The status of a record can temporarily disable the ability to create notifications for or to push notifications of a target.
+notification-settings comes with a handy feature called Status. The status of a record can temporarily disable the ability to create notifications for or to push notifications of a target.
 
 This is how to define a status:
 
@@ -265,11 +240,9 @@ NotificationSettings.configure do |config|
 end
 ```
 
----
-
 ## Configuration
 
-You can configure NotificationSettings by passing a block to `configure`. This can be done in `config/initializers/notification-settings.rb`:
+You can configure notification-settings by passing a block to `configure`. This can be done in `config/initializers/notification-settings.rb`:
 
 ```ruby
 NotificationSettings.configure do |config|
@@ -294,23 +267,3 @@ end
 **`do_not_notify_statuses`** Array of possible statuses that will prevent creating notifications for a target. Takes an array of strings. Defaults to `['do not notify']`.
 
 **`do_not_deliver_statuses`** Array of possible statuses that will prevent delivering notifications of a target. Takes an array of strings. Defaults to `['do not disturb']`
-
----
-
-## To Do
-
-We use [GitHub projects](https://github.com/jonhue/notifications-rails/projects/4) to coordinate the work on this project.
-
-To propose your ideas, initiate the discussion by adding a [new issue](https://github.com/jonhue/notifications-rails/issues/new).
-
----
-
-## Contributing
-
-We hope that you will consider contributing to NotificationSettings. Please read this short overview for some information about how to get started:
-
-[Learn more about contributing to this repository](https://github.com/jonhue/notifications-rails/blob/master/CONTRIBUTING.md), [Code of Conduct](https://github.com/jonhue/notifications-rails/blob/master/CODE_OF_CONDUCT.md)
-
-### Semantic Versioning
-
-NotificationSettings follows Semantic Versioning 2.0 as defined at http://semver.org.

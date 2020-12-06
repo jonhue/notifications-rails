@@ -1,39 +1,22 @@
-# NotificationPusher for OneSignal
+# notification-pusher-onesignal
 
-[![Gem Version](https://badge.fury.io/rb/notification-pusher-onesignal.svg)](https://badge.fury.io/rb/notification-pusher-onesignal) ![Travis](https://travis-ci.com/jonhue/notifications-rails.svg?branch=master)
-
-A pusher to send cross-platform notifications with OneSignal.
-
----
-
-## Table of Contents
-
-* [Installation](#installation)
-* [Usage](#usage)
-  * [Options](#options)
-* [To Do](#to-do)
-* [Contributing](#contributing)
-  * [Semantic versioning](#semantic-versioning)
-
----
+A delivery method to send your notifications to devices on all platforms with [notification-pusher](..) and OneSignal.
 
 ## Installation
 
-NotificationPusher for OneSignal works with Rails 5 onwards. You can add it to your `Gemfile` with:
+You can add notification-pusher-onesignal to your `Gemfile` with:
 
 ```ruby
 gem 'notification-pusher-onesignal'
 ```
 
-And then execute:
+And then run:
 
-    $ bundle
+    $ bundle install
 
 Or install it yourself as:
 
     $ gem install notification-pusher-onesignal
-
----
 
 ## Usage
 
@@ -71,7 +54,6 @@ notification.save!
 notification.deliver(:one_signal, player_ids: notification.target.onesignal_player_ids)
 ```
 
-
 ### Options
 
 **`app_id` (required)** OneSignal App ID. Takes a string.
@@ -87,23 +69,3 @@ notification.deliver(:one_signal, player_ids: notification.target.onesignal_play
 **`headings`** Globalized header of the notification. Takes a hash with languages as keys and strings as values.
 
 **`subtitle`** Globalized subtitle of the notification. Takes a hash with languages as keys and strings as values.
-
----
-
-## To Do
-
-We use [GitHub projects](https://github.com/jonhue/notifications-rails/projects/7) to coordinate the work on this project.
-
-To propose your ideas, initiate the discussion by adding a [new issue](https://github.com/jonhue/notifications-rails/issues/new).
-
----
-
-## Contributing
-
-We hope that you will consider contributing to NotificationPusher for OneSignal. Please read this short overview for some information about how to get started:
-
-[Learn more about contributing to this repository](https://github.com/jonhue/notifications-rails/blob/master/CONTRIBUTING.md), [Code of Conduct](https://github.com/jonhue/notifications-rails/blob/master/CODE_OF_CONDUCT.md)
-
-### Semantic Versioning
-
-NotificationPusher for OneSignal follows Semantic Versioning 2.0 as defined at http://semver.org.

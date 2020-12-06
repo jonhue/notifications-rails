@@ -1,39 +1,22 @@
-# NotificationPusher for ActionMailer
+# notification-pusher-actionmailer
 
-[![Gem Version](https://badge.fury.io/rb/notification-pusher-actionmailer.svg)](https://badge.fury.io/rb/notification-pusher-actionmailer) ![Travis](https://travis-ci.com/jonhue/notifications-rails.svg?branch=master)
-
-A pusher to send your notifications via email utilizing ActionMailer.
-
----
-
-## Table of Contents
-
-* [Installation](#installation)
-* [Usage](#usage)
-  * [Options](#options)
-* [To Do](#to-do)
-* [Contributing](#contributing)
-  * [Semantic versioning](#semantic-versioning)
-
----
+A delivery method to send your notifications with [notification-pusher](..) via email using ActionMailer.
 
 ## Installation
 
-NotificationPusher for ActionMailer works with Rails 5 onwards. You can add it to your `Gemfile` with:
+You can add notification-pusher-actionmailer to your `Gemfile` with:
 
 ```ruby
 gem 'notification-pusher-actionmailer'
 ```
 
-And then execute:
+And then run:
 
-    $ bundle
+    $ bundle install
 
 Or install it yourself as:
 
     $ gem install notification-pusher-actionmailer
-
----
 
 ## Usage
 
@@ -94,23 +77,3 @@ notification.deliver(:email, to: 'another@email.com', mailer: MyCustomMailer, ac
 **`action`** ActionMailer action. Takes a symbol. Defaults to `:push`.
 
 **`deliver_method`** ActionMailer deliver_method (e.g. `:deliver_later`). Takes a symbol. Defaults to `:deliver`.
-
----
-
-## To Do
-
-We use [GitHub projects](https://github.com/jonhue/notifications-rails/projects/6) to coordinate the work on this project.
-
-To propose your ideas, initiate the discussion by adding a [new issue](https://github.com/jonhue/notifications-rails/issues/new).
-
----
-
-## Contributing
-
-We hope that you will consider contributing to NotificationPusher for ActionMailer. Please read this short overview for some information about how to get started:
-
-[Learn more about contributing to this repository](https://github.com/jonhue/notifications-rails/blob/master/CONTRIBUTING.md), [Code of Conduct](https://github.com/jonhue/notifications-rails/blob/master/CODE_OF_CONDUCT.md)
-
-### Semantic Versioning
-
-NotificationPusher for ActionMailer follows Semantic Versioning 2.0 as defined at http://semver.org.

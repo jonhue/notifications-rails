@@ -1,40 +1,18 @@
-# NotificationHandler
-
-[![Gem Version](https://badge.fury.io/rb/notification-handler.svg)](https://badge.fury.io/rb/notification-handler) ![Travis](https://travis-ci.com/jonhue/notifications-rails.svg?branch=master)
+# notification-handler
 
 Create and modify your notifications through a simple API.
 
----
-
-## Table of Contents
-
-* [Installation](#installation)
-* [Usage](#usage)
-  * [`Notification` API](#notification-api)
-  * [`notification_target`](#notification_target)
-  * [`notification_object`](#notification_object)
-  * [Groups](#groups)
-    * [Defining a group](#defining-a-group)
-    * [Using a group](#using-a-group)
-  * [Caching](#caching)
-* [Configuration](#configuration)
-* [To Do](#to-do)
-* [Contributing](#contributing)
-  * [Semantic versioning](#semantic-versioning)
-
----
-
 ## Installation
 
-NotificationHandler works with Rails 5 onwards. You can add it to your `Gemfile` with:
+You can add notification-handler to your `Gemfile` with:
 
 ```ruby
 gem 'notification-handler'
 ```
 
-And then execute:
+And then run:
 
-    $ bundle
+    $ bundle install
 
 Or install it yourself as:
 
@@ -47,8 +25,6 @@ Now run the generator:
 To wrap things up, migrate the changes to your database:
 
     $ rails db:migrate
-
----
 
 ## Usage
 
@@ -191,11 +167,9 @@ add_column :user, :read_notification_count, :integer
 add_column :user, :unread_notification_count, :integer
 ```
 
----
-
 ## Configuration
 
-You can configure NotificationHandler by passing a block to `configure`. This can be done in `config/initializers/notification-handler.rb`:
+You can configure notification-handler by passing a block to `configure`. This can be done in `config/initializers/notification-handler.rb`:
 
 ```ruby
 NotificationHandler.configure do |config|
@@ -204,23 +178,3 @@ end
 ```
 
 **`cache`** Cache amount of unread and read notifications for notification targets. Takes a boolean. Defaults to `false`.
-
----
-
-## To Do
-
-We use [GitHub projects](https://github.com/jonhue/notifications-rails/projects/2) to coordinate the work on this project.
-
-To propose your ideas, initiate the discussion by adding a [new issue](https://github.com/jonhue/notifications-rails/issues/new).
-
----
-
-## Contributing
-
-We hope that you will consider contributing to NotificationHandler. Please read this short overview for some information about how to get started:
-
-[Learn more about contributing to this repository](https://github.com/jonhue/notifications-rails/blob/master/CONTRIBUTING.md), [Code of Conduct](https://github.com/jonhue/notifications-rails/blob/master/CODE_OF_CONDUCT.md)
-
-### Semantic Versioning
-
-NotificationHandler follows Semantic Versioning 2.0 as defined at http://semver.org.

@@ -7,15 +7,17 @@ Gem::Specification.new do |gem|
   gem.name                  = 'notifications-rails'
   gem.version               = version
   gem.platform              = Gem::Platform::RUBY
-  gem.summary               = 'The most powerful (cross-platform) '\
-                              'notifications handler & pusher API for Rails'
-  gem.description           = 'The most powerful notification solution for '\
-                              'Rails. Notifications Rails simplifies the '\
-                              'handling, rendering, user-integration and '\
-                              'cross-platform pushing of notifications '\
-                              'through its simple API.'
+  gem.summary               = 'The most powerful library for the handling and '\
+                              '(cross-platform) delivery of notifications '\
+                              'with Rails'
+  gem.description           = 'notifications-rails is the most powerful '\
+                              'notification library for Rails. It offers not '\
+                              'only simple APIs to create and render '\
+                              'notifications but also supports '\
+                              'user-integration and cross-platform delivery '\
+                              'of notifications.'
   gem.authors               = 'Jonas Hübotter'
-  gem.email                 = 'me@jonhue.me'
+  gem.email                 = 'jonas.huebotter@gmail.com'
   gem.homepage              = 'https://github.com/jonhue/notifications-rails'
   gem.license               = 'MIT'
 

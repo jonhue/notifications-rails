@@ -7,12 +7,12 @@ Gem::Specification.new do |gem|
   gem.name                  = 'notification-pusher-onesignal'
   gem.version               = version
   gem.platform              = Gem::Platform::RUBY
-  gem.summary               = 'A pusher to send cross-platform notifications '\
-                              'with OneSignal'
-  gem.description           = 'A pusher to send cross-platform notifications '\
-                              'with OneSignal.'
+  gem.summary               = 'A delivery method to send your notifications '\
+                              'to devices on all platforms with OneSignal'
+  gem.description           = 'A delivery method to send your notifications '\
+                              'to devices on all platforms with OneSignal.'
   gem.authors               = 'Jonas Hübotter'
-  gem.email                 = 'me@jonhue.me'
+  gem.email                 = 'jonas.huebotter@gmail.com'
   gem.homepage              = 'https://github.com/jonhue/notifications-rails'\
                               '/tree/master/notification-pusher'\
                               '/notification-pusher-onesignal'

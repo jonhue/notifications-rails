@@ -12,7 +12,7 @@ Gem::Specification.new do |gem|
   gem.description           = 'Create and modify your notifications through a '\
                               'simple API.'
   gem.authors               = 'Jonas Hübotter'
-  gem.email                 = 'me@jonhue.me'
+  gem.email                 = 'jonas.huebotter@gmail.com'
   gem.homepage              = 'https://github.com/jonhue/notifications-rails'\
                               '/tree/master/notification-handler'
   gem.license               = 'MIT'
