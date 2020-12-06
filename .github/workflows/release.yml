@@ -19,25 +19,14 @@ jobs:
         - 'notification-settings/*'
         - '*'
 
+    name: Publish ${{ matrix.package }}
     steps:
     - uses: actions/checkout@master
     - uses: actions/setup-ruby@v1.1.2
       with:
         version: 2.7.x
 
-    - name: Publish ${{ matrix.package }} to GPR
-      run: |
-        mkdir -p $HOME/.gem
-        touch $HOME/.gem/credentials
-        chmod 0600 $HOME/.gem/credentials
-        printf -- "---\n:github: Bearer ${GEM_HOST_API_KEY}\n" > $HOME/.gem/credentials
-        gem build ${{ matrix.package }}.gemspec
-        gem push --KEY github --host https://rubygems.pkg.github.com/${OWNER} ${{ matrix.package }}.gem
-      env:
-        GEM_HOST_API_KEY: ${{secrets.GPR_AUTH_TOKEN}}
-        OWNER: jonhue
-
-    - name: Publish ${{ matrix.package }} to RubyGems
+    - name: Publish to RubyGems
       run: |
         mkdir -p $HOME/.gem
         touch $HOME/.gem/credentials

@@ -81,4 +81,4 @@ notifications-rails follows Semantic Versioning 2.0 as defined at http://semver.
 1. Reset `CHANGELOG.md`.
 1. Create a pull request to merge the changes into `master`.
 1. After the pull request was merged, create a new release listing the breaking changes and commits on `master` since the last release.
-2. The release workflow will publish the gems to RubyGems.
+1. The release workflow will publish the gems to RubyGems.
