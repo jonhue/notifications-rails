@@ -6,13 +6,15 @@ The most powerful notification solution for Rails. Notifications Rails simplifie
 
 ## Table of Contents
 
-* [Philosophy](#philosophy)
-* [Installation](#installation)
-* [Testing](#testing)
-* [Release](#release)
-* [To do](#to-do)
-* [Contributing](#contributing)
-  * [Semantic versioning](#semantic-versioning)
+- [Notifications Rails](#notifications-rails)
+  - [Table of Contents](#table-of-contents)
+  - [Philosophy](#philosophy)
+  - [Installation](#installation)
+  - [Testing](#testing)
+  - [Release](#release)
+  - [To do](#to-do)
+  - [Contributing](#contributing)
+    - [Semantic Versioning](#semantic-versioning)
 
 ---
 
@@ -83,7 +85,7 @@ Tests are written with RSpec. Integration tests are located in `/spec`, unit tes
 3. Reset CHANGELOG.md
 4. Create a pull request to merge the changes into `master`
 5. After the pull request was merged, create a new release listing the breaking changes and commits on `master` since the last release.
-6. The release workflow will publish the gems to RubyGems and the GitHub Package Registry
+6. The release workflow will publish the gems to RubyGems
 
 ---
 
