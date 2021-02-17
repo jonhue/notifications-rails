@@ -1,11 +1,30 @@
 PATH
   remote: .
   specs:
-    notifications-rails (3.0.2)
-      notification-handler (= 3.0.2)
-      notification-pusher (= 3.0.2)
-      notification-renderer (= 3.0.2)
-      notification-settings (= 3.0.2)
+    notification-handler (3.0.3)
+      activerecord (>= 5.0)
+      activesupport (>= 5.0)
+      railties (>= 5.0)
+    notification-pusher (3.0.3)
+      activesupport (>= 5.0)
+      notification-handler (= 3.0.3)
+    notification-renderer (3.0.3)
+      actionview (>= 5.0)
+      activesupport (>= 5.0)
+      notification-handler (= 3.0.3)
+      railties (>= 5.0)
+    notification-settings (3.0.3)
+      activemodel (>= 5.0)
+      activerecord (>= 5.0)
+      activesupport (>= 5.0)
+      hashie (>= 3.6, < 5.0)
+      notification-handler (= 3.0.3)
+      railties (>= 5.0)
+    notifications-rails (3.0.3)
+      notification-handler (= 3.0.3)
+      notification-pusher (= 3.0.3)
+      notification-renderer (= 3.0.3)
+      notification-settings (= 3.0.3)
 
 GEM
   remote: https://rubygems.org/
@@ -80,7 +99,7 @@ GEM
       activesupport (>= 5.0.0)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
-    hashie (3.6.0)
+    hashie (4.1.0)
     i18n (1.8.8)
       concurrent-ruby (~> 1.0)
     loofah (2.9.0)
@@ -99,25 +118,6 @@ GEM
     nokogiri (1.11.1)
       mini_portile2 (~> 2.5.0)
       racc (~> 1.4)
-    notification-handler (3.0.2)
-      activerecord (>= 5.0)
-      activesupport (>= 5.0)
-      railties (>= 5.0)
-    notification-pusher (3.0.2)
-      activesupport (>= 5.0)
-      notification-handler (= 3.0.2)
-    notification-renderer (3.0.2)
-      actionview (>= 5.0)
-      activesupport (>= 5.0)
-      notification-handler (= 3.0.2)
-      railties (>= 5.0)
-    notification-settings (3.0.2)
-      activemodel (>= 5.0)
-      activerecord (>= 5.0)
-      activesupport (>= 5.0)
-      hashie (~> 3.6)
-      notification-handler (= 3.0.2)
-      railties (>= 5.0)
     parallel (1.19.2)
     parser (2.7.2.0)
       ast (~> 2.4.1)
@@ -221,4 +221,4 @@ DEPENDENCIES
   sqlite3
 
 BUNDLED WITH
-   2.0.1
+   2.2.3
