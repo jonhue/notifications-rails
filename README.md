@@ -1,6 +1,6 @@
 # notifications-rails
 
-notifications-rails is the most powerful notification library for Rails. It offers not only simple APIs to create and render notifications but also supports user-integration and cross-platform delivery of notifications.
+A flexible notification library supporting the delivery to external services, rendering in various environments, and user configuration by category.
 
 ## Philosophy
 
