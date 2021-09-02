@@ -101,7 +101,7 @@ GEM
     notification-pusher (3.0.3)
       activesupport (>= 5.0)
       notification-handler (= 3.0.3)
-    one_signal (1.2.0)
+    one_signal (1.2.1)
     parallel (1.20.1)
     parser (3.0.2.0)
       ast (~> 2.4.1)
