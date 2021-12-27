@@ -170,7 +170,7 @@ GEM
       unicode-display_width (>= 1.4.0, < 3.0)
     rubocop-ast (1.15.0)
       parser (>= 3.0.1.1)
-    rubocop-rspec (2.6.0)
+    rubocop-rspec (2.7.0)
       rubocop (~> 1.19)
     ruby-progressbar (1.11.0)
     sprockets (4.0.2)
