@@ -109,7 +109,7 @@ GEM
     public_suffix (3.0.3)
     puma (4.3.9)
       nio4r (~> 2.0)
-    rack (2.0.7)
+    rack (2.2.3)
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
     rails (5.2.3)
