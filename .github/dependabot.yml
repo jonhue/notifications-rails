@@ -14,11 +14,23 @@ updates:
     schedule:
       interval: "daily"
   - package-ecosystem: "bundler"
+    directory: "/spec/support/rails_app"
+    schedule:
+      interval: "daily"
+  - package-ecosystem: "bundler"
     directory: "/notification-handler"
     schedule:
       interval: "daily"
   - package-ecosystem: "bundler"
+    directory: "/notification-handler/spec/support/rails_app"
+    schedule:
+      interval: "daily"
+  - package-ecosystem: "bundler"
     directory: "/notification-pusher"
+    schedule:
+      interval: "daily"
+  - package-ecosystem: "bundler"
+    directory: "/notification-pusher/spec/support/rails_app"
     schedule:
       interval: "daily"
   - package-ecosystem: "bundler"
@@ -34,6 +46,14 @@ updates:
     schedule:
       interval: "daily"
   - package-ecosystem: "bundler"
+    directory: "/notification-renderer/spec/support/rails_app"
+    schedule:
+      interval: "daily"
+  - package-ecosystem: "bundler"
     directory: "/notification-settings"
+    schedule:
+      interval: "daily"
+  - package-ecosystem: "bundler"
+    directory: "/notification-settings/spec/support/rails_app"
     schedule:
       interval: "daily"

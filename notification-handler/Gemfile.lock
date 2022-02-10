@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    notification-handler (2.0.0)
+    notification-handler (3.0.3)
       activerecord (>= 5.0)
       activesupport (>= 5.0)
       railties (>= 5.0)
@@ -79,7 +79,7 @@ GEM
       activesupport (>= 5.0.0)
     globalid (1.0.0)
       activesupport (>= 5.0)
-    i18n (1.9.0)
+    i18n (1.9.1)
       concurrent-ruby (~> 1.0)
     loofah (2.13.0)
       crass (~> 1.0.2)
@@ -198,4 +198,4 @@ DEPENDENCIES
   sqlite3
 
 BUNDLED WITH
-   2.0.1
+   2.2.3
