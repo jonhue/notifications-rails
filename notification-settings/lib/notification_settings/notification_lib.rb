@@ -53,7 +53,7 @@ module NotificationSettings
       end
 
       def status_allows_creation?
-        !do_not_notify_statuses.include?(target.status)
+        do_not_notify_statuses.exclude?(target.status)
       end
 
       def settings_allow_creation?
@@ -79,7 +79,7 @@ module NotificationSettings
       end
 
       def status_allows_delivery?
-        !do_not_deliver_statuses.include?(target.status)
+        do_not_deliver_statuses.exclude?(target.status)
       end
 
       def settings_allow_delivery?(delivery_method)

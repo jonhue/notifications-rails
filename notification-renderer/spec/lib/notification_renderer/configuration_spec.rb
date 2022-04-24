@@ -15,6 +15,6 @@ RSpec.describe NotificationRenderer::Configuration do
 
     expect(configuration.default_type).to     eq 'message'
     expect(configuration.default_renderer).to eq 'admin'
-    expect(configuration.auto_read).to        eq false
+    expect(configuration.auto_read).to        be false
   end
 end

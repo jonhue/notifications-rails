@@ -19,7 +19,7 @@ module NotificationRenderer
                  aliases: '-r'
 
     def create_templates
-      options[:renderers].split(' ')&.each do |template|
+      options[:renderers].split&.each do |template|
         template(
           '_template.html',
           "app/views/notifications/#{options[:type]}/_#{template}.html.erb"

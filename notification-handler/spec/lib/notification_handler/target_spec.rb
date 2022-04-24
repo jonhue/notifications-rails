@@ -12,8 +12,8 @@ RSpec.describe NotificationHandler::Target do
 
     it 'creates a Notification record' do
       notification = user.notify
-      expect(notification.valid?).to     eq true
-      expect(notification.persisted?).to eq true
+      expect(notification.valid?).to     be true
+      expect(notification.persisted?).to be true
       expect(user.notifications).to      include notification
     end
   end

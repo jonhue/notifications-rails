@@ -14,48 +14,48 @@ RSpec.describe NotificationSettings::NotificationLib do
       user.settings.enabled = true
       user.save
 
-      expect(user.reload.settings.enabled?).to eq true
+      expect(user.reload.settings.enabled?).to be true
     end
   end
 
   it 'requires a target' do
     notification = Notification.new
-    expect(notification.valid?).to eq false
+    expect(notification.valid?).to be false
     expect(notification.errors[:target])
       .to eq ['must exist']
-    expect(notification.save).to eq false
-    expect(notification.persisted?).to eq false
+    expect(notification.save).to be false
+    expect(notification.persisted?).to be false
 
     notification.target = user
     notification.save
-    expect(notification.persisted?).to eq true
+    expect(notification.persisted?).to be true
   end
 
   describe 'global settings' do
     it 'is enabled by default' do
-      expect(settings.enabled).to eq nil
-      expect(notification.creation_allowed?).to eq true
-      expect(user.notify.persisted?).to eq true
+      expect(settings.enabled).to be_nil
+      expect(notification.creation_allowed?).to be true
+      expect(user.notify.persisted?).to be true
     end
 
     it 'can be disabled' do
       settings.enabled = false
-      expect(notification.creation_allowed?).to eq false
-      expect(user.notify.persisted?).to eq false
+      expect(notification.creation_allowed?).to be false
+      expect(user.notify.persisted?).to be false
     end
   end
 
   describe 'global pusher settings' do
     it 'is enabled by default' do
-      expect(settings.delivery_methods_.enabled).to eq nil
+      expect(settings.delivery_methods_.enabled).to be_nil
 
-      expect(notification.delivery_allowed?(:null)).to eq true
+      expect(notification.delivery_allowed?(:null)).to be true
     end
 
     it 'can be disabled' do
       settings.delivery_methods!.enabled = false
 
-      expect(notification.delivery_allowed?(:null)).to eq false
+      expect(notification.delivery_allowed?(:null)).to be false
     end
   end
 
@@ -67,22 +67,22 @@ RSpec.describe NotificationSettings::NotificationLib do
     it 'can disable all delivery methods' do
       settings.categories!.my_category!.delivery_methods!.enabled = false
 
-      expect(notification.delivery_allowed?(:null)).to eq false
+      expect(notification.delivery_allowed?(:null)).to be false
     end
   end
 
   describe 'delivery-method-specific settings' do
     it 'is enabled by default' do
-      expect(settings.delivery_methods_.null).to eq nil
+      expect(settings.delivery_methods_.null).to be_nil
 
-      expect(notification.delivery_allowed?(:null)).to eq true
-      expect(user.notify.persisted?).to eq true
+      expect(notification.delivery_allowed?(:null)).to be true
+      expect(user.notify.persisted?).to be true
     end
 
     it 'can be disabled' do
       settings.delivery_methods!.null = false
 
-      expect(notification.delivery_allowed?(:null)).to eq false
+      expect(notification.delivery_allowed?(:null)).to be false
     end
 
     it 'the enabled one still pushes with one pusher enabled ' \
@@ -90,9 +90,9 @@ RSpec.describe NotificationSettings::NotificationLib do
       settings.categories!.my_category!.delivery_methods!.null = false
       settings.categories!.my_category!.delivery_methods!.some_pusher = true
 
-      expect(notification.delivery_allowed?(:null)).to                 eq false
-      expect(notification.delivery_allowed?(:some_pusher)).to          eq true
-      expect(notification.delivery_allowed?([:null, :some_pusher])).to eq true
+      expect(notification.delivery_allowed?(:null)).to                 be false
+      expect(notification.delivery_allowed?(:some_pusher)).to          be true
+      expect(notification.delivery_allowed?([:null, :some_pusher])).to be true
     end
   end
 

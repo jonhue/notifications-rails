@@ -22,7 +22,7 @@ RSpec.describe NotificationPusher::NotificationLib do
     end
 
     it 'returns false when given nil' do
-      expect(notification.deliver(nil)).to eq false
+      expect(notification.deliver(nil)).to be false
     end
 
     it 'gives a useful error when given an invalid name' do
