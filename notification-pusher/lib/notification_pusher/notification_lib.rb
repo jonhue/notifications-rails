@@ -29,7 +29,7 @@ module NotificationPusher
 
       def deliver!(name, options = {})
         delivery_method = NotificationPusher::DeliveryMethodConfiguration
-                          .find_by!(name: name)
+                          .find_by_name!(name)
         delivery_method.call(self, options)
       end
 

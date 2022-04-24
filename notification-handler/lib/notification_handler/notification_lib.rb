@@ -27,7 +27,7 @@ module NotificationHandler
       def for_group(group, args: [], attrs: {})
         return if group.nil?
 
-        target_scope = NotificationHandler::Group.find_by!(name: group)
+        target_scope = NotificationHandler::Group.find_by_name!(group)
                                                  .target_scope
         target_scope.call(*args)&.map do |target|
           Notification.create(attrs.merge(target: target))
