@@ -24,7 +24,7 @@ Gem::Specification.new do |gem|
   gem.files                 = Dir['README.md', 'LICENSE',
                                   'lib/notifications-rails.rb']
 
-  gem.required_ruby_version = '>= 2.5'
+  gem.required_ruby_version = '>= 2.7'
 
   gem.add_dependency 'notification-handler', version
   gem.add_dependency 'notification-pusher', version
@@ -35,7 +35,8 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency 'pry'
   gem.add_development_dependency 'rails'
   gem.add_development_dependency 'rspec-rails'
-  gem.add_development_dependency 'rubocop', '1.13'
+  gem.add_development_dependency 'rubocop'
+  gem.add_development_dependency 'rubocop-rails'
   gem.add_development_dependency 'rubocop-rspec'
   gem.add_development_dependency 'sqlite3'
 end

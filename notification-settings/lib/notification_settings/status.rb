@@ -49,7 +49,7 @@ module NotificationSettings
       def time_since_last_seen
         return unless respond_to?(NotificationSettings.configuration.last_seen)
 
-        Time.now - send(NotificationSettings.configuration.last_seen)
+        Time.zone.now - send(NotificationSettings.configuration.last_seen)
       end
 
       def idle_after

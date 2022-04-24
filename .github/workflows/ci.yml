@@ -1,6 +1,6 @@
 name: CI
 
-on: [push]
+on: [push, pull_request]
 
 jobs:
   build:
@@ -9,8 +9,6 @@ jobs:
     strategy:
       matrix:
         ruby:
-        - '2.5'
-        - '2.6'
         - '2.7'
         - '3.0'
         - '3.1'
@@ -18,9 +16,6 @@ jobs:
     name: Ruby ${{ matrix.ruby }}
     steps:
     - uses: actions/checkout@master
-    - name: Remove Gemfile.lock
-      run: |
-        rm Gemfile.lock
     - uses: ruby/setup-ruby@v1
       with:
         ruby-version: ${{ matrix.ruby }}
@@ -29,6 +24,8 @@ jobs:
         sudo apt-get install libsqlite3-dev
         gem install bundler
         bundle install --jobs 4 --retry 3
+    - name: Run RuboCop
+      run: bundle exec rubocop
     - name: Run notification-handler specs
       run: bundle exec rspec notification-handler
     - name: Run notification-pusher specs

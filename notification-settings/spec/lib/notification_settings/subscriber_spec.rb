@@ -8,12 +8,12 @@ RSpec.describe NotificationSettings::Subscriber do
 
   it 'subscribe' do
     user.subscribe(recipe)
-    expect(user.notification_subscribables.present?).to eq true
+    expect(user.notification_subscribables.present?).to be true
   end
 
   it 'unsubscribe' do
     user.subscribe(recipe)
     user.unsubscribe(recipe)
-    expect(user.notification_subscribables.reload.empty?).to eq true
+    expect(user.notification_subscribables.reload.empty?).to be true
   end
 end

@@ -30,14 +30,14 @@ RSpec.describe NotificationHandler::NotificationLib do
     let(:notification) { build_stubbed :notification, target: user }
 
     it 'is unread by default' do
-      expect(notification.read?).to   eq false
-      expect(notification.unread?).to eq true
+      expect(notification.read?).to   be false
+      expect(notification.unread?).to be true
     end
 
     it 'can be marked as read' do
       notification.read = true
-      expect(notification.read?).to   eq true
-      expect(notification.unread?).to eq false
+      expect(notification.read?).to   be true
+      expect(notification.unread?).to be false
     end
   end
 

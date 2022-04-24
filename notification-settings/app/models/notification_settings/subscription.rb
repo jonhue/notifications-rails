@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module NotificationSettings
-  class Subscription < ActiveRecord::Base
+  class Subscription < ApplicationRecord
     self.table_name = 'notification_settings_subscriptions'
 
     include NotificationSettings::Settings

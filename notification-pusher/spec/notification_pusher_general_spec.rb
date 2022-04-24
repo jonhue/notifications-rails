@@ -10,8 +10,8 @@ RSpec.describe NotificationPusher do
       # rubocop:disable RSpec/DescribedClass
       expect(defined?(NotificationPusher)).to   eq 'constant'
       # rubocop:enable RSpec/DescribedClass
-      expect(defined?(NotificationRenderer)).to eq nil
-      expect(defined?(NotificationSettings)).to eq nil
+      expect(defined?(NotificationRenderer)).to be_nil
+      expect(defined?(NotificationSettings)).to be_nil
     end
   end
 end

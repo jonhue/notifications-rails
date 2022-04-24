@@ -23,6 +23,6 @@ RSpec.describe NotificationPusher::Configuration do
 
     expect(configuration.delivery_methods[:my_pusher])
       .to eq NotificationPusher::DeliveryMethodConfiguration
-             .find_by_name!(:my_pusher)
+             .find_by!(name: :my_pusher)
   end
 end
