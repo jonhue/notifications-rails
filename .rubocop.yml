@@ -37,6 +37,9 @@ Naming/FileName:
     - lib/notifications-rails.rb
     - notification-*/**/lib/notification-*.rb
 
+RSpec/ChangeByZero:
+  Enabled: False
+
 Rails/DynamicFindBy:
   Enabled: false
 
