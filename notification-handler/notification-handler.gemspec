@@ -6,13 +6,13 @@ Gem::Specification.new do |gem|
   gem.name                  = 'notification-handler'
   gem.version               = version
   gem.platform              = Gem::Platform::RUBY
-  gem.summary               = 'Create and modify your notifications through a '\
+  gem.summary               = 'Create and modify your notifications through a ' \
                               'simple API'
-  gem.description           = 'Create and modify your notifications through a '\
+  gem.description           = 'Create and modify your notifications through a ' \
                               'simple API.'
   gem.authors               = 'Jonas Hübotter'
   gem.email                 = 'jonas.huebotter@gmail.com'
-  gem.homepage              = 'https://github.com/jonhue/notifications-rails'\
+  gem.homepage              = 'https://github.com/jonhue/notifications-rails' \
                               '/tree/master/notification-handler'
   gem.license               = 'MIT'
 
