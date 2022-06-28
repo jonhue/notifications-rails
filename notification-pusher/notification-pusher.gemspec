@@ -10,7 +10,7 @@ Gem::Specification.new do |gem|
   gem.description           = 'Deliver your notifications to various services.'
   gem.authors               = 'Jonas Hübotter'
   gem.email                 = 'jonas.huebotter@gmail.com'
-  gem.homepage              = 'https://github.com/jonhue/notifications-rails'\
+  gem.homepage              = 'https://github.com/jonhue/notifications-rails' \
                               '/tree/master/notification-pusher'
   gem.license               = 'MIT'
 

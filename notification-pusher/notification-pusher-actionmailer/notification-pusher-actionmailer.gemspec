@@ -6,14 +6,14 @@ Gem::Specification.new do |gem|
   gem.name                  = 'notification-pusher-actionmailer'
   gem.version               = version
   gem.platform              = Gem::Platform::RUBY
-  gem.summary               = 'A delivery method to send your notifications '\
+  gem.summary               = 'A delivery method to send your notifications ' \
                               'via email using ActionMailer'
-  gem.description           = 'A delivery method to send your notifications '\
+  gem.description           = 'A delivery method to send your notifications ' \
                               'via email using ActionMailer.'
   gem.authors               = 'Jonas Hübotter'
   gem.email                 = 'jonas.huebotter@gmail.com'
-  gem.homepage              = 'https://github.com/jonhue/notifications-rails'\
-                              '/tree/master/notification-pusher'\
+  gem.homepage              = 'https://github.com/jonhue/notifications-rails' \
+                              '/tree/master/notification-pusher' \
                               '/notification-pusher-actionmailer'
   gem.license               = 'MIT'
 

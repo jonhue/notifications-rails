@@ -10,7 +10,7 @@ Gem::Specification.new do |gem|
   gem.description           = 'Render your notifications in various contexts.'
   gem.authors               = 'Jonas Hübotter'
   gem.email                 = 'jonas.huebotter@gmail.com'
-  gem.homepage              = 'https://github.com/jonhue/notifications-rails'\
+  gem.homepage              = 'https://github.com/jonhue/notifications-rails' \
                               '/tree/master/notification-renderer'
   gem.license               = 'MIT'
 

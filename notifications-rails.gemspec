@@ -6,14 +6,14 @@ Gem::Specification.new do |gem|
   gem.name                  = 'notifications-rails'
   gem.version               = version
   gem.platform              = Gem::Platform::RUBY
-  gem.summary               = 'The most powerful library for the handling and '\
-                              '(cross-platform) delivery of notifications '\
+  gem.summary               = 'The most powerful library for the handling and ' \
+                              '(cross-platform) delivery of notifications ' \
                               'with Rails'
-  gem.description           = 'notifications-rails is the most powerful '\
-                              'notification library for Rails. It offers not '\
-                              'only simple APIs to create and render '\
-                              'notifications but also supports '\
-                              'user-integration and cross-platform delivery '\
+  gem.description           = 'notifications-rails is the most powerful ' \
+                              'notification library for Rails. It offers not ' \
+                              'only simple APIs to create and render ' \
+                              'notifications but also supports ' \
+                              'user-integration and cross-platform delivery ' \
                               'of notifications.'
   gem.authors               = 'Jonas Hübotter'
   gem.email                 = 'jonas.huebotter@gmail.com'
