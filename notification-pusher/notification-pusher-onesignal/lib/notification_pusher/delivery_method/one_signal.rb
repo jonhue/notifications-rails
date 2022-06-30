@@ -7,13 +7,13 @@ module NotificationPusher
         return unless options[:player_ids].any?
 
         ::OneSignal::Notification.create params: {
-                                           app_id: options[:app_id],
-                                           url: url_param,
-                                           contents: contents_param,
-                                           headings: headings_param,
-                                           subtitle: subtitle_param,
-                                           include_player_ids: options[:player_ids]
-                                         }, opts: { auth_key: options[:auth_key] }
+          app_id: options[:app_id],
+          url: url_param,
+          contents: contents_param,
+          headings: headings_param,
+          subtitle: subtitle_param,
+          include_player_ids: options[:player_ids]
+        }, opts: { auth_key: options[:auth_key] }
       end
 
       private
