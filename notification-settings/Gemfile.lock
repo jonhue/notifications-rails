@@ -197,7 +197,7 @@ GEM
     rubocop-rspec (2.13.2)
       rubocop (~> 1.33)
     ruby-progressbar (1.11.0)
-    sqlite3 (1.5.0)
+    sqlite3 (1.5.1)
       mini_portile2 (~> 2.8.0)
     strscan (3.0.4)
     thor (1.2.1)
