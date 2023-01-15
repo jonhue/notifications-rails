@@ -52,6 +52,13 @@ RSpec/MessageSpies:
 RSpec/MultipleExpectations:
   Enabled: false
 
+RSpec/NoExpectationExample:
+  AllowedPatterns:
+    - ^expect_
+    - ^assert_
+    - ^test_
+    - ^allow
+
 Style/Documentation:
   Enabled: false
 

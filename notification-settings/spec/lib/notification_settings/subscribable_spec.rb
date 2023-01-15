@@ -3,9 +3,9 @@
 require_relative '../../rails_helper'
 
 RSpec.describe NotificationSettings::Subscribable do
-  let(:recipe) { create :recipe }
-  let(:user1)  { create :user }
-  let(:user2)  { create :user }
+  let(:recipe) { create(:recipe) }
+  let(:user1)  { create(:user) }
+  let(:user2)  { create(:user) }
 
   describe '#notify_subscribers' do
     before do

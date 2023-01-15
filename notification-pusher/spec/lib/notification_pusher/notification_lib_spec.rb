@@ -11,7 +11,7 @@ RSpec.describe NotificationPusher::NotificationLib do
   end
 
   describe '#deliver' do
-    let(:notification) { build_stubbed :notification }
+    let(:notification) { build_stubbed(:notification) }
 
     it 'passes the options stored in the configuration' do
       expect(NotificationPusher::DeliveryMethod::Null)
@@ -72,14 +72,14 @@ RSpec.describe NotificationPusher::NotificationLib do
         .to receive(:new).once.and_call_original
 
       User.transaction do
-        notification = create :notification
+        notification = create(:notification)
         notification.deliver(:null)
       end
     end
   end
 
   describe 'specifying delivery method via attributes' do
-    let(:notification) { build :notification }
+    let(:notification) { build(:notification) }
 
     it 'when no options passed' do
       allow(NotificationPusher::DeliveryMethodConfiguration)
@@ -119,7 +119,7 @@ RSpec.describe NotificationPusher::NotificationLib do
   end
 
   describe 'User#notify' do
-    let(:user) { build_stubbed :user }
+    let(:user) { build_stubbed(:user) }
 
     it 'when no options passed' do
       allow(NotificationPusher::DeliveryMethodConfiguration)

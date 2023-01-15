@@ -3,22 +3,22 @@
 require_relative '../../rails_helper'
 
 RSpec.describe NotificationHandler::NotificationLib do
-  let(:recipe) { build_stubbed :recipe }
-  let(:user)   { build_stubbed :user }
+  let(:recipe) { build_stubbed(:recipe) }
+  let(:user)   { build_stubbed(:user) }
 
   it 'can store an object' do
-    notification = create :notification, target: user, object: recipe
+    notification = create(:notification, target: user, object: recipe)
 
     expect(notification.object).to eq recipe
   end
 
   it 'can store metadata' do
-    notification = create :notification,
+    notification = create(:notification,
                           target: user,
                           metadata: {
                             title: 'My first notification',
                             content: "It looks great, doesn't it?"
-                          }
+                          })
 
     expect(notification.metadata).to eq(
       title: 'My first notification',
@@ -27,7 +27,7 @@ RSpec.describe NotificationHandler::NotificationLib do
   end
 
   describe '#read/#unread' do
-    let(:notification) { build_stubbed :notification, target: user }
+    let(:notification) { build_stubbed(:notification, target: user) }
 
     it 'is unread by default' do
       expect(notification.read?).to   be false
@@ -42,8 +42,8 @@ RSpec.describe NotificationHandler::NotificationLib do
   end
 
   describe 'sending to group' do
-    let!(:user)            { create :user }
-    let!(:subscribed_user) { create :user, subscriber: true }
+    let!(:user)            { create(:user) }
+    let!(:subscribed_user) { create(:user, subscriber: true) }
 
     context 'without args' do
       it do
@@ -62,7 +62,7 @@ RSpec.describe NotificationHandler::NotificationLib do
     end
 
     context 'with multiple args' do
-      let!(:foo) { create :user, name: 'Foo' }
+      let!(:foo) { create(:user, name: 'Foo') }
 
       it do
         expect do
