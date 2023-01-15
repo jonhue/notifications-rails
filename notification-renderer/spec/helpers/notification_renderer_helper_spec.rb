@@ -11,7 +11,8 @@ notification1 = create_title_and_content_notification('title1', 'content1')
 notification2 = create_title_and_content_notification('title2', 'content2')
 notifications = [notification1, notification2]
 
-RSpec.describe NotificationRendererHelper do
+# rubocop:disable RSpec/Rails/InferredSpecType
+RSpec.describe NotificationRendererHelper, type: :helper do
   describe 'render_notification' do
     it 'renders notification using default renderer' do
       rendered = helper.render_notification(notification1)
@@ -88,6 +89,7 @@ RSpec.describe NotificationRendererHelper do
     end
   end
 end
+# rubocop:enable RSpec/Rails/InferredSpecType
 
 def rendered_notifications(notifications, renderer: default_renderer)
   content_tag :div, class: 'notification-renderer notifications' do
