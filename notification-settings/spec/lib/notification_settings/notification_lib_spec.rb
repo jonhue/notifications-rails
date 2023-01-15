@@ -3,12 +3,12 @@
 require_relative '../../rails_helper'
 
 RSpec.describe NotificationSettings::NotificationLib do
-  let(:notification) { build_stubbed :notification, category: :my_category }
+  let(:notification) { build_stubbed(:notification, category: :my_category) }
   let(:user)         { notification.target }
   let(:settings)     { user.settings }
 
   context 'with persisted user' do
-    let(:user) { create :user }
+    let(:user) { create(:user) }
 
     it 'persists settings' do
       user.settings.enabled = true

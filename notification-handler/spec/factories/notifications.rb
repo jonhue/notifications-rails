@@ -2,6 +2,6 @@
 
 FactoryBot.define do
   factory :notification do
-    target { build_stubbed :user }
+    target { build_stubbed(:user) }
   end
 end

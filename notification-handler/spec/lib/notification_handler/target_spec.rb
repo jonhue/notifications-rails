@@ -3,7 +3,7 @@
 require_relative '../../rails_helper'
 
 RSpec.describe NotificationHandler::Target do
-  let(:user) { build_stubbed :user }
+  let(:user) { build_stubbed(:user) }
 
   describe '#notify' do
     it 'returns the notification' do
