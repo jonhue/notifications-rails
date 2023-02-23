@@ -198,7 +198,7 @@ GEM
       rubocop (~> 1.33)
       rubocop-capybara (~> 2.17)
     ruby-progressbar (1.11.0)
-    sqlite3 (1.6.0)
+    sqlite3 (1.6.1)
       mini_portile2 (~> 2.8.0)
     thor (1.2.1)
     timeout (0.3.1)
