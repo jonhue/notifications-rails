@@ -10,7 +10,7 @@ RSpec.describe NotificationSettings do
     it 'is enabled by default' do
       expect(settings.delivery_methods_.enabled).to be_nil
       expect(NotificationPusher::DeliveryMethod::Null)
-        .to receive(:new).with(notification, some_option: :value)
+        .to receive(:new).with(notification, {some_option: :value})
                          .and_call_original
 
       notification.deliver(:null)
@@ -37,7 +37,7 @@ RSpec.describe NotificationSettings do
     it 'is enabled by default' do
       expect(settings.delivery_methods_.null).to be_nil
       expect(NotificationPusher::DeliveryMethod::Null)
-        .to receive(:new).with(notification, some_option: :value)
+        .to receive(:new).with(notification, {some_option: :value})
                          .and_call_original
 
       notification.deliver(:null)
