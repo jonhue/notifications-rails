@@ -15,7 +15,7 @@ RSpec.describe NotificationPusher::NotificationLib do
 
     it 'passes the options stored in the configuration' do
       expect(NotificationPusher::DeliveryMethod::Null)
-        .to receive(:new).with(notification, some_option: :value)
+        .to receive(:new).with(notification, {some_option: :value})
                          .and_call_original
 
       notification.deliver(:null)
@@ -46,7 +46,7 @@ RSpec.describe NotificationPusher::NotificationLib do
     it 'when options passed' do
       allow(NotificationPusher::DeliveryMethodConfiguration)
         .to receive(:find_by_name!).with(:some_pusher).and_return(some_pusher)
-      expect(some_pusher).to receive(:call).with(notification, some: 1)
+      expect(some_pusher).to receive(:call).with(notification, {some: 1})
 
       notification.deliver(:some_pusher, some: 1)
     end
@@ -56,8 +56,8 @@ RSpec.describe NotificationPusher::NotificationLib do
         .to receive(:find_by_name!).with(:some_pusher).and_return(some_pusher)
       allow(NotificationPusher::DeliveryMethodConfiguration)
         .to receive(:find_by_name!).with(:other_pusher).and_return(other_pusher)
-      expect(some_pusher).to  receive(:call).with(notification, some: 1)
-      expect(other_pusher).to receive(:call).with(notification, other: 1)
+      expect(some_pusher).to  receive(:call).with(notification, {some: 1})
+      expect(other_pusher).to receive(:call).with(notification, {other: 1})
 
       notification.deliver(
         [:some_pusher, :other_pusher],
@@ -92,7 +92,7 @@ RSpec.describe NotificationPusher::NotificationLib do
     it 'when options passed' do
       allow(NotificationPusher::DeliveryMethodConfiguration)
         .to receive(:find_by_name!).with(:some_pusher).and_return(some_pusher)
-      expect(some_pusher).to receive(:call).with(notification, some: 1)
+      expect(some_pusher).to receive(:call).with(notification, {some: 1})
 
       notification.update!(
         delivery_method: :some_pusher,
@@ -105,8 +105,8 @@ RSpec.describe NotificationPusher::NotificationLib do
         .to receive(:find_by_name!).with(:some_pusher).and_return(some_pusher)
       allow(NotificationPusher::DeliveryMethodConfiguration)
         .to receive(:find_by_name!).with(:other_pusher).and_return(other_pusher)
-      expect(some_pusher).to  receive(:call).with(notification, some: 1)
-      expect(other_pusher).to receive(:call).with(notification, other: 1)
+      expect(some_pusher).to  receive(:call).with(notification, {some: 1})
+      expect(other_pusher).to receive(:call).with(notification, {other: 1})
 
       notification.update!(
         delivery_method: [:some_pusher, :other_pusher],
@@ -134,7 +134,7 @@ RSpec.describe NotificationPusher::NotificationLib do
       allow(NotificationPusher::DeliveryMethodConfiguration)
         .to receive(:find_by_name!).with(:some_pusher).and_return(some_pusher)
       expect(some_pusher)
-        .to receive(:call).with(instance_of(Notification), some: 1)
+        .to receive(:call).with(instance_of(Notification), {some: 1})
 
       user.notify(delivery_method: :some_pusher,
                   delivery_options: { some: 1 })
@@ -146,9 +146,9 @@ RSpec.describe NotificationPusher::NotificationLib do
       allow(NotificationPusher::DeliveryMethodConfiguration)
         .to receive(:find_by_name!).with(:other_pusher).and_return(other_pusher)
       expect(some_pusher)
-        .to receive(:call).with(instance_of(Notification), some: 1)
+        .to receive(:call).with(instance_of(Notification), {some: 1})
       expect(other_pusher)
-        .to receive(:call).with(instance_of(Notification), other: 1)
+        .to receive(:call).with(instance_of(Notification), {other: 1})
 
       user.notify(
         delivery_method: [:some_pusher, :other_pusher],
