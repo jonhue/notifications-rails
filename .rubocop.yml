@@ -9,6 +9,9 @@ AllCops:
   NewCops: enable
   TargetRubyVersion: 2.7
 
+FactoryBot/FactoryAssociationWithStrategy:
+  Enabled: false
+
 Gemspec/RequireMFA:
   Enabled: false
 
@@ -46,6 +49,9 @@ Rails/DynamicFindBy:
 RSpec/ExampleLength:
   Enabled: false
 
+RSpec/IndexedLet:
+  Enabled: false
+
 RSpec/MessageSpies:
   EnforcedStyle: receive
 
@@ -58,6 +64,9 @@ RSpec/NoExpectationExample:
     - ^assert_
     - ^test_
     - ^allow
+
+RSpec/PendingWithoutReason:
+  Enabled: false
 
 Style/Documentation:
   Enabled: false
