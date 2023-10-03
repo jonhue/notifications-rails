@@ -31,13 +31,13 @@ module NotificationSettings
       end
 
       def idle?
-        return unless time_since_last_seen_round
+        return false unless time_since_last_seen_round
 
         time_since_last_seen_round >= idle_after
       end
 
       def offline?
-        return unless time_since_last_seen_round
+        return false unless time_since_last_seen_round
 
         time_since_last_seen_round >= offline_after
       end
