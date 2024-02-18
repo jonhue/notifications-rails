@@ -1,13 +1,14 @@
 require:
   - rubocop-rails
   - rubocop-rspec
+  - rubocop-factory_bot
 
 AllCops:
   Exclude:
     - vendor/**/*
     - '**/spec/support/rails_app/db/schema.rb'
   NewCops: enable
-  TargetRubyVersion: 2.7
+  TargetRubyVersion: 3.0
 
 FactoryBot/FactoryAssociationWithStrategy:
   Enabled: false

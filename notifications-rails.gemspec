@@ -23,7 +23,7 @@ Gem::Specification.new do |gem|
   gem.files                 = Dir['README.md', 'LICENSE',
                                   'lib/notifications-rails.rb']
 
-  gem.required_ruby_version = '>= 2.7'
+  gem.required_ruby_version = '>= 3.0'
 
   gem.add_dependency 'notification-handler', version
   gem.add_dependency 'notification-pusher', version

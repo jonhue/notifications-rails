@@ -23,7 +23,7 @@ Gem::Specification.new do |gem|
     'github_repo' => 'ssh://github.com/jonhue/notifications-rails'
   }
 
-  gem.required_ruby_version = '>= 2.7'
+  gem.required_ruby_version = '>= 3.0'
 
   gem.add_dependency 'activerecord', '>= 5.0'
   gem.add_dependency 'activesupport', '>= 5.0'
