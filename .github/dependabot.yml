@@ -8,52 +8,91 @@ updates:
   - package-ecosystem: "github-actions"
     directory: "/"
     schedule:
-      interval: "monthly"
+      interval: "daily"
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-patch"]
   - package-ecosystem: "bundler"
     directory: "/"
     schedule:
-      interval: "monthly"
+      interval: "daily"
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-patch"]
   - package-ecosystem: "bundler"
     directory: "/spec/support/rails_app"
     schedule:
-      interval: "monthly"
+      interval: "daily"
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-patch"]
   - package-ecosystem: "bundler"
     directory: "/notification-handler"
     schedule:
-      interval: "monthly"
+      interval: "daily"
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-patch"]
   - package-ecosystem: "bundler"
     directory: "/notification-handler/spec/support/rails_app"
     schedule:
-      interval: "monthly"
+      interval: "daily"
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-patch"]
   - package-ecosystem: "bundler"
     directory: "/notification-pusher"
     schedule:
-      interval: "monthly"
+      interval: "daily"
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-patch"]
   - package-ecosystem: "bundler"
     directory: "/notification-pusher/spec/support/rails_app"
     schedule:
-      interval: "monthly"
+      interval: "daily"
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-patch"]
   - package-ecosystem: "bundler"
     directory: "/notification-pusher/notification-pusher-actionmailer"
     schedule:
-      interval: "monthly"
+      interval: "daily"
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-patch"]
   - package-ecosystem: "bundler"
     directory: "/notification-pusher/notification-pusher-onesignal"
     schedule:
-      interval: "monthly"
+      interval: "daily"
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-patch"]
   - package-ecosystem: "bundler"
     directory: "/notification-renderer"
     schedule:
-      interval: "monthly"
+      interval: "daily"
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-patch"]
   - package-ecosystem: "bundler"
     directory: "/notification-renderer/spec/support/rails_app"
     schedule:
-      interval: "monthly"
+      interval: "daily"
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-patch"]
   - package-ecosystem: "bundler"
     directory: "/notification-settings"
     schedule:
-      interval: "monthly"
+      interval: "daily"
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-patch"]
   - package-ecosystem: "bundler"
     directory: "/notification-settings/spec/support/rails_app"
     schedule:
-      interval: "monthly"
+      interval: "daily"
+    ignore:
+      - dependency-name: "*"
+        update-types: ["version-update:semver-patch"]
