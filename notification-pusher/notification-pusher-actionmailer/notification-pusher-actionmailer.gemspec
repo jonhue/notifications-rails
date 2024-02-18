@@ -24,7 +24,7 @@ Gem::Specification.new do |gem|
     'github_repo' => 'ssh://github.com/jonhue/notifications-rails'
   }
 
-  gem.required_ruby_version = '>= 2.7'
+  gem.required_ruby_version = '>= 3.0'
 
   gem.add_dependency 'actionmailer', '>= 5.0'
   gem.add_dependency 'notification-pusher', version
