@@ -1,12 +1,12 @@
 PATH
   remote: .
   specs:
-    notification-settings (3.0.3)
+    notification-settings (4.0.1)
       activemodel (>= 5.0)
       activerecord (>= 5.0)
       activesupport (>= 5.0)
       hashie (>= 3.6, < 6.0)
-      notification-handler (= 3.0.3)
+      notification-handler (= 4.0.1)
       railties (>= 5.0)
 
 GEM
@@ -138,7 +138,7 @@ GEM
     nokogiri (1.16.7)
       mini_portile2 (~> 2.8.2)
       racc (~> 1.4)
-    notification-handler (3.0.3)
+    notification-handler (4.0.1)
       activerecord (>= 5.0)
       activesupport (>= 5.0)
       railties (>= 5.0)

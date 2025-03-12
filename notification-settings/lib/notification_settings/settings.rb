@@ -10,7 +10,11 @@ module NotificationSettings
     included do
       before_validation :build_settings
 
-      serialize :settings, Hashie::Mash
+      if ActiveRecord.gem_version >= Gem::Version.new('7.0.0')
+        serialize :settings, type: Hashie::Mash, coder: YAML
+      else
+        serialize :settings, Hashie::Mash
+      end
 
       include NotificationSettings::Settings::InstanceMethods
     end

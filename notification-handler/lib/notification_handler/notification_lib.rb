@@ -11,7 +11,11 @@ module NotificationHandler
 
       after_commit :cache
 
-      serialize :metadata, Hash
+      if ActiveRecord.gem_version >= Gem::Version.new('7.0.0')
+        serialize :metadata, type: Hash, coder: YAML
+      else
+        serialize :metadata, Hash
+      end
 
       belongs_to :target, polymorphic: true
       belongs_to :object, polymorphic: true, optional: true
